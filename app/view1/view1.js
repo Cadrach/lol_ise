@@ -9,7 +9,9 @@ angular.module('appLolIse.view1', ['ngRoute'])
     resolve: {
         items: function($http){
             //TODO: Use system language for locale
-            return $http.get('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44')
+            var url = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/item.json';
+            //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
+            return $http.get(url)
                 .then(function(response){return response.data;});
         }
     }
@@ -45,6 +47,13 @@ angular.module('appLolIse.view1', ['ngRoute'])
          */
         $scope.url = "http://ddragon.leagueoflegends.com/cdn/"+items.version+"/img";
         $scope.items = items.data;
+        //Clean unused items
+        _.each($scope.items, function(item, key){
+            item.id = key;
+            if(!item.gold.purchasable || item.hideFromAll){
+                delete $scope.items[key];
+            }
+        })
         $scope.itemsArray = _.toArray($scope.items);
         $scope.set = angular.copy(defaultSet);
 
@@ -67,15 +76,32 @@ angular.module('appLolIse.view1', ['ngRoute'])
 
         $scope.sortable = {
             receive: function(event, ui){
+                ui.item.sortable.cancel();
                 var model = ui.item.sortable.model;
+                var id = model.id.toString();
                 var blockItems = ui.item.sortable.droptargetModel;
                 var position = ui.item.sortable.dropindex
-                console.log(model, blockItems);
+
+                //If the item stacks, check if we should stack
+                if(model.stacks){
+                    //Find item in current array
+                    var found = _.findWhere(blockItems, {id: id});
+                    if(found){
+                        if(model.stacks > found.count){
+                            found.count++;
+                            return; //we do nothing else
+                        }
+                        else{
+                            throw "Maximum reached";
+                        }
+                    }
+                }
+
+                //Create item in block
                 blockItems.splice(position, 0, {
-                    id: model.id.toString(),
+                    id: id,
                     count: 1
                 })
-                ui.item.sortable.cancel();
             }
         }
 

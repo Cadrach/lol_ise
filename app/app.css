@@ -1,16 +1,21 @@
 item {
+  position: relative;
   display: inline-block !important;
   width: 48px;
   height: 48px;
   margin: 2px; }
-  item > div {
+  item > .ise-item-img {
     border: 1px solid #999;
     width: 48px;
     height: 48px;
     opacity: 0.15; }
+  item > .ise-item-count {
+    position: absolute;
+    top: 31px;
+    right: 1px; }
 
-.ise-block {
-  min-height: 100px;
-  margin-bottom: 10px; }
+.ise-block-items {
+  min-height: 48px;
+  margin-bottom: 4px; }
 
 /*# sourceMappingURL=app.css.map */
