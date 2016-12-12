@@ -1,9 +1,15 @@
-.ise-item{
-    float: left;
+
+item{
+    display: inline-block !important;
+    width: 48px;
+    height: 48px;
+    margin: 2px;
     &>div{
+        border: 1px solid #999;
         width: 48px;
         height: 48px;
-        margin: 2px;
+        opacity: 0.15;
+        //background: #000 !important;
     }
 }
 

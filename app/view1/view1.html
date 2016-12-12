@@ -3,16 +3,21 @@
 <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
 
 <div class="col-xs-6">
-
+    <div ui-sortable="draggable" ng-model="itemsArray">
+        <item value="item" ng-repeat="item in itemsArray"></item>
+    </div>
 </div>
 
 <div class="col-xs-6">
     <div class="btn btn-success pull-right" ng-click="addBlock()">+</div>
     <div class="ise-block" ng-repeat="block in set.blocks">
+
         <input class="form-control" ng-model="block.type" type="text"/>
-        <item value="items[item.id]" ng-repeat="item in block.items">
-            AAA
-        </item>
+
+        <div class="ise-block-items" ui-sortable="sortable" ng-model="block.items">
+            <item value="items[item.id]" ng-repeat="item in block.items"></item>
+        </div>
+
         <div class="clearfix"></div>
     </div>
 </div>

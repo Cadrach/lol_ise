@@ -7,13 +7,16 @@ angular.module('appLolIse.item.item-directive', [])
     var url = "http://ddragon.leagueoflegends.com/cdn/"+version+"/img";
 
     return {
-        link: function(scope){
+        link: function(scope, elmt){
             scope.url = url;
+            elmt.click(function(){
+                console.log(scope.item);
+            })
         },
         restrict: 'E',
         scope: {
             item: '=value'
         },
-        template: '<div class="ise-item"><div style="background-image: url({{url + \'/sprite/\' + item.image.sprite}}); background-position: {{item.image.x}}px {{item.image.y}}px;"/></div>'
+        template: '<div style="background-image: url({{url + \'/sprite/\' + item.image.sprite}}); background-position: -{{item.image.x}}px -{{item.image.y}}px;"/>'
     }
 }]);

@@ -45,6 +45,7 @@ angular.module('appLolIse.view1', ['ngRoute'])
          */
         $scope.url = "http://ddragon.leagueoflegends.com/cdn/"+items.version+"/img";
         $scope.items = items.data;
+        $scope.itemsArray = _.toArray($scope.items);
         $scope.set = angular.copy(defaultSet);
 
         //Maps
@@ -55,6 +56,27 @@ angular.module('appLolIse.view1', ['ngRoute'])
             TT:	{name: "Twisted Treeline", code: 10},
             SR:	{name: "Summoner's Rift", code: 11},
             HA:	{name: "Howling Abyss", code: 12}
+        }
+
+        $scope.draggable = {
+            helper: 'clone',
+            placeholder: 'ise-item-dragged',
+            connectWith: '.ise-block-items',
+            update: function(event, ui){ui.item.sortable.cancel();}
+        }
+
+        $scope.sortable = {
+            receive: function(event, ui){
+                var model = ui.item.sortable.model;
+                var blockItems = ui.item.sortable.droptargetModel;
+                var position = ui.item.sortable.dropindex
+                console.log(model, blockItems);
+                blockItems.splice(position, 0, {
+                    id: model.id.toString(),
+                    count: 1
+                })
+                ui.item.sortable.cancel();
+            }
         }
 
         /**

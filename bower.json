@@ -13,6 +13,7 @@
     "html5-boilerplate": "^5.3.0",
     "bootstrap-sass": "^3.3.7",
     "angular-bootstrap": "^2.3.1",
-    "angular-ui-sortable": "^0.16.0"
+    "angular-ui-sortable": "^0.16.0",
+    "underscore": "^1.8.3"
   }
 }

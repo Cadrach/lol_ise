@@ -4,6 +4,7 @@
 angular.module('appLolIse', [
   'ngRoute',
   'ui.bootstrap',
+  'ui.sortable',
   'appLolIse.item',
   'appLolIse.view1',
   'appLolIse.view2'
