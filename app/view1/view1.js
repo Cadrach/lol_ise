@@ -51,12 +51,11 @@ angular.module('appLolIse.view1', ['ngRoute'])
         //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
         $scope.maps = {
             //1:	"Original Summoner's Rift",
-            0: {name: "Any", code: "any"},
-            10:	{name: "Twisted Treeline", code: "TT"},
-            11:	{name: "Summoner's Rift", code: "SR"},
-            12:	{name: "Howling Abyss", code: "HA"}
+            any: {name: "Any", code: null},
+            TT:	{name: "Twisted Treeline", code: 10},
+            SR:	{name: "Summoner's Rift", code: 11},
+            HA:	{name: "Howling Abyss", code: 12}
         }
-
 
         /**
          * **************************************************************************************
@@ -64,5 +63,11 @@ angular.module('appLolIse.view1', ['ngRoute'])
          */
         $scope.selectItem = function(item){
             console.log(item);
+        }
+        $scope.addBlock = function(){
+            $scope.set.blocks.push({
+                type: "New Block",
+                items: []
+            })
         }
 }]);

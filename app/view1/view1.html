@@ -1,3 +1,23 @@
-<div class="ise-item" ng-repeat="item in items" ng-click="selectItem(item)">
-    <div style="background-image: url({{url + '/sprite/' + item.image.sprite}}); background-position: {{item.image.x}}px {{item.image.y}}px;"/>
+<!-- MAPS -->
+<input class="form-control" ng-model="set.title" type="text"/>
+<select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
+
+<div class="col-xs-6">
+
 </div>
+
+<div class="col-xs-6">
+    <div class="btn btn-success pull-right" ng-click="addBlock()">+</div>
+    <div class="ise-block" ng-repeat="block in set.blocks">
+        <input class="form-control" ng-model="block.type" type="text"/>
+        <item value="items[item.id]" ng-repeat="item in block.items">
+            AAA
+        </item>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<pre>{{set|json}}</pre>
+<!--<div class="ise-item" ng-repeat="item in items" ng-click="selectItem(item)">-->
+    <!---->
+<!--</div>-->
