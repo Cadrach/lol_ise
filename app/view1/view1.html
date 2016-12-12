@@ -1,1 +1,3 @@
-<p>This is the partial for view 1.</p>
+<div class="ise-item" ng-repeat="item in items" ng-click="selectItem(item)">
+    <div style="background-image: url({{url + '/sprite/' + item.image.sprite}}); background-position: {{item.image.x}}px {{item.image.y}}px;"/>
+</div>
