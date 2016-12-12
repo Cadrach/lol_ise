@@ -1,6 +1,7 @@
 <!-- MAPS -->
 <input class="form-control" ng-model="set.title" type="text"/>
 <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
+<input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
 
 <div class="col-xs-6">
     <div ui-sortable="draggable" ng-model="itemsArray">

@@ -18,7 +18,7 @@ angular.module('appLolIse.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', 'items', function($scope, items) {
+.controller('View1Ctrl', ['$scope', '$filter', 'items', function($scope, $filter, items) {
         /**
          * **************************************************************************************
          * LOCAL VARS
@@ -45,16 +45,19 @@ angular.module('appLolIse.view1', ['ngRoute'])
          * **************************************************************************************
          * SCOPE VARS
          */
-        $scope.url = "http://ddragon.leagueoflegends.com/cdn/"+items.version+"/img";
+        //Used items (we clean the unused ones)
         $scope.items = items.data;
-        //Clean unused items
         _.each($scope.items, function(item, key){
             item.id = key;
             if(!item.gold.purchasable || item.hideFromAll){
                 delete $scope.items[key];
             }
         })
+
+        //Searchable items array list
         $scope.itemsArray = _.toArray($scope.items);
+
+        //Set we manage (init to default set)
         $scope.set = angular.copy(defaultSet);
 
         //Maps
@@ -67,6 +70,12 @@ angular.module('appLolIse.view1', ['ngRoute'])
             HA:	{name: "Howling Abyss", code: 12}
         }
 
+        //Filters for items
+        $scope.filters = {
+            string: ''
+        }
+
+        //Draggable config (list of all items)
         $scope.draggable = {
             helper: 'clone',
             placeholder: 'ise-item-dragged',
@@ -74,13 +83,14 @@ angular.module('appLolIse.view1', ['ngRoute'])
             update: function(event, ui){ui.item.sortable.cancel();}
         }
 
+        //Sortable config (config for each block)
         $scope.sortable = {
             receive: function(event, ui){
                 ui.item.sortable.cancel();
                 var model = ui.item.sortable.model;
                 var id = model.id.toString();
                 var blockItems = ui.item.sortable.droptargetModel;
-                var position = ui.item.sortable.dropindex
+                var position = ui.item.sortable.dropindex;
 
                 //If the item stacks, check if we should stack
                 if(model.stacks){
@@ -112,10 +122,19 @@ angular.module('appLolIse.view1', ['ngRoute'])
         $scope.selectItem = function(item){
             console.log(item);
         }
+
         $scope.addBlock = function(){
             $scope.set.blocks.push({
                 type: "New Block",
                 items: []
             })
         }
+
+        /**
+         * **************************************************************************************
+         * WATCHES
+         */
+        $scope.$watch('filters.string', function(value){
+//            $scope.itemsArray = $filter('filter')(_.toArray($scope.items), {'*':value});
+        })
 }]);

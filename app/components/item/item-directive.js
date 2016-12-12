@@ -19,6 +19,6 @@ angular.module('appLolIse.item.item-directive', [])
             count: '='
         },
         template: '<div class="ise-item-img" style="background-image: url({{url + \'/sprite/\' + item.image.sprite}}); background-position: -{{item.image.x}}px -{{item.image.y}}px;"/>' +
-            '<div class="ise-item-count" ng-show="count>1">{{count}}</div>'
+            '<div class="ise-item-count" ng-show="item.stacks && count">{{count}}</div>'
     }
 }]);
