@@ -104,7 +104,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     var root = s.champion ? 'Config/Champions/' + champ + '/Recommended/' : 'Config/Global/Recommended/';
                     champions[champ] = typeof champions[champ] == 'undefined' ? 0:champions[champ]+1;
                     var path = root + champ + champions[champ] + '.json';
-                    zip.file(path, JSON.stringify(s));
+                    zip.file(path, angular.toJson(s));
                 })
 
                 //Add a small readme in the .zip

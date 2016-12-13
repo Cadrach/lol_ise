@@ -2,9 +2,8 @@
 
 angular.module('appLolIse.item.item-directive', [])
 
-.directive('item', [function() {
-    var version = '6.24.1';
-    var url = "http://ddragon.leagueoflegends.com/cdn/"+version+"/img";
+.directive('item', ['ddragon', function(ddragon) {
+    var url = ddragon.getBaseUrl() + "img";
 
     return {
         link: function(scope, elmt){

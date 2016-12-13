@@ -3,26 +3,25 @@
 angular.module('appLolIse.viewMain', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/viewMain', {
-    templateUrl: 'app/viewMain/viewMain.html',
-    controller: 'ViewMainCtrl',
-    resolve: {
-        items: function($http){
-            //TODO: Use system language for locale
-            var url = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/item.json';
-            //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
-            return $http.get(url)
-                .then(function(response){return response.data;});
-        },
-        champions: function($http){
-            //TODO: Use system language for locale
-            var url = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json';
-            //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
-            return $http.get(url)
-                .then(function(response){return response.data.data;});
+    $routeProvider.when('/viewMain', {
+        templateUrl: 'app/viewMain/viewMain.html',
+        controller: 'ViewMainCtrl',
+        resolve: {
+            items: function($http, ddragon){
+                //TODO: Use system language for locale
+                var url = ddragon.getBaseUrl() + 'data/en_US/item.json';
+                return $http.get(url)
+                    .then(function(response){return response.data;});
+            },
+            champions: function($http, ddragon){
+                //TODO: Use system language for locale
+                var url = ddragon.getBaseUrl() + 'data/en_US/champion.json';
+                //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
+                return $http.get(url)
+                    .then(function(response){return response.data.data;});
+            }
         }
-    }
-  });
+    });
 }])
 
 .controller('ViewMainCtrl', ['$scope', '$filter', 'items', 'champions', function($scope, $filter, items, champions) {

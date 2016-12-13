@@ -6,6 +6,7 @@ angular.module('appLolIse', [
     'ui.bootstrap',
     'ui.sortable',
 
+    'appLolIse.ddragon',
     'appLolIse.item',
     'appLolIse.set',
     'appLolIse.viewMain',
