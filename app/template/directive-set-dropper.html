@@ -1,0 +1,17 @@
+<div>
+    <div ngf-drop
+         ng-model="files"
+         ngf-drag-over-class="'dragover'"
+         ngf-multiple="true"
+         ngf-allow-dir="true"
+         accept="application/json"
+         ngf-pattern="'.json'">Drop pdfs or images here or click to upload</div>
+
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    <!--Files:-->
+    <!--<ul>-->
+        <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>-->
+    <!--</ul>-->
+    <!--Upload Log:-->
+    <!--<pre>{{log}}</pre>-->
+</div>

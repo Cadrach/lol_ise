@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('appLolIse.view1', ['ngRoute'])
+angular.module('appLolIse.viewMain', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'app/view1/view1.html',
-    controller: 'View1Ctrl',
+  $routeProvider.when('/viewMain', {
+    templateUrl: 'app/viewMain/viewMain.html',
+    controller: 'ViewMainCtrl',
     resolve: {
         items: function($http){
             //TODO: Use system language for locale
@@ -18,7 +18,7 @@ angular.module('appLolIse.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', '$filter', 'items', function($scope, $filter, items) {
+.controller('ViewMainCtrl', ['$scope', '$filter', 'items', function($scope, $filter, items) {
         /**
          * **************************************************************************************
          * LOCAL VARS
@@ -49,7 +49,7 @@ angular.module('appLolIse.view1', ['ngRoute'])
         $scope.items = items.data;
         _.each($scope.items, function(item, key){
             item.id = key;
-            if(!item.gold.purchasable || item.hideFromAll){
+            if(!item.gold.purchasable || item.plaintext == ""){
                 delete $scope.items[key];
             }
         })
@@ -57,8 +57,11 @@ angular.module('appLolIse.view1', ['ngRoute'])
         //Searchable items array list
         $scope.itemsArray = _.toArray($scope.items);
 
-        //Set we manage (init to default set)
-        $scope.set = angular.copy(defaultSet);
+        //Sets we manage (init to default set) & current set
+        $scope.sets = [
+            angular.copy(defaultSet)
+        ];
+        $scope.set = $scope.sets[0];
 
         //Maps
         //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
@@ -121,6 +124,10 @@ angular.module('appLolIse.view1', ['ngRoute'])
          */
         $scope.selectItem = function(item){
             console.log(item);
+        }
+
+        $scope.selectSet = function(theSet){
+            $scope.set = theSet;
         }
 
         $scope.addBlock = function(){

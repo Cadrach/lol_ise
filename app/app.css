@@ -18,4 +18,12 @@ item {
   min-height: 48px;
   margin-bottom: 4px; }
 
+set-dropper {
+  display: block;
+  border: 1px solid #999;
+  margin: 10px; }
+  set-dropper [ngf-drop] {
+    background: #EEE;
+    height: 50px; }
+
 /*# sourceMappingURL=app.css.map */
