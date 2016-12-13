@@ -3,7 +3,7 @@
 <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
 <input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
 
-<set-dropper sets="sets"></set-dropper>
+<set-dropper sets="sets" style="visibility: hidden; opacity: 0"></set-dropper>
 
 <div class="col-xs-2">
     <div class="list-group">
@@ -13,13 +13,13 @@
     </div>
 </div>
 
-<div class="col-xs-5">
+<div class="col-xs-6">
     <div ui-sortable="draggable" ng-model="itemsArray">
         <item value="item" ng-repeat="item in itemsArray"></item>
     </div>
 </div>
 
-<div class="col-xs-5">
+<div class="col-xs-4">
     <div class="btn btn-success pull-right" ng-click="addBlock()">+</div>
     <div class="ise-block" ng-repeat="block in set.blocks">
 
