@@ -36,7 +36,6 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     var reader = new FileReader;
                     reader.onload = function(e){
                         var theSet = JSON.parse(e.target.result);
-                        theSet.filepath = file.path;
                         scope.sets.push(theSet);
                     }
                     reader.readAsText(file);
@@ -86,5 +85,43 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             sets: '='
         },
         templateUrl: 'app/template/directive-set-dropper.html'
+    }
+}])
+.directive('setDownloader', ['$window', function($window) {
+    return {
+        link: function(scope, elmt){
+            /**
+             * **************************************************************************************
+             * SCOPE VARS
+             */
+            scope.download = function(){
+                var zip = new JSZip;
+                var champions = {};
+
+                //Add each set to the zip
+                scope.sets.forEach(function(s){
+                    var champ = s.champion ? s.champion:'Global';
+                    var root = s.champion ? 'Config/Champions/' + champ + '/Recommended/' : 'Config/Global/Recommended/';
+                    champions[champ] = typeof champions[champ] == 'undefined' ? 0:champions[champ]+1;
+                    var path = root + champ + champions[champ] + '.json';
+                    zip.file(path, JSON.stringify(s));
+                })
+
+                //Add a small readme in the .zip
+                zip.file('readme.txt', 'Use this folder to replace the Config/ folder in your League of Legends installation, usually located at %PROGRAMFILES%/Riot Games/League of Legends/')
+
+                //Send the zipped file
+                zip.generateAsync({type:"blob"})
+                    .then(function (blob) {
+                        saveAs(blob, "Lol_Item_Set.zip");
+                });
+            }
+
+        },
+        restrict: 'E',
+        scope: {
+            sets: '='
+        },
+        template: '<div class="btn btn-success" ng-click="download()">Download</div>'
     }
 }]);

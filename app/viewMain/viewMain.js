@@ -13,12 +13,19 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
             return $http.get(url)
                 .then(function(response){return response.data;});
+        },
+        champions: function($http){
+            //TODO: Use system language for locale
+            var url = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json';
+            //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
+            return $http.get(url)
+                .then(function(response){return response.data.data;});
         }
     }
   });
 }])
 
-.controller('ViewMainCtrl', ['$scope', '$filter', 'items', function($scope, $filter, items) {
+.controller('ViewMainCtrl', ['$scope', '$filter', 'items', 'champions', function($scope, $filter, items, champions) {
         /**
          * **************************************************************************************
          * LOCAL VARS
@@ -29,6 +36,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             mode: 'any',
             priority: false,
             sortrank: null,
+            champion: _.toArray(champions)[0].id,
             blocks: [
                 {
                     type: "A block with just boots",
@@ -40,6 +48,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
                 }
             ]
         }
+
+        console.log(champions);
 
         /**
          * **************************************************************************************
@@ -67,7 +77,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
         $scope.maps = {
             //1:	"Original Summoner's Rift",
-            any: {name: "Any", code: null},
+            any: {name: "Any Map", code: null},
             TT:	{name: "Twisted Treeline", code: 10},
             SR:	{name: "Summoner's Rift", code: 11},
             HA:	{name: "Howling Abyss", code: 12}
@@ -81,13 +91,14 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         //Draggable config (list of all items)
         $scope.draggable = {
             helper: 'clone',
-            placeholder: 'ise-item-dragged',
+            placeholder: 'ise-item-placeholder',
             connectWith: '.ise-block-items',
             update: function(event, ui){ui.item.sortable.cancel();}
         }
 
         //Sortable config (config for each block)
         $scope.sortable = {
+            placeholder: 'ise-item-placeholder',
             receive: function(event, ui){
                 ui.item.sortable.cancel();
                 var model = ui.item.sortable.model;
@@ -144,4 +155,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         $scope.$watch('filters.string', function(value){
 //            $scope.itemsArray = $filter('filter')(_.toArray($scope.items), {'*':value});
         })
+        $scope.$watchCollection('sets', function(){
+            $scope.setsArray = _.groupBy($scope.sets, 'champion');
+        });
 }]);

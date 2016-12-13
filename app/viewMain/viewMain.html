@@ -1,26 +1,36 @@
 <!-- MAPS -->
-<input class="form-control" ng-model="set.title" type="text"/>
-<select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
-<input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
 
 <set-dropper sets="sets" style="visibility: hidden; opacity: 0"></set-dropper>
 
 <div class="col-xs-2">
-    <div class="list-group">
-        <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in sets" ng-click="selectSet(s)">
-            {{s.title}}
+
+    <set-downloader sets="sets"></set-downloader>
+    <div ng-repeat="champSets in setsArray">
+        {{champSets[0].champion}}
+        <div class="list-group">
+            <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
+                {{s.title}}
+            </div>
         </div>
     </div>
 </div>
 
-<div class="col-xs-6">
+<div class="col-xs-6 ise-items-list">
+
+    <input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
+
     <div ui-sortable="draggable" ng-model="itemsArray">
         <item value="item" ng-repeat="item in itemsArray"></item>
     </div>
 </div>
 
 <div class="col-xs-4">
-    <div class="btn btn-success pull-right" ng-click="addBlock()">+</div>
+
+    <input class="form-control" ng-model="set.title" type="text"/>
+    <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
+
+    <br/>
+
     <div class="ise-block" ng-repeat="block in set.blocks">
 
         <input class="form-control" ng-model="block.type" type="text"/>
@@ -31,9 +41,8 @@
 
         <div class="clearfix"></div>
     </div>
+
+    <div class="btn btn-success btn-block" ng-click="addBlock()">New Block</div>
 </div>
 
 <pre>{{set|json}}</pre>
-<!--<div class="ise-item" ng-repeat="item in items" ng-click="selectItem(item)">-->
-    <!---->
-<!--</div>-->

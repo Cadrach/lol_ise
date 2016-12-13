@@ -14,6 +14,12 @@ item {
     top: 31px;
     right: 1px; }
 
+.ise-item-placeholder {
+  border: 2px dashed #000; }
+
+.ise-items-list .ise-item-placeholder {
+  display: none !important; }
+
 .ise-block-items {
   min-height: 48px;
   margin-bottom: 4px; }
