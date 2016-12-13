@@ -1,0 +1,141 @@
+{
+	"champion" : "Aatrox",
+	"title" : "AatroxCS",
+	"map" : "CS",
+	"mode" : "ODIN",
+	"type" : "riot",
+	"customTag" : "",
+	"sortrank" : 0,
+	"extensionPage" : false,
+	"customPanel" : null,
+	"blocks" : [{
+			"type" : "starting",
+			"recMath" : false,
+			"recSteps" : false,
+			"minSummonerLevel" : -1,
+			"maxSummonerLevel" : -1,
+			"showIfSummonerSpell" : "",
+			"hideIfSummonerSpell" : "",
+			"items" : [{
+					"id" : "1055",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "2003",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3340",
+					"count" : 1,
+					"hideCount" : false
+				}
+			]
+		}, {
+			"type" : "early",
+			"recMath" : false,
+			"recSteps" : false,
+			"minSummonerLevel" : -1,
+			"maxSummonerLevel" : -1,
+			"showIfSummonerSpell" : "",
+			"hideIfSummonerSpell" : "",
+			"items" : [{
+					"id" : "1001",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3077",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "1053",
+					"count" : 1,
+					"hideCount" : false
+				}
+			]
+		}, {
+			"type" : "essential",
+			"recMath" : false,
+			"recSteps" : false,
+			"minSummonerLevel" : -1,
+			"maxSummonerLevel" : -1,
+			"showIfSummonerSpell" : "",
+			"hideIfSummonerSpell" : "",
+			"items" : [{
+					"id" : "3047",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3153",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3812",
+					"count" : 1,
+					"hideCount" : false
+				}
+			]
+		}, {
+			"type" : "offensive",
+			"recMath" : false,
+			"recSteps" : false,
+			"minSummonerLevel" : -1,
+			"maxSummonerLevel" : -1,
+			"showIfSummonerSpell" : "",
+			"hideIfSummonerSpell" : "",
+			"items" : [{
+					"id" : "3078",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3074",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3071",
+					"count" : 1,
+					"hideCount" : false
+				}
+			]
+		}, {
+			"type" : "defensive",
+			"recMath" : false,
+			"recSteps" : false,
+			"minSummonerLevel" : -1,
+			"maxSummonerLevel" : -1,
+			"showIfSummonerSpell" : "",
+			"hideIfSummonerSpell" : "",
+			"items" : [{
+					"id" : "3143",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3156",
+					"count" : 1,
+					"hideCount" : false
+				}, {
+					"id" : "3065",
+					"count" : 1,
+					"hideCount" : false
+				}
+			]
+		}, {
+			"type" : "consumables",
+			"recMath" : false,
+			"recSteps" : false,
+			"minSummonerLevel" : -1,
+			"maxSummonerLevel" : -1,
+			"showIfSummonerSpell" : "",
+			"hideIfSummonerSpell" : "",
+			"items" : [{
+					"id" : "2003",
+					"count" : 1,
+					"hideCount" : true
+				}, {
+					"id" : "2140",
+					"count" : 1,
+					"hideCount" : true
+				}
+			]
+		}
+	]
+}
