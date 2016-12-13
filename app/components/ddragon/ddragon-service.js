@@ -11,4 +11,25 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
     }
 
     return {getBaseUrl: getBaseUrl};
-});
+})
+.factory('ddTranslate', function(){
+    var language;
+    function setLanguage(o){
+        language = o;
+    }
+
+    function translate(string){
+        try{
+            return language[string] ? language[string]:string;
+        }
+        catch(e){
+            return string;
+        }
+    }
+
+    return {
+        get: translate,
+        setLanguage: setLanguage
+    }
+})
+;

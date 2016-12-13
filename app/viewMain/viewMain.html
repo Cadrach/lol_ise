@@ -2,11 +2,13 @@
 
 <set-dropper sets="sets" style="visibility: hidden; opacity: 0"></set-dropper>
 
-<div class="col-xs-2">
+<div class="col-xs-2 ise-champions-list">
+    <h2>{{translate('categoryChampion')}}</h2>
 
     <set-downloader sets="sets"></set-downloader>
-    <div ng-repeat="champSets in setsArray">
-        {{champSets[0].champion}}
+
+    <div class="ise-champions-sets" ng-repeat="champSets in setsArray">
+        <champion value="champions[champSets[0].champion]"></champion>
         <div class="list-group">
             <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
                 {{s.title}}
@@ -16,15 +18,19 @@
 </div>
 
 <div class="col-xs-6 ise-items-list">
+    <h2>{{translate('categoryItem')}}</h2>
 
     <input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
 
     <div ui-sortable="draggable" ng-model="itemsArray">
         <item value="item" ng-repeat="item in itemsArray"></item>
     </div>
+    <div class="clearfix"></div>
 </div>
 
 <div class="col-xs-4">
+
+    <h2>{{translate('Details_')}}</h2>
 
     <input class="form-control" ng-model="set.title" type="text"/>
     <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
@@ -33,12 +39,14 @@
 
     <div class="ise-block" ng-repeat="block in set.blocks">
 
-        <input class="form-control" ng-model="block.type" type="text"/>
+        <div class="ise-block-items">
+            <input class="form-control" ng-model="block.type" type="text"/>
 
-        <div class="ise-block-items" ui-sortable="sortable" ng-model="block.items">
-            <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
-                <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">-</div>
-            </item>
+            <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
+                <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
+                    <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">-</div>
+                </item>
+            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -47,4 +55,4 @@
     <div class="btn btn-success btn-block" ng-click="addBlock()">New Block</div>
 </div>
 
-<pre>{{set|json}}</pre>
+<!--<pre>{{set|json}}</pre>-->

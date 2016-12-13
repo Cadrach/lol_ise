@@ -1,21 +1,65 @@
+$color-background-start: #010a13;
+$color-background-end: #0b3240;
+$color-border-item: #463714;
+$color-border-input: #af9158;
+$color-title: #f0e6c6;
+$color-text: #efe5d1;
+$color-input: #9e998a;
+
+
+body{
+    background-image:-moz-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-webkit-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-ms-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-o-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,$color-background-start), color-stop(100%,$color-background-end));
+    background-size: 100vh 100vw;
+    color: $color-text;
+}
+
+h2{
+    color: #cdbe91;
+}
+
+input.form-control{
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 0;
+    margin-bottom: 2px;
+    color: $color-input;
+    font-weight: bold;
+    padding-left: 24px;
+    background: url(image/edit.png) no-repeat 4px 50%;
+
+    &:focus{
+        border-color: $color-border-input;
+        background: url(image/edit.png) no-repeat 4px 50%, -moz-linear-gradient(top, #040b11 0%, #141b22 100%);
+        background: url(image/edit.png) no-repeat 4px 50%, -webkit-linear-gradient(top, #040b11 0%, #141b22 100%);
+        background: url(image/edit.png) no-repeat 4px 50%, -ms-linear-gradient(top, #040b11 0%, #141b22 100%);
+        background: url(image/edit.png) no-repeat 4px 50%, linear-gradient(top, #040b11 0%, #141b22 100%);
+        background: url(image/edit.png) no-repeat 4px 50%, -o-linear-gradient(top, #040b11 0%, #141b22 100%);
+        background: url(image/edit.png) no-repeat 4px 50%, -webkit-gradient(linear, right top, right bottom, color-stop(0%,#040b11), color-stop(100%,#141b22));
+    }
+}
 
 item{
     position: relative;
     display: inline-block !important;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     margin: 2px;
+    border: 1px solid $color-border-item;
+
     &>.ise-item-img{
-        border: 1px solid #999;
         width: 48px;
         height: 48px;
-        opacity: 0.15;
-        //background: #000 !important;
     }
     &>.ise-item-count{
         position: absolute;
-        top: 31px;
+        top: 41px;
         right: 1px;
+        text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
     }
     .btn-danger{
         display: none;
@@ -29,17 +73,66 @@ item{
     }
 }
 
-.ise-item-placeholder{
-    border: 2px dashed #000;
+champion{
+    display: inline-block !important;
+    background: $color-background-end;
+    width: 100%;
+    height: 50px;
+    border: 1px solid $color-border-item;
+    &>.ise-champion-img{
+        float: left;
+        width: 48px;
+        height: 48px;
+        margin-right: 5px;
+    }
+    &>.ise-champion-name{
+        padding: 2px;
+    }
+    &>.ise-champion-title{
+        font-size: 10px;
+        font-style: italic;
+    }
 }
 
-.ise-items-list .ise-item-placeholder{
-    display: none !important;
+.ise-champions-sets{
+    .list-group-item{
+        background: $color-background-start;
+        border-color: $color-border-item;
+        font-size: 12px;
+        padding: 8px 10px;
+        &:first-child{
+            border-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        &.active{
+            background: $color-border-item;
+        }
+    }
+}
+
+.ise-item-placeholder{
+    border: 2px dashed #000;
+    background: opacify($color-border-item, .5);
+}
+
+.ise-items-list {
+    line-height: 0;
+
+    .ise-item-placeholder {
+        display: none !important;
+    }
 }
 
 .ise-block-items{
-    min-height: 48px;
-    margin-bottom: 4px;
+    min-height: 106px;
+    margin-bottom: 20px;
+    line-height: 0;
+
+    padding: 5px;
+    border: 3px solid $color-border-item;
+    background: $color-background-start;
+
 }
 
 set-dropper{

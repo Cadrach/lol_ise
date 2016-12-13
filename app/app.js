@@ -7,6 +7,7 @@ angular.module('appLolIse', [
     'ui.sortable',
 
     'appLolIse.ddragon',
+    'appLolIse.champion',
     'appLolIse.item',
     'appLolIse.set',
     'appLolIse.viewMain',
