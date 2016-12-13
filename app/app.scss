@@ -17,6 +17,16 @@ item{
         top: 31px;
         right: 1px;
     }
+    .btn-danger{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &:hover{
+        .btn-danger{display: block;}
+    }
 }
 
 .ise-item-placeholder{

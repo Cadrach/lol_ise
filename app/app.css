@@ -13,6 +13,13 @@ item {
     position: absolute;
     top: 31px;
     right: 1px; }
+  item .btn-danger {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  item:hover .btn-danger {
+    display: block; }
 
 .ise-item-placeholder {
   border: 2px dashed #000; }

@@ -36,7 +36,9 @@
         <input class="form-control" ng-model="block.type" type="text"/>
 
         <div class="ise-block-items" ui-sortable="sortable" ng-model="block.items">
-            <item value="items[item.id]" count="item.count" ng-repeat="item in block.items"></item>
+            <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
+                <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">-</div>
+            </item>
         </div>
 
         <div class="clearfix"></div>

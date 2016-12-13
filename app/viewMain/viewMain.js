@@ -136,6 +136,11 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             console.log(item);
         }
 
+        $scope.removeItemFromBlock = function(block, item, $event){
+            $event.stopPropagation();
+            block.items.splice(block.items.indexOf(item), 1);
+        }
+
         $scope.selectSet = function(theSet){
             $scope.set = theSet;
         }
