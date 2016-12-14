@@ -64,12 +64,12 @@ item{
     margin: 2px;
     border: 1px solid $color-border-item;
 
-    &>.ise-item-img{
+    .ise-item-img{
         width: 48px;
         height: 48px;
         opacity: $img-opacity;
     }
-    &>.ise-item-count{
+    .ise-item-count{
         position: absolute;
         top: 41px;
         right: 1px;
@@ -137,6 +137,10 @@ champion{
     .ise-item-placeholder {
         display: none !important;
     }
+}
+
+.ise-item-popover{
+    width: 300px;
 }
 
 .ise-block-items{

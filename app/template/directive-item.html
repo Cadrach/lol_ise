@@ -1,0 +1,5 @@
+<div uib-popover-template="popoverTplUrl" popover-trigger="'outsideClick'" popover-class="ise-item-popover" popover-title="{{item.name}}" popover-placement="right" popover-append-to-body="true">
+    <div class="ise-item-img" style="background-image: url({{url + '/sprite/' + item.image.sprite}}); background-position: -{{item.image.x}}px -{{item.image.y}}px;"/>
+    <div ng-transclude></div>
+    <div class="ise-item-count" ng-show="item.stacks && count">{{count}}</div>
+</div>

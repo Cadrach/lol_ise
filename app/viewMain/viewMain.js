@@ -151,7 +151,14 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     $scope.removeItemFromBlock = function(block, item, $event){
         $event.stopPropagation();
-        block.items.splice(block.items.indexOf(item), 1);
+        if(item.count>1){
+            //If more than one item, simply reduce the counter
+            item.count--;
+        }
+        else{
+            //Otherwise completely remove item
+            block.items.splice(block.items.indexOf(item), 1);
+        }
     }
 
     $scope.selectSet = function(theSet){

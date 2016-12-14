@@ -36,11 +36,11 @@ item {
   height: 50px;
   margin: 2px;
   border: 1px solid #CCC; }
-  item > .ise-item-img {
+  item .ise-item-img {
     width: 48px;
     height: 48px;
     opacity: 0.05; }
-  item > .ise-item-count {
+  item .ise-item-count {
     position: absolute;
     top: 41px;
     right: 1px;
@@ -91,6 +91,9 @@ champion {
   line-height: 0; }
   .ise-items-list .ise-item-placeholder {
     display: none !important; }
+
+.ise-item-popover {
+  width: 300px; }
 
 .ise-block-items {
   min-height: 106px;

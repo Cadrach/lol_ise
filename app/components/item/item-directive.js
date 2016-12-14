@@ -2,12 +2,14 @@
 
 angular.module('appLolIse.item.item-directive', [])
 
-.directive('item', ['ddragon', function(ddragon) {
+.directive('item', ['$sce', 'ddragon', function($sce, ddragon) {
     var url = ddragon.getBaseUrl() + "img";
 
     return {
         link: function(scope, elmt){
             scope.url = url;
+            scope.popoverTplUrl = 'app/template/directive-item-popover.html';
+            scope.description = $sce.trustAsHtml(scope.item.description);
             elmt.click(function(){
                 console.log(scope.item);
             })
@@ -18,8 +20,6 @@ angular.module('appLolIse.item.item-directive', [])
             item: '=value',
             count: '='
         },
-        template: '<div class="ise-item-img" style="background-image: url({{url + \'/sprite/\' + item.image.sprite}}); background-position: -{{item.image.x}}px -{{item.image.y}}px;"/>' +
-            '<div ng-transclude></div>' +
-            '<div class="ise-item-count" ng-show="item.stacks && count">{{count}}</div>'
+        templateUrl: 'app/template/directive-item.html'
     }
 }]);
