@@ -24,6 +24,16 @@
 
     <input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
 
+    <div class="ise-item-tags">
+        <div class="col-xs-3 col-lg-2" ng-repeat="tag in tags|orderBy:['sort','label']">
+            <label>
+                <input type="checkbox"> {{tag.label}}
+            </label>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
     <div ui-sortable="draggable" ng-model="itemsArray">
         <item value="item" ng-repeat="item in itemsArray"></item>
     </div>
@@ -58,3 +68,4 @@
 </div>
 
 <!--<pre>{{setsArray|json}}</pre>-->
+<!--<pre>{{tags|json}}</pre>-->

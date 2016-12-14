@@ -95,6 +95,22 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Champions
     $scope.champions = champions;
 
+    //Tags
+    $scope.tags = _.chain($scope.items).pluck('tags').flatten().uniq().map(function(tag){
+        var colloq = language['colloq_' + tag] && language['colloq_' + tag].length>1 ? language['colloq_' + tag]:'';
+        var translate = language[tag] ? language[tag]:'';
+
+        var label = colloq ? _.last(colloq.split(';')).toUpperCase() : translate;
+
+        if(label){
+            return {
+                code: tag,
+                label: label,
+                sort: colloq ? 0:1
+            }
+        }
+    }).filter().value().sort();
+
     //Filters for items
     $scope.filters = {
         string: ''

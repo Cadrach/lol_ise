@@ -95,6 +95,22 @@ champion {
 .ise-item-popover {
   width: 300px; }
 
+.ise-item-tags > div {
+  height: 15px;
+  line-height: 15px; }
+.ise-item-tags input {
+  float: left;
+  position: relative;
+  top: -3px;
+  margin-right: 3px; }
+.ise-item-tags label {
+  cursor: pointer;
+  font-size: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0; }
+
 .ise-block-items {
   min-height: 106px;
   margin-bottom: 20px;
