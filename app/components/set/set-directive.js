@@ -14,11 +14,13 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             //Default files list
             scope.files = [];
             scope.interface = {show: false};
+            var sets = [];
 
             //Watch dropping files
             scope.$watch('files', function () {
                 if(scope.files.length){
-                    readFiles(scope.files);
+                    sets = [];
+                    readFiles(scope.files, 0);
                 }
             });
 
@@ -27,19 +29,30 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
              * LOCAL METHODS
              */
             //Read the files & generate the sets
-            function readFiles(files){
+            function readFiles(files, position){
                 //Clear current set
-                scope.sets.splice(0, scope.sets.length);
-                interfaceHide();
-
-                files.forEach(function(file){
+                if(position < files.length){
                     var reader = new FileReader;
                     reader.onload = function(e){
-                        var theSet = JSON.parse(e.target.result);
-                        scope.sets.push(theSet);
+                        sets.push(JSON.parse(e.target.result));
+                        readFiles(files, position+1);
                     }
-                    reader.readAsText(file);
-                })
+                    console.log('read files');
+                    reader.readAsText(files[position]);
+                }
+                else{
+                    //Fill new set
+                    scope.sets.splice(0, scope.sets.length);
+                    sets.forEach(function(s){
+                        scope.sets.push(s);
+                    })
+
+                    //Hide interface
+                    interfaceHide();
+
+                    //Apply to force digest
+                    scope.$apply();
+                }
             }
 
             //Hide interface
@@ -122,6 +135,6 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         scope: {
             sets: '='
         },
-        template: '<div class="btn btn-success" ng-click="download()">Download</div>'
+        template: '<div class="btn btn-success btn-block" ng-click="download()">Download</div>'
     }
 }]);

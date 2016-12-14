@@ -8,7 +8,7 @@ angular.module('appLolIse.champion.champion-directive', [])
     return {
         link: function(scope, elmt){
             scope.url = url;
-            console.log(scope.champion);
+//            console.log(scope.champion);
             elmt.click(function(){
 
             })

@@ -7,7 +7,9 @@
 
     <set-downloader sets="sets"></set-downloader>
 
-    <div class="ise-champions-sets" ng-repeat="champSets in setsArray">
+    <br/>
+
+    <div class="ise-champions-sets" ng-repeat="champSets in setsArray" ng-if="champions[champSets[0].champion]">
         <champion value="champions[champSets[0].champion]"></champion>
         <div class="list-group">
             <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
@@ -55,4 +57,4 @@
     <div class="btn btn-success btn-block" ng-click="addBlock()">New Block</div>
 </div>
 
-<!--<pre>{{set|json}}</pre>-->
+<!--<pre>{{setsArray|json}}</pre>-->

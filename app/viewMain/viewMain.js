@@ -177,5 +177,6 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     })
     $scope.$watchCollection('sets', function(){
         $scope.setsArray = _.groupBy($scope.sets, 'champion');
+        console.log('Array update, champs:', _.toArray($scope.setsArray).length, 'sets:', _.toArray($scope.sets).length);
     });
 }]);
