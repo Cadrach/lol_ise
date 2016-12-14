@@ -27,7 +27,7 @@
     <div class="ise-item-tags">
         <div class="col-xs-3 col-lg-2" ng-repeat="tag in tags|orderBy:['sort','label']">
             <label>
-                <input type="checkbox"> {{tag.label}}
+                <input ng-model="filters.tags[tag.code]" type="checkbox"> {{tag.label}}
             </label>
         </div>
     </div>

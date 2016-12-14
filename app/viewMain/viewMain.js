@@ -113,7 +113,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     //Filters for items
     $scope.filters = {
-        string: ''
+        string: '',
+        tags: {}
     }
 
     //Draggable config (list of all items)
@@ -195,9 +196,21 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * **************************************************************************************
      * WATCHES
      */
-    $scope.$watch('filters.string', function(value){
+    $scope.$watch('filters', function(value){
 //       $scope.itemsArray = $filter('filter')(_.toArray($scope.items), {'*':value});
-    })
+        console.log($scope.filters);
+        $scope.itemsArray = [];
+        var tags = _.chain($scope.filters.tags).map(function(value, key){return value ? key:null}).filter().value();
+        _.each($scope.items, function(item){
+            if(tags.length && _.intersection(item.tags, tags).length !== tags.length){
+                //Ignore if not all checked tags presents
+            }
+            else{
+                //Ok!
+                $scope.itemsArray.push(item);
+            }
+        });
+    }, true)
     $scope.$watchCollection('sets', function(){
         $scope.setsArray = _.groupBy($scope.sets, 'champion');
         console.log('Array update, champs:', _.toArray($scope.setsArray).length, 'sets:', _.toArray($scope.sets).length);
