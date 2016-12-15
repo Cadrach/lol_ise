@@ -35,7 +35,7 @@
     <div class="clearfix"></div>
 
     <div ui-sortable="draggable" ng-model="itemsArray">
-        <item value="item" ng-repeat="item in itemsArray"></item>
+        <item value="item" ng-repeat="item in itemsArray" ng-show="isShownItem(item)"></item>
     </div>
     <div class="clearfix"></div>
 </div>

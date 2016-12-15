@@ -71,10 +71,17 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         if(!item.gold.purchasable || item.plaintext == ""){
             delete $scope.items[key];
         }
+        else if( ! item.gold.total && !item.tags.length && item.consumed){
+            delete $scope.items[key]; //delete other mode items
+        }
+
+        //Create search properties
+        item.search = [item.name].concat(item.colloq.split(';')).join('|').toLowerCase();
+        item.exactSearch = item.tags.concat(item.stats).map(function(v){return v.toLowerCase ? v.toLowerCase():''});
     })
 
     //Searchable items array list
-    $scope.itemsArray = _.toArray($scope.items);
+    $scope.itemsArray = _.sortBy($scope.items, function(item){return item.gold.total});
 
     //Sets we manage (init to default set) & current set
     $scope.sets = [
@@ -189,6 +196,32 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         })
     }
 
+    $scope.isShownItem = function(item){
+        var f = $scope.filters;
+
+        //Filter on map
+        var map = $scope.maps[$scope.set.map].code;
+        if(map && ! item.maps[map]){
+            return false;
+        }
+
+        //Filter on tags
+        var tags = _.chain(f.tags).map(function(value, key){return value ? key:null}).filter().value();
+        if(tags.length && _.intersection(item.tags, tags).length !== tags.length){
+            return false;
+        }
+
+        //Filter on string
+        var s = f.string.toLowerCase();
+        if(item.exactSearch.indexOf(s) >= 0){
+            return true;
+        } else if(f.string && item.search.toLowerCase().indexOf(s) < 0){
+            return false;
+        }
+
+        return true;
+    }
+
     //Pass the translation method
     $scope.translate = ddTranslate.get;
 
@@ -196,23 +229,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * **************************************************************************************
      * WATCHES
      */
-    $scope.$watch('filters', function(value){
-//       $scope.itemsArray = $filter('filter')(_.toArray($scope.items), {'*':value});
-        console.log($scope.filters);
-        $scope.itemsArray = [];
-        var tags = _.chain($scope.filters.tags).map(function(value, key){return value ? key:null}).filter().value();
-        _.each($scope.items, function(item){
-            if(tags.length && _.intersection(item.tags, tags).length !== tags.length){
-                //Ignore if not all checked tags presents
-            }
-            else{
-                //Ok!
-                $scope.itemsArray.push(item);
-            }
-        });
-    }, true)
     $scope.$watchCollection('sets', function(){
         $scope.setsArray = _.groupBy($scope.sets, 'champion');
-        console.log('Array update, champs:', _.toArray($scope.setsArray).length, 'sets:', _.toArray($scope.sets).length);
+        //console.log('Array update, champs:', _.toArray($scope.setsArray).length, 'sets:', _.toArray($scope.sets).length);
     });
 }]);
