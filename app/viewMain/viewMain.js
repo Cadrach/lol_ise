@@ -68,7 +68,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.items = items.data;
     _.each($scope.items, function(item, key){
         item.id = key;
-        if( ! item.gold.purchasable){
+        if( ! item.gold.purchasable || (item.hideFromAll && !item.plaintext)){
             delete $scope.items[key]; //delete obsoletes
         }
         else if( ! item.gold.total && !item.tags.length && item.consumed){

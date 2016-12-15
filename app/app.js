@@ -10,8 +10,7 @@ angular.module('appLolIse', [
     'appLolIse.champion',
     'appLolIse.item',
     'appLolIse.set',
-    'appLolIse.viewMain',
-    'appLolIse.view2'
+    'appLolIse.viewMain'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
