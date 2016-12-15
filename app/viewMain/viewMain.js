@@ -68,11 +68,14 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.items = items.data;
     _.each($scope.items, function(item, key){
         item.id = key;
-        if(!item.gold.purchasable || item.plaintext == ""){
-            delete $scope.items[key];
+        if( ! item.gold.purchasable){
+            delete $scope.items[key]; //delete obsoletes
         }
         else if( ! item.gold.total && !item.tags.length && item.consumed){
             delete $scope.items[key]; //delete other mode items
+        }
+        else if( ! item.gold.global && item.requiredChampion){
+            delete $scope.items[key]; //delete default item (like Kalista's)
         }
 
         //Create search properties
@@ -81,7 +84,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     })
 
     //Searchable items array list
-    $scope.itemsArray = _.sortBy($scope.items, function(item){return item.gold.total});
+    $scope.itemsArray = _.chain($scope.items).sortBy(function(item){return item.name}).sortBy(function(item){return item.gold.total}).value();
 
     //Sets we manage (init to default set) & current set
     $scope.sets = [
