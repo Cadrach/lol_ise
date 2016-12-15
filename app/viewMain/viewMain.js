@@ -32,7 +32,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     });
 }])
 
-.controller('ViewMainCtrl', ['$scope', '$filter', 'ddTranslate', 'items', 'champions', 'language', function($scope, $filter, ddTranslate, items, champions, language) {
+.controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'items', 'champions', 'language', function($scope, $uibModal, ddTranslate, items, champions, language) {
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -104,6 +104,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     //Champions
     $scope.champions = champions;
+    $scope.championsArray = _.chain(champions).toArray().sortBy('name').value();
 
     //Tags
     $scope.tags = _.chain($scope.items).pluck('tags').flatten().uniq().map(function(tag){
@@ -172,10 +173,21 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * **************************************************************************************
      * SCOPE METHODS
      */
+
+    /**
+     * Clicking on an item
+     * @param item
+     */
     $scope.selectItem = function(item){
         console.log(item);
     }
 
+    /**
+     * Remove an item from a block
+     * @param block
+     * @param item
+     * @param $event
+     */
     $scope.removeItemFromBlock = function(block, item, $event){
         $event.stopPropagation();
         if(item.count>1){
@@ -188,10 +200,17 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         }
     }
 
+    /**
+     * Select a set
+     * @param theSet
+     */
     $scope.selectSet = function(theSet){
         $scope.set = theSet;
     }
 
+    /**
+     * Add a block to the current set
+     */
     $scope.addBlock = function(){
         $scope.set.blocks.push({
             type: "New Block",
@@ -199,6 +218,33 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         })
     }
 
+    /**
+     * Open the modal to add a set
+     */
+    $scope.openModalAddSet = function(){
+        $uibModal.open({
+            size: 'xl',
+            templateUrl: 'app/template/modal-new-set.html?' + new Date,
+            scope: $scope
+        })
+    }
+
+    /**
+     * Add a set for a champion
+     * @param champion
+     */
+    $scope.addSet = function(champion){
+        var theSet = angular.copy(defaultSet);
+        theSet.champion = champion.id;
+        $scope.sets.push(theSet);
+        $scope.set = theSet;
+    }
+
+    /**
+     * Returns TRUE if item should be shown
+     * @param item
+     * @returns {boolean}
+     */
     $scope.isShownItem = function(item){
         var f = $scope.filters;
 

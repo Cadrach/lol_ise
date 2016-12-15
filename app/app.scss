@@ -18,7 +18,7 @@ $img-opacity: 1;
 //$color-title: #EEE;
 //$color-text: #000;
 //$color-input: #000;
-//$img-opacity: 0.05;
+//$img-opacity: 0.25;
 
 body{
     background-image:-moz-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
@@ -33,6 +33,28 @@ body{
 
 h2{
     color: #cdbe91;
+}
+
+.modal-content{
+    background-image:-moz-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-webkit-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-ms-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-o-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
+    background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,$color-background-start), color-stop(100%,$color-background-end));
+
+    border-color: $color-border-input;
+    .modal-header, .modal-footer{
+        border-color: $color-border-input;
+    }
+}
+
+.modal-xl{
+    width: calc(100% - 60px);
+    .modal-body{
+        height: calc(100vh - 60px - 100px);
+        overflow-y: auto;
+    }
 }
 
 input.form-control{
@@ -99,13 +121,26 @@ champion{
         height: 48px;
         margin-right: 5px;
         opacity: $img-opacity;
+        &.small{
+            width: 24px;
+            height: 24px;
+        }
     }
     &>.ise-champion-name{
         padding: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     &>.ise-champion-title{
         font-size: 10px;
         font-style: italic;
+    }
+    &.selected{
+        background: $color-border-item;
+    }
+    &[small]{
+        height: 25px;
     }
 }
 

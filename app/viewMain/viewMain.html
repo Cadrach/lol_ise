@@ -9,6 +9,10 @@
 
     <br/>
 
+    <div class="btn btn-success btn-block" ng-click="openModalAddSet()">New Set</div>
+
+    <br/>
+
     <div class="ise-champions-sets" ng-repeat="champSets in setsArray" ng-if="champions[champSets[0].champion]">
         <champion value="champions[champSets[0].champion]"></champion>
         <div class="list-group">
@@ -49,6 +53,10 @@
 
     <br/>
 
+    <div class="btn btn-success btn-block" ng-click="addBlock()">New Block</div>
+
+    <br/>
+
     <div class="ise-block" ng-repeat="block in set.blocks">
 
         <div class="ise-block-items">
@@ -63,8 +71,6 @@
 
         <div class="clearfix"></div>
     </div>
-
-    <div class="btn btn-success btn-block" ng-click="addBlock()">New Block</div>
 </div>
 
 <!--<pre>{{setsArray|json}}</pre>-->

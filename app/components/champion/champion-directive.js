@@ -8,7 +8,14 @@ angular.module('appLolIse.champion.champion-directive', [])
     return {
         link: function(scope, elmt){
             scope.url = url;
-//            console.log(scope.champion);
+
+            if(scope.small){
+                scope.backgroundStyle = 'background-position: -'+scope.champion.image.x/2+'px -'+scope.champion.image.y/2+'px; background-size: 240px;';
+            }
+            else{
+                scope.backgroundStyle = 'background-position: -'+scope.champion.image.x+'px -'+scope.champion.image.y+'px;';
+            }
+
             elmt.click(function(){
 
             })
@@ -16,11 +23,12 @@ angular.module('appLolIse.champion.champion-directive', [])
         restrict: 'E',
         transclude: true,
         scope: {
-            champion: '=value'
+            champion: '=value',
+            small: '@'
         },
-        template: '<div class="ise-champion-img" style="background-image: url({{url + \'/sprite/\' + champion.image.sprite}}); background-position: -{{champion.image.x}}px -{{champion.image.y}}px;"/>' +
+        template: '<div class="ise-champion-img {{small?\'small\':null}}" style="background-image: url({{url + \'/sprite/\' + champion.image.sprite}}); {{backgroundStyle}}"/>' +
         '<div class="ise-champion-name">{{champion.name}}</div>' +
-        '<div class="ise-champion-title">{{champion.title}}</div>'
+        '<div class="ise-champion-title" ng-show="!small">{{champion.title}}</div>'
 
     }
 }]);

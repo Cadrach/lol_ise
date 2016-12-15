@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add a new set</h3>
+</div>
+<div class="modal-body">
+    <div class="col-xs-3 col-md-2" ng-repeat="c in championsArray">
+        <champion class="{{set.champion == c.id ? 'selected':''}}" value="c" small="true" ng-click="addSet(c);$close();"></champion>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="modal-footer">
+
+</div>
