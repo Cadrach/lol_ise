@@ -217,6 +217,9 @@ champion{
     border: 3px solid $color-border-item;
     background: $color-background-start;
 
+    .ise-block-items-dropzone{
+        min-height: 48px;
+    }
 }
 
 set-dropper{

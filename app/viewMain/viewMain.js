@@ -7,36 +7,21 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         templateUrl: 'app/viewMain/viewMain.html',
         controller: 'ViewMainCtrl',
         resolve: {
-            items: function($http, ddragon){
-                //TODO: Use system language for locale
-                var url = ddragon.getBaseUrl() + 'data/en_US/item.json';
-                return $http.get(url)
-                    .then(function(response){return response.data;});
-            },
-            champions: function($http, ddragon){
-                //TODO: Use system language for locale
-                var url = ddragon.getBaseUrl() + 'data/en_US/champion.json';
-                //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
-                return $http.get(url)
-                    .then(function(response){return response.data.data;});
-            },
-            language: function($http, ddragon){
-                http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/language.json
-                    //TODO: Use system language for locale
-                    var url = ddragon.getBaseUrl() + 'data/en_US/language.json';
-                //var url = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=en_US&itemListData=colloq,stacks,hideFromAll,requiredChampion,consumed,gold,image,into,maps,requiredChampion,tags,tree&api_key=RGAPI-c12afc1e-2d25-4388-959d-b1e9eb797d44';
-                return $http.get(url)
-                    .then(function(response){return response.data.data;});
+            source: function(ddragon){
+                return ddragon.getData();
             }
         }
     });
 }])
 
-.controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'items', 'champions', 'language', function($scope, $uibModal, ddTranslate, items, champions, language) {
+.controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'source', function($scope, $uibModal, ddTranslate, source) {
     /**
      * **************************************************************************************
      * LOCAL VARS
      */
+    var items = source.data.item.data;
+    var champions = source.data.champion.data;
+    var language = source.data.language.data;
     var defaultSet = {
         title: 'Custom Item Set',
         map: 'any',
@@ -65,7 +50,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * SCOPE VARS
      */
     //Used items (we clean the unused ones)
-    $scope.items = items.data;
+    $scope.items = items;
     _.each($scope.items, function(item, key){
         item.id = key;
         if( ! item.gold.purchasable || (item.hideFromAll && !item.plaintext)){

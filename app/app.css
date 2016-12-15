@@ -156,6 +156,8 @@ champion {
   padding: 5px;
   border: 3px solid #463714;
   background: #010a13; }
+  .ise-block-items .ise-block-items-dropzone {
+    min-height: 48px; }
 
 set-dropper {
   /* positions to point 0,0 - required for z-index */
@@ -172,5 +174,3 @@ set-dropper {
   background-color: rgba(0, 0, 0, 0.5); }
   set-dropper [ngf-drop] {
     height: 100vh; }
-
-/*# sourceMappingURL=app.css.map */
