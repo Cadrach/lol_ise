@@ -5,3 +5,5 @@ bower/
 tmp
 .DS_Store
 .idea
+source/*.inc.php
+source/*.json
