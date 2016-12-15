@@ -15,5 +15,5 @@ angular.module('appLolIse', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/viewMain'});
+  $routeProvider.otherwise({redirectTo: '/editor'});
 }]);

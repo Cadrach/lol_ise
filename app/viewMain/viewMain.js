@@ -3,12 +3,12 @@
 angular.module('appLolIse.viewMain', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/viewMain', {
+    $routeProvider.when('/editor/:language?', {
         templateUrl: 'app/viewMain/viewMain.html',
         controller: 'ViewMainCtrl',
         resolve: {
-            source: function(ddragon){
-                return ddragon.getData();
+            source: function(ddragon, $route){
+                return ddragon.getData($route.current.params.language);
             }
         }
     });
