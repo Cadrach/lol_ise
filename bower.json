@@ -17,6 +17,8 @@
     "underscore": "^1.8.3",
     "ng-file-upload": "^12.2.13",
     "jszip": "^3.1.3",
-    "file-saver": "^1.3.3"
+    "file-saver": "^1.3.3",
+    "angular-ui-select": "^0.19.6",
+    "font-awesome": "^4.7.0"
   }
 }

@@ -1,4 +1,32 @@
-<!-- MAPS -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">LoL Item Set Editor - {{version}}</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="https://github.com/Cadrach/lol_ise/issues" target="_blank"><i class="fa fa-bug"></i>&nbsp;{{translate('Bugs')}}</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-question-circle"></i>&nbsp;{{translate('Help')}}</a>
+            </li>
+            <li class="dropdown" uib-dropdown>
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                    <img ng-src="app/image/flags/{{language}}.png"/> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" uib-dropdown-menu>
+                    <li ng-repeat="lg in languages">
+                        <a href="#!/editor/{{lg}}">
+                            <img class="pull-left" ng-src="app/image/flags/{{lg}}.png"/>&nbsp;{{translate('native_'+lg)}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 
 <set-dropper sets="sets" style="visibility: hidden; opacity: 0"></set-dropper>
 
@@ -46,7 +74,7 @@
 
 <div class="col-xs-4">
 
-    <h2>{{translate('Details_')}}</h2>
+    <h2>{{translate('Details_').replace(':','')}}</h2>
 
     <input class="form-control" ng-model="set.title" type="text"/>
     <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>

@@ -14,7 +14,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     });
 }])
 
-.controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'source', function($scope, $uibModal, ddTranslate, source) {
+.controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'ddragon', 'source', function($scope, $uibModal, ddTranslate, ddragon, source) {
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -41,14 +41,15 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         ]
     }
 
-    //Set language
-    ddTranslate.setLanguage(language);
-
-
     /**
      * **************************************************************************************
      * SCOPE VARS
      */
+    //Version & languages
+    $scope.version = source.data.champion.version;
+    $scope.languages = _.chain(source.config.languages).map(function(lg){return lg.slice(0,2)}).uniq().value();
+    $scope.language = ddragon.getLanguage().slice(0,2);
+
     //Used items (we clean the unused ones)
     $scope.items = items;
     _.each($scope.items, function(item, key){

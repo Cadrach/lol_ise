@@ -2,21 +2,14 @@
 
 angular.module('appLolIse.ddragon.ddragon-service', [])
 
-.factory('ddragon', ['$http', '$q', function($http, $q) {
-    var version = '6.24.1';
-    var url = "http://ddragon.leagueoflegends.com/cdn/"+version+"/";
+.factory('ddragon', ['$http', '$q', 'ddTranslate', function($http, $q, ddTranslate) {
+    var version = '6.24.1'; //default version, should be overwritten
+    var interfaceLanguage = null;
 
     function getBaseUrl(){
-        return url;
+        return "http://ddragon.leagueoflegends.com/cdn/"+version+"/";
     }
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-                break;
-            }
-        }
-    }
+
     function getData(language){
         //We will wait for the second http call to complete
         var defer = $q.defer();
@@ -24,6 +17,7 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
             //We got the configuration information
             var config = response.data;
             var defaultLanguage = 'en_US';
+            version = config.version;
 
             //Get language from URL or from brower, or default to english
             language = (language ? language: (navigator && navigator.language ? navigator.language:defaultLanguage)).replace('-','_');
@@ -43,8 +37,13 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
                 language = defaultLanguage;
             }
 
+            //Store language
+            interfaceLanguage = language;
+
             //Now we fetch the correct source for our languate
             return $http.get('source/data_'+language+'.json').then(function(response){
+                //Set language
+                ddTranslate.setLanguage(response.data.language.data);
                 defer.resolve({
                     config: config,
                     data: response.data
@@ -57,7 +56,8 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
 
     return {
         getBaseUrl: getBaseUrl,
-        getData: getData
+        getData: getData,
+        getLanguage: function(){return interfaceLanguage}
     };
 }])
 .factory('ddTranslate', function(){
