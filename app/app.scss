@@ -47,8 +47,9 @@ body{
     background-image:linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
     background-image:-o-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
     background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,$color-background-start), color-stop(100%,$color-background-end));
-    background-size: 100vh 100vw;
+    background-size: 100vw 100vh;
     color: $color-text;
+    height: 100vh;
 }
 
 .navbar.navbar-default{
@@ -107,12 +108,12 @@ h2{
 input.form-control{
     position: relative;
     border: 2px solid transparent;
-    border-radius: 0;
-    margin-bottom: 2px;
+    border-radius: 5px;
+    margin-bottom: 5px;
     color: $color-input;
     font-weight: bold;
     padding-left: 24px;
-    background: url(image/edit.png) no-repeat 4px 50%;
+    background: url(image/edit.png) no-repeat 4px 50%, rgba(255,255,255,0.15);
 
     &:focus{
         border-color: $color-border-input;
@@ -130,7 +131,11 @@ input.form-control{
         background: lighten($color-border-item, 50) !important;
     }
     .mCSB_draggerRail{
-        background: opacify($color-border-item, 0.25) !important;
+        background: $color-border-item !important;
+        opacity: 0.5;
+    }
+    .mCSB_container{
+        margin-right: 15px;
     }
 }
 
@@ -171,7 +176,7 @@ champion{
     width: 100%;
     height: 50px;
     border: 1px solid $color-border-item;
-    &>.ise-champion-img{
+    .ise-champion-img{
         float: left;
         width: 48px;
         height: 48px;
@@ -182,30 +187,59 @@ champion{
             height: 24px;
         }
     }
-    &>.ise-champion-name{
-        padding: 2px;
+    .ise-champion-name{
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    &>.ise-champion-title{
+    .ise-champion-title{
         font-size: 10px;
         font-style: italic;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     &.selected{
         background: $color-border-item;
     }
     &[small]{
-        height: 25px;
+        height: 26px;
+        line-height: 24px;
+    }
+}
+
+set-dropper{
+    /* positions to point 0,0 - required for z-index */
+    position: fixed; top: 0; left: 0;
+    /* above all elements, even if z-index is used elsewhere */
+    z-index: 9999999999;
+    /* takes up 100% of page */
+    width: 100%; height: 100%;
+    /* visibility toggles after 175ms, opacity will animate for 175ms  */
+    transition: visibility 175ms, opacity 175ms;
+
+    background-color: rgba(0,0,0,0.5);
+    [ngf-drop]{
+        height: 100vh;
     }
 }
 
 .ise-champions-sets{
+    &:not(:first-child){
+        border-top: 0;
+    }
+    &:not(:last-child){
+        .list-group-item:last-child{border-bottom: 0}
+    }
+    .list-group{
+        margin: 0;
+    }
     .list-group-item{
         background: $color-background-start;
         border-color: $color-border-item;
         font-size: 12px;
         padding: 8px 10px;
+        border-radius: 0;
         &:first-child{
             border-top: 0;
             border-top-left-radius: 0;
@@ -214,6 +248,9 @@ champion{
         &.active{
             background: $color-border-item;
         }
+    }
+    champion{
+        display: block !important;
     }
 }
 
@@ -224,7 +261,7 @@ champion{
 
 .ise-items-list {
     line-height: 0;
-
+    padding: 0;
     .ise-item-placeholder {
         display: none !important;
     }
@@ -244,6 +281,11 @@ champion{
 }
 
 .ise-item-tags{
+    padding-bottom: 5px;
+    margin: 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $color-border-item;
+    width: 100%;
     &>div{
         height: 15px;
         line-height: 15px;
@@ -278,18 +320,8 @@ champion{
     }
 }
 
-set-dropper{
-    /* positions to point 0,0 - required for z-index */
-    position: fixed; top: 0; left: 0;
-    /* above all elements, even if z-index is used elsewhere */
-    z-index: 9999999999;
-    /* takes up 100% of page */
-    width: 100%; height: 100%;
-    /* visibility toggles after 175ms, opacity will animate for 175ms  */
-    transition: visibility 175ms, opacity 175ms;
-
-    background-color: rgba(0,0,0,0.5);
-    [ngf-drop]{
-        height: 100vh;
+.ise-set{
+    champion{
+        margin-bottom: 5px;
     }
 }

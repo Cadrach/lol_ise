@@ -57,7 +57,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         link: link
     }
 }])
-.controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'ddragon', 'source', function($scope, $uibModal, ddTranslate, ddragon, source) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', 'ddTranslate', 'ddragon', 'source', function($scope, $timeout, $uibModal, ddTranslate, ddragon, source) {
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -117,9 +117,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     //Sets we manage (init to default set) & current set
     $scope.sets = [
-        angular.copy(defaultSet)
+        angular.copy(defaultSet),
+        angular.copy(defaultSet),
+        angular.copy(defaultSet),
+        angular.copy(angular.extend(defaultSet, {champion: 'Aatrox'})),
     ];
-    $scope.set = $scope.sets[0];
+    $timeout(function(){$scope.selectSet($scope.sets[0])});
 
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
@@ -236,6 +239,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      */
     $scope.selectSet = function(theSet){
         $scope.set = theSet;
+        $scope.champion = theSet.champion;
     }
 
     /**
@@ -267,7 +271,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         var theSet = angular.copy(defaultSet);
         theSet.champion = champion.id;
         $scope.sets.push(theSet);
-        $scope.set = theSet;
+        $scope.selectSet(theSet);
     }
 
     /**
