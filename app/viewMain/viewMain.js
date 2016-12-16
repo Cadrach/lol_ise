@@ -42,7 +42,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         element.mCustomScrollbar({
             theme:"dark"
         });
-        console.log('???', scope)
+
         if(typeof scope.autosizeFromTop !== 'undefined'){
             angular.element($window).resize(autosize);
             $timeout(autosize);

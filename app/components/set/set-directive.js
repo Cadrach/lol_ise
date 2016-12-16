@@ -34,12 +34,17 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             scope.files = [];
             scope.interface = {show: false};
             var sets = [];
+            var mustHaveKeys = ['champion', 'type', 'map', 'mode', 'blocks'];
 
             //Watch dropping files
             scope.$watch('files', function () {
                 if(scope.files.length){
                     sets = [];
                     readFiles(scope.files, 0);
+                }
+                else{
+                    //If no files provided hide drop zone
+                    interfaceHide();
                 }
             });
 
@@ -53,10 +58,16 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 if(position < files.length){
                     var reader = new FileReader;
                     reader.onload = function(e){
-                        sets.push(JSON.parse(e.target.result));
+                        try{
+                            var s = JSON.parse(e.target.result);
+                            if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
+                                sets.push(s);
+                            }
+                        } catch(e){
+                            //Probably wrong JSON format, or not a json file
+                        }
                         readFiles(files, position+1);
                     }
-                    console.log('read files');
                     reader.readAsText(files[position]);
                 }
                 else{
