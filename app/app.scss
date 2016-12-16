@@ -9,16 +9,16 @@ $color-text: #efe5d1;
 $color-input: #9e998a;
 $img-opacity: 1;
 
-$color-background-start: #fff;
-$color-background-end: #fff;
-$color-background-input-start: #fff;
-$color-background-input-end: #fff;
-$color-border-item: #CCC;
-$color-border-input: #999;
-$color-title: #EEE;
-$color-text: #000;
-$color-input: #000;
-$img-opacity: 0.05;
+//$color-background-start: #fff;
+//$color-background-end: #fff;
+//$color-background-input-start: #fff;
+//$color-background-input-end: #fff;
+//$color-border-item: #CCC;
+//$color-border-input: #999;
+//$color-title: #EEE;
+//$color-text: #000;
+//$color-input: #000;
+//$img-opacity: 0.05;
 
 body{
     background-image:-moz-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
@@ -31,8 +31,21 @@ body{
     color: $color-text;
 }
 
+.navbar.navbar-default{
+    background: $color-background-end;
+    color: $color-title !important;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: $color-border-item;
+    .navbar-header{text-transform: uppercase}
+    .navbar-brand, .navbar-nav > li > a{color: $color-title;}
+}
+
 h2{
     color: #cdbe91;
+    margin-top: 0;
 }
 
 .modal-content{
