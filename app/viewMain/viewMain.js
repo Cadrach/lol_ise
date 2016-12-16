@@ -13,7 +13,31 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         }
     });
 }])
+.directive('scrollable', ['$window', '$timeout', function ($window, $timeout) {
+    function link(scope, element) {
+        function autosize(){
+            var e = angular.element(element);
+            e.css('height', 'calc(100vh - ' + (e.offset().top+10) + 'px)');
+        }
 
+        element.mCustomScrollbar({
+            theme:"dark"
+        });
+        console.log('???', scope)
+        if(typeof scope.autosizeFromTop !== 'undefined'){
+            angular.element($window).resize(autosize);
+            $timeout(autosize);
+        }
+    }
+
+    return {
+        restrict: 'A',
+        scope: {
+            autosizeFromTop: '@'
+        },
+        link: link
+    }
+}])
 .controller('ViewMainCtrl', ['$scope', '$uibModal', 'ddTranslate', 'ddragon', 'source', function($scope, $uibModal, ddTranslate, ddragon, source) {
     /**
      * **************************************************************************************
@@ -117,6 +141,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Draggable config (list of all items)
     $scope.draggable = {
         helper: 'clone',
+        appendTo: 'body',
         placeholder: 'ise-item-placeholder',
         connectWith: '.ise-block-items-dropzone',
         update: function(event, ui){ui.item.sortable.cancel();}

@@ -1,40 +1,53 @@
 body {
-  background-image: -moz-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -webkit-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -ms-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -o-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #010a13), color-stop(100%, #0b3240));
+  background-image: -moz-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -webkit-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -ms-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -o-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #fff), color-stop(100%, #fff));
   background-size: 100vh 100vw;
-  color: #efe5d1; }
+  color: #000; }
 
 .navbar.navbar-default {
-  background: #0b3240;
-  color: #f0e6c6 !important;
+  background: #fff;
+  color: #EEE !important;
   border-radius: 0;
   border-top: 0;
   border-left: 0;
   border-right: 0;
-  border-color: #463714; }
+  border-color: #CCC; }
   .navbar.navbar-default .navbar-header {
     text-transform: uppercase; }
   .navbar.navbar-default .navbar-brand, .navbar.navbar-default .navbar-nav > li > a {
-    color: #f0e6c6; }
+    color: #EEE; }
+  .navbar.navbar-default .navbar-nav > .open, .navbar.navbar-default .navbar-nav > .open > a:focus {
+    background: #EEE;
+    background: #fff; }
+
+.dropdown-menu {
+  background: #fff;
+  color: #EEE;
+  border-color: #CCC; }
+  .dropdown-menu > li > a {
+    color: #000; }
+  .dropdown-menu > li > a:hover {
+    color: #fff;
+    background: #EEE; }
 
 h2 {
   color: #cdbe91;
   margin-top: 0; }
 
 .modal-content {
-  background-image: -moz-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -webkit-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -ms-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -o-linear-gradient(top, #010a13 0%, #0b3240 100%);
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #010a13), color-stop(100%, #0b3240));
-  border-color: #af9158; }
+  background-image: -moz-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -webkit-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -ms-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -o-linear-gradient(top, #fff 0%, #fff 100%);
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #fff), color-stop(100%, #fff));
+  border-color: #999; }
   .modal-content .modal-header, .modal-content .modal-footer {
-    border-color: #af9158; }
+    border-color: #999; }
 
 .modal-xl {
   width: calc(100% - 60px); }
@@ -47,18 +60,18 @@ input.form-control {
   border: 2px solid transparent;
   border-radius: 0;
   margin-bottom: 2px;
-  color: #9e998a;
+  color: #000;
   font-weight: bold;
   padding-left: 24px;
   background: url(image/edit.png) no-repeat 4px 50%; }
   input.form-control:focus {
-    border-color: #af9158;
-    background: url(image/edit.png) no-repeat 4px 50%, -moz-linear-gradient(top, #040b11 0%, #141b22 100%);
-    background: url(image/edit.png) no-repeat 4px 50%, -webkit-linear-gradient(top, #040b11 0%, #141b22 100%);
-    background: url(image/edit.png) no-repeat 4px 50%, -ms-linear-gradient(top, #040b11 0%, #141b22 100%);
-    background: url(image/edit.png) no-repeat 4px 50%, linear-gradient(top, #040b11 0%, #141b22 100%);
-    background: url(image/edit.png) no-repeat 4px 50%, -o-linear-gradient(top, #040b11 0%, #141b22 100%);
-    background: url(image/edit.png) no-repeat 4px 50%, -webkit-gradient(linear, right top, right bottom, color-stop(0%, #040b11), color-stop(100%, #141b22)); }
+    border-color: #999;
+    background: url(image/edit.png) no-repeat 4px 50%, -moz-linear-gradient(top, #fff 0%, #fff 100%);
+    background: url(image/edit.png) no-repeat 4px 50%, -webkit-linear-gradient(top, #fff 0%, #fff 100%);
+    background: url(image/edit.png) no-repeat 4px 50%, -ms-linear-gradient(top, #fff 0%, #fff 100%);
+    background: url(image/edit.png) no-repeat 4px 50%, linear-gradient(top, #fff 0%, #fff 100%);
+    background: url(image/edit.png) no-repeat 4px 50%, -o-linear-gradient(top, #fff 0%, #fff 100%);
+    background: url(image/edit.png) no-repeat 4px 50%, -webkit-gradient(linear, right top, right bottom, color-stop(0%, #fff), color-stop(100%, #fff)); }
 
 item {
   position: relative;
@@ -66,11 +79,11 @@ item {
   width: 50px;
   height: 50px;
   margin: 2px;
-  border: 1px solid #463714; }
+  border: 1px solid #CCC; }
   item .ise-item-img {
     width: 48px;
     height: 48px;
-    opacity: 1; }
+    opacity: 0.05; }
   item .ise-item-count {
     position: absolute;
     top: 41px;
@@ -86,16 +99,16 @@ item {
 
 champion {
   display: inline-block !important;
-  background: #0b3240;
+  background: #fff;
   width: 100%;
   height: 50px;
-  border: 1px solid #463714; }
+  border: 1px solid #CCC; }
   champion > .ise-champion-img {
     float: left;
     width: 48px;
     height: 48px;
     margin-right: 5px;
-    opacity: 1; }
+    opacity: 0.05; }
     champion > .ise-champion-img.small {
       width: 24px;
       height: 24px; }
@@ -108,13 +121,13 @@ champion {
     font-size: 10px;
     font-style: italic; }
   champion.selected {
-    background: #463714; }
+    background: #CCC; }
   champion[small] {
     height: 25px; }
 
 .ise-champions-sets .list-group-item {
-  background: #010a13;
-  border-color: #463714;
+  background: #fff;
+  border-color: #CCC;
   font-size: 12px;
   padding: 8px 10px; }
   .ise-champions-sets .list-group-item:first-child {
@@ -122,11 +135,11 @@ champion {
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
   .ise-champions-sets .list-group-item.active {
-    background: #463714; }
+    background: #CCC; }
 
 .ise-item-placeholder {
   border: 2px dashed #000;
-  background: #463714; }
+  background: #cccccc; }
 
 .ise-items-list {
   line-height: 0; }
@@ -135,11 +148,11 @@ champion {
 
 .ise-item-popover {
   width: 300px;
-  background: #010a13;
-  border-color: #463714; }
+  background: #fff;
+  border-color: #CCC; }
   .ise-item-popover h3 {
-    background: #0b3240;
-    border-color: #463714; }
+    background: #fff;
+    border-color: #CCC; }
   .ise-item-popover .popover-content {
     color: #68bec5; }
   .ise-item-popover stats {
@@ -168,8 +181,8 @@ champion {
   margin-bottom: 20px;
   line-height: 0;
   padding: 5px;
-  border: 3px solid #463714;
-  background: #010a13; }
+  border: 3px solid #CCC;
+  background: #fff; }
   .ise-block-items .ise-block-items-dropzone {
     min-height: 48px; }
 

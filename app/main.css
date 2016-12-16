@@ -10,6 +10,7 @@
 @import url(../bower/angular-ui-select/dist/select.min.css);
 @import url(../bower/angular-bootstrap/ui-bootstrap-csp.css);
 @import url(../bower/font-awesome/css/font-awesome.min.css);
+@import url(../bower/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;

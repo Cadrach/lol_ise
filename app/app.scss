@@ -9,16 +9,16 @@ $color-text: #efe5d1;
 $color-input: #9e998a;
 $img-opacity: 1;
 
-//$color-background-start: #fff;
-//$color-background-end: #fff;
-//$color-background-input-start: #fff;
-//$color-background-input-end: #fff;
-//$color-border-item: #CCC;
-//$color-border-input: #999;
-//$color-title: #EEE;
-//$color-text: #000;
-//$color-input: #000;
-//$img-opacity: 0.05;
+$color-background-start: #fff;
+$color-background-end: #fff;
+$color-background-input-start: #fff;
+$color-background-input-end: #fff;
+$color-border-item: #CCC;
+$color-border-input: #999;
+$color-title: #EEE;
+$color-text: #000;
+$color-input: #000;
+$img-opacity: 0.05;
 
 body{
     background-image:-moz-linear-gradient(top, $color-background-start 0%, $color-background-end 100%);
@@ -40,7 +40,21 @@ body{
     border-right: 0;
     border-color: $color-border-item;
     .navbar-header{text-transform: uppercase}
-    .navbar-brand, .navbar-nav > li > a{color: $color-title;}
+    .navbar-brand, .navbar-nav > li > a{
+        color: $color-title;
+    }
+    .navbar-nav > .open, .navbar-nav > .open > a:focus{
+        background: $color-title;
+        background: $color-background-input-start;
+    }
+}
+
+.dropdown-menu{
+    background: $color-background-input-start;
+    color: $color-title;
+    border-color: $color-border-item;
+    &>li>a{color: $color-text}
+    &>li>a:hover{color: $color-background-input-start; background: $color-title;}
 }
 
 h2{

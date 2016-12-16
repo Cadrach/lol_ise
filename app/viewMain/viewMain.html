@@ -12,7 +12,7 @@
                 <a href="#"><i class="fa fa-question-circle"></i>&nbsp;{{translate('Help')}}</a>
             </li>
             <li class="dropdown" uib-dropdown>
-                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                <a class="dropdown-toggle" uib-dropdown-toggle>
                     <img ng-src="app/image/flags/{{language}}.png"/> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" uib-dropdown-menu>
@@ -41,11 +41,13 @@
 
     <br/>
 
-    <div class="ise-champions-sets" ng-repeat="champSets in setsArray" ng-if="champions[champSets[0].champion]">
-        <champion value="champions[champSets[0].champion]"></champion>
-        <div class="list-group">
-            <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
-                {{s.title}}
+    <div scrollable autosize-from-top>
+        <div class="ise-champions-sets" ng-repeat="champSets in setsArray" ng-if="champions[champSets[0].champion]">
+            <champion value="champions[champSets[0].champion]"></champion>
+            <div class="list-group">
+                <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
+                    {{s.title}}
+                </div>
             </div>
         </div>
     </div>
@@ -66,9 +68,12 @@
 
     <div class="clearfix"></div>
 
-    <div ui-sortable="draggable" ng-model="itemsArray">
-        <item value="item" ng-repeat="item in itemsArray" ng-show="isShownItem(item)"></item>
+    <div scrollable autosize-from-top>
+        <div ui-sortable="draggable" ng-model="itemsArray" >
+            <item value="item" ng-repeat="item in itemsArray" ng-show="isShownItem(item)"></item>
+        </div>
     </div>
+
     <div class="clearfix"></div>
 </div>
 
@@ -84,20 +89,21 @@
     <div class="btn btn-success btn-block" ng-click="addBlock()">New Block</div>
 
     <br/>
+    <div scrollable autosize-from-top>
+        <div class="ise-block" ng-repeat="block in set.blocks">
 
-    <div class="ise-block" ng-repeat="block in set.blocks">
+            <div class="ise-block-items">
+                <input class="form-control" ng-model="block.type" type="text"/>
 
-        <div class="ise-block-items">
-            <input class="form-control" ng-model="block.type" type="text"/>
-
-            <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
-                <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
-                    <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">-</div>
-                </item>
+                <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
+                    <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
+                        <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">-</div>
+                    </item>
+                </div>
             </div>
-        </div>
 
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>
 
