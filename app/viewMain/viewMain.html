@@ -60,7 +60,12 @@
 </div>
 
 <div class="col-xs-6 ise-items-list">
-    <h2 class="ise-title-items">{{translate('categoryItem')}}</h2>
+    <h2 class="ise-title-items">
+        {{translate('categoryItem')}}
+        <div class="btn btn-default pull-right" ng-show="isFilteredItemList()" ng-click="resetFilters()">
+            <i class="fa fa-refresh"></i>
+        </div>
+    </h2>
 
     <input class="form-control" ng-model="filters.string" type="text" placeholder="Filter Items"/>
 

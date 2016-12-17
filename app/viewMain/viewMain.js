@@ -322,6 +322,22 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         return true;
     }
 
+    /**
+     * Returns TRUE if items list is filtered
+     * @returns {boolean|*}
+     */
+    $scope.isFilteredItemList = function(){
+        return !!$scope.filters.string || _.chain($scope.filters.tags).map(function(value, key){return value ? key:null}).filter().value().length;
+    }
+
+    /**
+     * Reset items list filters
+     */
+    $scope.resetFilters = function(){
+        $scope.filters.string = '';
+        $scope.filters.tags = {};
+    }
+
     //Pass the translation method
     $scope.translate = ddTranslate.get;
 
