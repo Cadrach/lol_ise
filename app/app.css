@@ -170,6 +170,10 @@ input.form-control {
     left: -3px;
     z-index: -1; }
 
+.btn-danger {
+  background: red;
+  border: 1px solid #463714; }
+
 .mCustomScrollBox .mCSB_dragger_bar {
   background: #dabf7f !important; }
 .mCustomScrollBox .mCSB_draggerRail {
@@ -198,12 +202,14 @@ item {
     right: 1px;
     text-shadow: 0px 0px 4px black; }
   item .btn-danger {
-    display: none;
+    opacity: 0;
     position: absolute;
     top: 0;
-    left: 0; }
+    left: 0;
+    transition: all 0.25s;
+    border-radius: 0; }
   item:hover .btn-danger {
-    display: block; }
+    opacity: 1; }
 
 champion {
   display: inline-block !important;
@@ -273,12 +279,18 @@ set-dropper {
 .ise-champions-sets .list-group {
   margin: 0; }
 .ise-champions-sets .list-group-item {
+  position: relative;
   cursor: pointer;
   background: #010a13;
   border-color: #463714;
   font-size: 12px;
   padding: 8px 10px;
   border-radius: 0; }
+  .ise-champions-sets .list-group-item .btn-danger {
+    position: absolute;
+    top: 6px;
+    right: -30px;
+    transition: all .25s; }
   .ise-champions-sets .list-group-item:first-child {
     border-top: 0;
     border-top-left-radius: 0;
@@ -287,6 +299,8 @@ set-dropper {
     background: #463714; }
   .ise-champions-sets .list-group-item:hover {
     background: #af9158; }
+    .ise-champions-sets .list-group-item:hover .btn-danger {
+      right: 5px; }
 .ise-champions-sets champion {
   cursor: pointer;
   display: block !important;

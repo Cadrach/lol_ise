@@ -242,7 +242,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      */
     $scope.selectSet = function(theSet){
         $scope.set = theSet;
-        $scope.champion = theSet.champion;
+        $scope.champion = theSet ? theSet.champion:null;
     }
 
     /**
@@ -275,6 +275,18 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         theSet.champion = champion.id;
         $scope.sets.push(theSet);
         $scope.selectSet(theSet);
+    }
+
+    /**
+     * Remove a set
+     * @param champion
+     */
+    $scope.removeSet = function(theSet){
+        if(confirm($scope.translate('Are you sure?'))){
+            var position = $scope.sets.indexOf(theSet)
+            $scope.sets.splice(position, 1);
+            $scope.selectSet($scope.sets[Math.min(position, $scope.sets.length - 1)]);
+        }
     }
 
     /**
@@ -319,6 +331,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      */
     $scope.$watchCollection('sets', function(){
         $scope.setsArray = _.groupBy($scope.sets, 'champion');
-        //console.log('Array update, champs:', _.toArray($scope.setsArray).length, 'sets:', _.toArray($scope.sets).length);
+        if( ! $scope.sets.length){
+            $scope.selectSet(null);
+        }
     });
 }]);

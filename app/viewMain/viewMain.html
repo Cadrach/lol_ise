@@ -50,6 +50,9 @@
             <div class="list-group" ng-if="champion == champSets[0].champion">
                 <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
                     {{s.title}}
+                    <div class="btn btn-xs btn-danger" ng-click="removeSet(s, $event)">
+                        <i class="fa fa-trash"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,7 +81,7 @@
     </div>
 </div>
 
-<div class="col-xs-4 ise-set">
+<div class="col-xs-4 ise-set" ng-show="set">
 
     <h2 class="ise-title-set">{{translate('Details_')}}&nbsp;<span class="ise-sub-title">{{set.title}}</span></h2>
 
@@ -100,7 +103,9 @@
 
                 <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
                     <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
-                        <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">-</div>
+                        <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">
+                            <i class="fa fa-trash"></i>
+                        </div>
                     </item>
                 </div>
             </div>

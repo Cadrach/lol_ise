@@ -27,6 +27,8 @@ $color-border-input: #af9158;
 $color-title: #f0e6c6;
 $color-text: #efe5d1;
 $color-input: #9e998a;
+$color-button-danger: red;
+$color-button-shadow: #459295;
 $img-opacity: 1;
 
 //$color-background-start: #fff;
@@ -163,7 +165,6 @@ input.form-control{
     }
 }
 
-$color-button-shadow: #459295;
 .btn-success{
     //background: lighten($color-border-input, 20);
     //border-color: $color-border-item;
@@ -216,6 +217,11 @@ $color-button-shadow: #459295;
     }
 }
 
+.btn-danger{
+    background: $color-button-danger;
+    border: 1px solid $color-border-item;
+}
+
 .mCustomScrollBox{
     .mCSB_dragger_bar{
         background: lighten($color-border-item, 50) !important;
@@ -252,14 +258,16 @@ item{
         text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
     }
     .btn-danger{
-        display: none;
+        opacity: 0;
         position: absolute;
         top: 0;
         left: 0;
+        transition: all 0.25s;
+        border-radius: 0;
     }
 
     &:hover{
-        .btn-danger{display: block;}
+        .btn-danger{opacity: 1;}
     }
 }
 
@@ -348,12 +356,21 @@ set-dropper{
         margin: 0;
     }
     .list-group-item{
+        position: relative;
         cursor: pointer;
         background: $color-background-start;
         border-color: $color-border-item;
         font-size: 12px;
         padding: 8px 10px;
         border-radius: 0;
+
+        .btn-danger{
+            position: absolute;
+            top: 6px;
+            right: -30px;
+            transition: all .25s;
+        }
+
         &:first-child{
             border-top: 0;
             border-top-left-radius: 0;
@@ -364,6 +381,9 @@ set-dropper{
         }
         &:hover{
             background: $color-border-input;
+            .btn-danger{
+                right: 5px;
+            }
         }
     }
     champion{
