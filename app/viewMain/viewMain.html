@@ -7,7 +7,7 @@
             </a>
         </div>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" intro="navbar">
             <li>
                 <a href="https://github.com/Cadrach/lol_ise/issues" target="_blank"><i class="fa fa-bug"></i>&nbsp;{{translate('Bugs')}}</a>
             </li>
@@ -40,13 +40,13 @@
 
     <br/>
 
-    <div class="btn btn-success btn-block" ng-click="openModalAddSet()">
+    <div class="btn btn-success btn-block" ng-click="openModalAddSet()" intro="new-set">
         <i class="fa fa-plus-circle"></i> New Set
     </div>
 
     <br/>
 
-    <div scrollable autosize-from-top>
+    <div scrollable autosize-from-top intro="champions">
         <div class="ise-champions-sets" ng-repeat="champSets in setsArray" ng-if="champions[champSets[0].champion]">
             <champion value="champions[champSets[0].champion]" small="true" ng-click="selectSet(champSets[0])"></champion>
             <div class="list-group" ng-if="champion == champSets[0].champion">
@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<div class="col-xs-6 ise-items-list">
+<div class="col-xs-6 ise-items-list" intro="items">
     <h2 class="ise-title-items">
         {{translate('categoryItem')}}
         <div class="btn btn-default pull-right" ng-show="isFilteredItemList()" ng-click="resetFilters()">
@@ -88,21 +88,23 @@
     </div>
 </div>
 
-<div class="col-xs-4 ise-set" ng-show="set">
+<div class="col-xs-4 ise-set" ng-show="set" intro="block-set">
 
     <h2 class="ise-title-set">{{translate('Details_')}}&nbsp;<span class="ise-sub-title">{{set.title}}</span></h2>
 
-    <champion value="champions[set.champion]"></champion>
+    <div intro="set-info">
+        <champion value="champions[set.champion]"></champion>
 
-    <input class="form-control" ng-model="set.title" type="text"/>
-    <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
-
-    <br/>
-
-    <div class="btn btn-success btn-block" ng-click="addBlock()"><i class="fa fa-plus-circle"></i> New Block</div>
+        <input class="form-control" ng-model="set.title" type="text"/>
+        <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
+    </div>
 
     <br/>
-    <div scrollable autosize-from-top>
+
+    <div class="btn btn-success btn-block" ng-click="addBlock()" intro="set-new-block"><i class="fa fa-plus-circle"></i> New Block</div>
+
+    <br/>
+    <div scrollable autosize-from-top intro="set-blocks">
         <div class="ise-block" ng-repeat="block in set.blocks">
 
             <div class="ise-block-items">

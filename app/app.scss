@@ -89,6 +89,7 @@ body{
         background: $color-title;
         background: $color-background-input-start;
     }
+    a:hover{cursor: pointer}
 }
 
 .dropdown-menu{
@@ -120,6 +121,10 @@ h2{
     .ise-sub-title{
         font-size: 18px;
     }
+}
+
+code{
+    white-space: nowrap;
 }
 
 .modal-content{
@@ -486,5 +491,42 @@ set-dropper{
 .ise-set{
     champion{
         margin-bottom: 5px;
+    }
+}
+
+.introjs-helperNumberLayer{
+    background: $color-background-end;
+    color: $color-border-input;
+    border-color: $color-border-input;
+    left: auto;
+    right: calc(50% - 16px);
+}
+
+.introjs-helperLayer{
+    background-color: $color-border-input;
+}
+
+.introjs-tooltip{
+    min-width: 300px;
+    max-width: 400px;
+    background: $color-background-end;
+    border: 2px solid $color-border-input;
+    .introjs-bullets{display: none}
+    .introjs-arrow{
+        &.left{left: -12px; border-right-color: $color-border-input;}
+        &.right{right: -12px; border-left-color: $color-border-input;}
+    }
+    .introjs-button{
+        background: $color-background-start;
+        color: $color-border-input;
+        text-shadow: none;
+        border-color: $color-border-input;
+        &:hover{
+            box-shadow: none;
+            background: $color-background-end;
+        }
+        &.introjs-disabled{
+            opacity: 0.5;
+        }
     }
 }

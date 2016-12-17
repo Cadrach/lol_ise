@@ -353,9 +353,74 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.translate = ddTranslate.get;
 
     $scope.tour = function(){
-        introJs().addHints();
+        function get(value){return angular.element('[intro="'+value+'"]')[0]}
+
+        var intro = introJs();
+        var placeholderSet = false;
+        if( ! $scope.sets.length){
+            placeholderSet = true;
+            $scope.addSet($scope.championsArray[0]);
+        }
+
+        intro.addSteps([
+            {
+                element: get('downloader'),
+                intro: 'When you are done, use this button to download all your sets in one click.<br/><br/>You can then extract the zip archive and use it to replace your <code>.../League of Legends/Config/</code> folder.',
+                position: 'right'
+            },
+            {
+                element: get('new-set'),
+                intro: 'Create your sets by clicking on this button.<br/><br/>Alternatively, you can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets!',
+                position: 'right'
+            },
+            {
+                element: get('champions'),
+                intro: 'Navigate through your sets using this list.',
+                position: 'right'
+            },
+            {
+                element: get('set-info'),
+                intro: 'The current set your are working on is displayed here.',
+                position: 'left'
+            },
+            {
+                element: get('set-new-block'),
+                intro: 'Add blocks to your set using this button.',
+                position: 'left'
+            },
+            {
+                element: get('set-blocks'),
+                intro: 'Your current set\'s blocks are displayed here. You can rename them and reorder items inside them.',
+                position: 'left'
+            },
+            {
+                element: get('items'),
+                intro: 'Look for items here. Simply drag & drop them in your blocks to add them to your set.<br/>You can use the filters at the top to reduce the list and look for specific items.',
+                position: 'right'
+            },
+            {
+                element: get('navbar'),
+                intro: 'Report bugs using the <i class="fa fa-bug"></i> button.<br/>You can also switch language for champions & items here.<br/>Finally, you can launch this tour again using the Help button.',
+                position: 'left'
+            },
+        ])
+
+        intro.setOptions({
+            showStepNumbers: false
+        })
+
+        intro.onexit(function(){
+            console.log('EXIT')
+            if(placeholderSet){
+                console.log('REM')
+                $scope.sets = [];
+                $scope.$apply();
+            }
+        });
+
+        intro.start();
     }
-    $timeout($scope.tour, 2000);
+    $timeout($scope.tour);
 
     /**
      * **************************************************************************************
