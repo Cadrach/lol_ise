@@ -90,7 +90,11 @@ body{
         background: $color-title;
         background: $color-background-input-start;
     }
-    a:hover{cursor: pointer}
+    .navbar-nav > .open, .navbar-nav > .open > a{
+        background: $color-title;
+        background: $color-background-input-start;
+    }
+    a:hover{cursor: pointer; opacity: 0.75}
 }
 
 .dropdown-menu{
@@ -99,6 +103,17 @@ body{
     border-color: $color-border-item;
     &>li>a{color: $color-text}
     &>li>a:hover{color: $color-background-input-start; background: $color-title;}
+}
+
+.btn-default.ui-select-toggle{
+    border-radius: 0;
+    border-color: $color-border-item;
+}
+.ui-select-bootstrap .ui-select-choices-row>span{
+    color: $color-input;
+}
+.ui-select-bootstrap .ui-select-choices-row.active>span{
+    background: $color-border-input;
 }
 
 h2{

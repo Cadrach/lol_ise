@@ -58,8 +58,12 @@ body {
   .navbar.navbar-default .navbar-nav > .open, .navbar.navbar-default .navbar-nav > .open > a:focus {
     background: #f0e6c6;
     background: #040b11; }
+  .navbar.navbar-default .navbar-nav > .open, .navbar.navbar-default .navbar-nav > .open > a {
+    background: #f0e6c6;
+    background: #040b11; }
   .navbar.navbar-default a:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0.75; }
 
 .dropdown-menu {
   background: #040b11;
@@ -70,6 +74,16 @@ body {
   .dropdown-menu > li > a:hover {
     color: #040b11;
     background: #f0e6c6; }
+
+.btn-default.ui-select-toggle {
+  border-radius: 0;
+  border-color: #463714; }
+
+.ui-select-bootstrap .ui-select-choices-row > span {
+  color: #9e998a; }
+
+.ui-select-bootstrap .ui-select-choices-row.active > span {
+  background: #af9158; }
 
 h2 {
   font-family: Beaufort;

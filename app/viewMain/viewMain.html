@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand">
+            <span class="navbar-brand">
                 <img src="app/image/icon-game-lol.png">
                 LoL Item Set Editor - {{version}}
-            </a>
+            </span>
         </div>
 
         <ul class="nav navbar-nav navbar-right" intro="navbar">
@@ -96,7 +96,13 @@
         <champion value="champions[set.champion]"></champion>
 
         <input class="form-control" ng-model="set.title" type="text"/>
-        <select class="form-control" ng-model="set.map" ng-options="key as map.name for (key, map) in maps"></select>
+
+        <ui-select ng-model="set.map" append-to-body="true">
+            <ui-select-match placeholder="Select map">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="map.setCode as map in mapsArray">
+                {{map.name}}
+            </ui-select-choices>
+        </ui-select>
     </div>
 
     <br/>

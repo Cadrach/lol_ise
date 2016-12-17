@@ -24,6 +24,7 @@ angular.module('appLolIse', [
     'ngRoute',
     'ui.bootstrap',
     'ui.sortable',
+    'ui.select',
 
     'appLolIse.ddragon',
     'appLolIse.champion',

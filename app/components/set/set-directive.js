@@ -145,6 +145,11 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 var zip = new JSZip;
                 var champions = {};
 
+                if( ! scope.sets.length){
+                    alert('Nothing to download!');
+                    return;
+                }
+
                 //Add each set to the zip
                 scope.sets.forEach(function(s){
                     var champ = s.champion ? s.champion:'Global';

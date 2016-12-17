@@ -117,24 +117,19 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.itemsArray = _.chain($scope.items).sortBy(function(item){return item.name}).sortBy(function(item){return item.gold.total}).value();
 
     //Sets we manage (init to default set) & current set
-    // $scope.sets = [
-    //     angular.copy(defaultSet),
-    //     angular.copy(defaultSet),
-    //     angular.copy(defaultSet),
-    //     angular.copy(angular.extend(defaultSet, {champion: 'Aatrox'})),
-    // ];
-    // $timeout(function(){$scope.selectSet($scope.sets[0])});
     $scope.sets = [];
+    $timeout(function(){$scope.addSet($scope.championsArray[0]);});
 
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
     $scope.maps = {
         //1:	"Original Summoner's Rift",
-        any: {name: "Any Map", code: null},
-        SR:	{name: ddTranslate.get('Map1'), code: 11},
-        TT:	{name: ddTranslate.get('Map10'), code: 10},
-        HA:	{name: ddTranslate.get('Map12'), code: 12}
+        any: {name: "Any Map", code: null, setCode: 'any'},
+        SR:	{name: ddTranslate.get('Map1'), code: 11, setCode: 'SR'},
+        TT:	{name: ddTranslate.get('Map10'), code: 10, setCode: 'TT'},
+        HA:	{name: ddTranslate.get('Map12'), code: 12, setCode: 'HA'}
     }
+    $scope.mapsArray = _.toArray($scope.maps);
 
     //Champions
     $scope.champions = champions;
@@ -362,6 +357,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         }
 
         var intro = introJs();
+
+        //If we need to open a placeholder, do it
         var placeholderSet = false;
         if( ! $scope.sets.length){
             placeholderSet = true;
@@ -420,7 +417,6 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
         intro.start();
     }
-    $timeout($scope.tour);
 
     /**
      * **************************************************************************************
@@ -432,6 +428,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             $scope.selectSet(null);
         }
         else if($scope.sets.indexOf($scope.set) < 0){
+            //If the current set is no longer in the list of sets
             $scope.selectSet($scope.sets[0]);
         }
     });
