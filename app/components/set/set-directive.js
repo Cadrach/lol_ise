@@ -169,6 +169,6 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         scope: {
             sets: '='
         },
-        template: '<div class="btn btn-success btn-block" ng-click="download()">Download</div>'
+        template: '<div class="btn btn-success btn-block" ng-click="download()"><i class="fa fa-download"></i>&nbsp;Download</div>'
     }
 }]);
