@@ -115,6 +115,9 @@ h2{
     &.ise-title-set{
         background-image: url(image/content_type_icon_story.png);
     }
+    .ise-sub-title{
+        font-size: 18px;
+    }
 }
 
 .modal-content{
@@ -314,6 +317,25 @@ set-dropper{
     }
 }
 
+.ise-checkbox{
+    input[type="checkbox"] {
+        display:none;
+    }
+
+    input[type="checkbox"] + label span{
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        margin:-1px 4px 0 0;
+        vertical-align:middle;
+        background:url(image/checkbox-unchecked.png) left top no-repeat;
+    }
+
+    input[type="checkbox"]:checked + label span{
+        background:url(image/checkbox-checked.png) left top no-repeat;
+    }
+}
+
 .ise-champions-sets{
     &:not(:first-child){
         border-top: 0;
@@ -387,7 +409,7 @@ set-dropper{
     border-bottom: 1px solid $color-border-item;
     width: 100%;
     &>div{
-        height: 15px;
+        height: 17px;
         line-height: 15px;
     }
     input{

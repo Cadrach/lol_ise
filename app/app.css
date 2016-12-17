@@ -81,6 +81,8 @@ h2 {
     background-image: url(image/content_type_icon_latest.png); }
   h2.ise-title-set {
     background-image: url(image/content_type_icon_story.png); }
+  h2 .ise-sub-title {
+    font-size: 18px; }
 
 .modal-content {
   background-image: -moz-linear-gradient(top, #010a13 0%, #0b3240 100%);
@@ -250,6 +252,18 @@ set-dropper {
   set-dropper [ngf-drop] {
     height: 100vh; }
 
+.ise-checkbox input[type="checkbox"] {
+  display: none; }
+.ise-checkbox input[type="checkbox"] + label span {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  background: url(image/checkbox-unchecked.png) left top no-repeat; }
+.ise-checkbox input[type="checkbox"]:checked + label span {
+  background: url(image/checkbox-checked.png) left top no-repeat; }
+
 .ise-champions-sets:not(:first-child) {
   border-top: 0; }
 .ise-champions-sets:not(:last-child) .list-group-item:last-child {
@@ -311,7 +325,7 @@ set-dropper {
   border-bottom: 1px solid #463714;
   width: 100%; }
   .ise-item-tags > div {
-    height: 15px;
+    height: 17px;
     line-height: 15px; }
   .ise-item-tags input {
     float: left;
