@@ -117,13 +117,14 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.itemsArray = _.chain($scope.items).sortBy(function(item){return item.name}).sortBy(function(item){return item.gold.total}).value();
 
     //Sets we manage (init to default set) & current set
-    $scope.sets = [
-        angular.copy(defaultSet),
-        angular.copy(defaultSet),
-        angular.copy(defaultSet),
-        angular.copy(angular.extend(defaultSet, {champion: 'Aatrox'})),
-    ];
-    $timeout(function(){$scope.selectSet($scope.sets[0])});
+    // $scope.sets = [
+    //     angular.copy(defaultSet),
+    //     angular.copy(defaultSet),
+    //     angular.copy(defaultSet),
+    //     angular.copy(angular.extend(defaultSet, {champion: 'Aatrox'})),
+    // ];
+    // $timeout(function(){$scope.selectSet($scope.sets[0])});
+    $scope.sets = [];
 
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
@@ -350,6 +351,11 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     //Pass the translation method
     $scope.translate = ddTranslate.get;
+
+    $scope.tour = function(){
+        introJs().addHints();
+    }
+    $timeout($scope.tour, 2000);
 
     /**
      * **************************************************************************************

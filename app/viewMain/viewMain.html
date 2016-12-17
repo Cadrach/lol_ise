@@ -12,7 +12,7 @@
                 <a href="https://github.com/Cadrach/lol_ise/issues" target="_blank"><i class="fa fa-bug"></i>&nbsp;{{translate('Bugs')}}</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-question-circle"></i>&nbsp;{{translate('Help')}}</a>
+                <a ng-click="tour()"><i class="fa fa-question-circle"></i>&nbsp;{{translate('Help')}}</a>
             </li>
             <li class="dropdown" uib-dropdown>
                 <a class="dropdown-toggle" uib-dropdown-toggle>
@@ -40,7 +40,9 @@
 
     <br/>
 
-    <div class="btn btn-success btn-block" ng-click="openModalAddSet()"><i class="fa fa-plus-circle"></i> New Set</div>
+    <div class="btn btn-success btn-block" ng-click="openModalAddSet()">
+        <i class="fa fa-plus-circle"></i> New Set
+    </div>
 
     <br/>
 
