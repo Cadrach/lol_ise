@@ -34,7 +34,8 @@ body {
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #010a13), color-stop(100%, #0b3240));
   background-size: 100vw 100vh;
   color: #efe5d1;
-  height: 100vh; }
+  height: 100vh;
+  overflow: hidden; }
 
 .navbar.navbar-default {
   font-family: Beaufort;

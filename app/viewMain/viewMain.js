@@ -354,6 +354,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     $scope.tour = function(){
         function get(value){return angular.element('[intro="'+value+'"]')[0]}
+        function onExit(){
+            if(placeholderSet){
+                $scope.sets = [];
+                $scope.$apply();
+            }
+        }
 
         var intro = introJs();
         var placeholderSet = false;
@@ -409,14 +415,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             showStepNumbers: false
         })
 
-        intro.onexit(function(){
-            console.log('EXIT')
-            if(placeholderSet){
-                console.log('REM')
-                $scope.sets = [];
-                $scope.$apply();
-            }
-        });
+        intro.onexit(onExit);
+        intro.oncomplete(onExit);
 
         intro.start();
     }
@@ -430,6 +430,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         $scope.setsArray = _.groupBy($scope.sets, 'champion');
         if( ! $scope.sets.length){
             $scope.selectSet(null);
+        }
+        else if($scope.sets.indexOf($scope.set) < 0){
+            $scope.selectSet($scope.sets[0]);
         }
     });
 }]);

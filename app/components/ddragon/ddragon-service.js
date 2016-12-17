@@ -32,7 +32,7 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
     function getData(language){
         //We will wait for the second http call to complete
         var defer = $q.defer();
-        $http.get('source/config.json').then(function(response){
+        $http.get('source/config.json?' + new Date).then(function(response){
             //We got the configuration information
             var config = response.data;
             var defaultLanguage = 'en_US';
@@ -60,7 +60,7 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
             interfaceLanguage = language;
 
             //Now we fetch the correct source for our languate
-            return $http.get('source/data_'+language+'.json').then(function(response){
+            return $http.get('source/data_'+language+'.json?' + version).then(function(response){
                 //Set language
                 ddTranslate.setLanguage(response.data.language.data);
                 defer.resolve({
