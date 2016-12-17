@@ -63,8 +63,12 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                             if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
                                 sets.push(s);
                             }
+                            else{
+                                throw "Wrong format, missing: " + _.difference(mustHaveKeys, _.keys(s)).join(',');
+                            }
                         } catch(e){
                             //Probably wrong JSON format, or not a json file
+                            throw "Wrong file: " + e;
                         }
                         readFiles(files, position+1);
                     }

@@ -17,7 +17,15 @@
  *
  * Contact: https://github.com/Cadrach
  */
+@font-face {
+  font-family: "Beaufort";
+  src: url("fonts/BeaufortforLOL-Bold.woff") format("woff");
+  font-weight: bold; }
+@font-face {
+  font-family: "Gill";
+  src: url("fonts/gill-sans-w04-book.woff") format("woff"); }
 body {
+  font-family: Gill;
   background-image: -moz-linear-gradient(top, #010a13 0%, #0b3240 100%);
   background-image: -webkit-linear-gradient(top, #010a13 0%, #0b3240 100%);
   background-image: -ms-linear-gradient(top, #010a13 0%, #0b3240 100%);
@@ -29,6 +37,7 @@ body {
   height: 100vh; }
 
 .navbar.navbar-default {
+  font-family: Beaufort;
   background: #0b3240;
   color: #f0e6c6 !important;
   border-radius: 0;
@@ -40,6 +49,11 @@ body {
     text-transform: uppercase; }
   .navbar.navbar-default .navbar-brand, .navbar.navbar-default .navbar-nav > li > a {
     color: #f0e6c6; }
+  .navbar.navbar-default .navbar-brand img {
+    float: left;
+    position: relative;
+    top: -8px;
+    margin-right: 10px; }
   .navbar.navbar-default .navbar-nav > .open, .navbar.navbar-default .navbar-nav > .open > a:focus {
     background: #f0e6c6;
     background: #040b11; }
@@ -55,8 +69,18 @@ body {
     background: #f0e6c6; }
 
 h2 {
+  font-family: Beaufort;
   color: #cdbe91;
-  margin-top: 0; }
+  margin-top: 0;
+  padding-left: 30px;
+  background: url(image/content_type_icon_champion.png) 0% 50% no-repeat;
+  background-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  h2.ise-title-items {
+    background-image: url(image/content_type_icon_latest.png); }
+  h2.ise-title-set {
+    background-image: url(image/content_type_icon_story.png); }
 
 .modal-content {
   background-image: -moz-linear-gradient(top, #010a13 0%, #0b3240 100%);
@@ -93,13 +117,66 @@ input.form-control {
     background: url(image/edit.png) no-repeat 4px 50%, -o-linear-gradient(top, #040b11 0%, #141b22 100%);
     background: url(image/edit.png) no-repeat 4px 50%, -webkit-gradient(linear, right top, right bottom, color-stop(0%, #040b11), color-stop(100%, #141b22)); }
 
+.btn-success {
+  position: relative;
+  width: calc(100% - 6px);
+  margin-left: 3px;
+  background: #1e2328;
+  border-color: #1e2328;
+  border-radius: 0;
+  font-family: Beaufort;
+  color: #eee4d0;
+  text-transform: uppercase;
+  transition: all 0.5s; }
+  .btn-success:hover {
+    border-color: #00668a;
+    box-shadow: 1px 0px 19px 5px #459295;
+    -webkit-box-shadow: 1px 0px 19px 5px #459295;
+    -moz-box-shadow: 1px 0px 19px 5px #459295;
+    -o-box-shadow: 1px 0px 19px 5px #459295;
+    background: -moz-linear-gradient(90deg, #247782 0%, #101b23 100%);
+    /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #101b23), color-stop(100%, #247782));
+    /* safari4+,chrome */
+    background: -webkit-linear-gradient(90deg, #247782 0%, #101b23 100%);
+    /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(90deg, #247782 0%, #101b23 100%);
+    /* opera 11.10+ */
+    background: -ms-linear-gradient(90deg, #247782 0%, #101b23 100%);
+    /* ie10+ */
+    background: linear-gradient(0deg, #247782 0%, #101b23 100%);
+    /* w3c */ }
+  .btn-success:before {
+    content: ' ';
+    background: -moz-linear-gradient(270deg, #08c4bd 0%, #00668a 100%);
+    /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #08c4bd), color-stop(100%, #00668a));
+    /* safari4+,chrome */
+    background: -webkit-linear-gradient(270deg, #08c4bd 0%, #00668a 100%);
+    /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(270deg, #08c4bd 0%, #00668a 100%);
+    /* opera 11.10+ */
+    background: -ms-linear-gradient(270deg, #08c4bd 0%, #00668a 100%);
+    /* ie10+ */
+    background: linear-gradient(180deg, #08c4bd 0%, #00668a 100%);
+    /* w3c */
+    border-radius: 0;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    z-index: -1; }
+
 .mCustomScrollBox .mCSB_dragger_bar {
   background: #dabf7f !important; }
 .mCustomScrollBox .mCSB_draggerRail {
   background: #463714 !important;
   opacity: 0.5; }
 .mCustomScrollBox .mCSB_container {
-  margin-right: 15px; }
+  margin-right: 15px;
+  overflow: inherit;
+  overflow-y: hidden; }
 
 item {
   position: relative;
@@ -107,7 +184,8 @@ item {
   width: 50px;
   height: 50px;
   margin: 2px;
-  border: 1px solid #463714; }
+  border: 1px solid #463714;
+  cursor: pointer; }
   item .ise-item-img {
     width: 48px;
     height: 48px;
@@ -176,9 +254,12 @@ set-dropper {
   border-top: 0; }
 .ise-champions-sets:not(:last-child) .list-group-item:last-child {
   border-bottom: 0; }
+.ise-champions-sets:not(:last-child) champion {
+  border-bottom: 0; }
 .ise-champions-sets .list-group {
   margin: 0; }
 .ise-champions-sets .list-group-item {
+  cursor: pointer;
   background: #010a13;
   border-color: #463714;
   font-size: 12px;
@@ -190,8 +271,14 @@ set-dropper {
     border-top-right-radius: 0; }
   .ise-champions-sets .list-group-item.active {
     background: #463714; }
+  .ise-champions-sets .list-group-item:hover {
+    background: #af9158; }
 .ise-champions-sets champion {
-  display: block !important; }
+  cursor: pointer;
+  display: block !important;
+  height: 25px; }
+  .ise-champions-sets champion:hover {
+    background: #af9158; }
 
 .ise-item-placeholder {
   border: 2px dashed #000;

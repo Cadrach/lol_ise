@@ -69,6 +69,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         title: 'Custom Item Set',
         map: 'any',
         mode: 'any',
+        type: 'custom',
         priority: false,
         sortrank: null,
         champion: _.toArray(champions)[70].id,
@@ -164,6 +165,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.draggable = {
         helper: 'clone',
         appendTo: 'body',
+        cursor: 'move',
         placeholder: 'ise-item-placeholder',
         connectWith: '.ise-block-items-dropzone',
         update: function(event, ui){ui.item.sortable.cancel();}
@@ -172,6 +174,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Sortable config (config for each block)
     $scope.sortable = {
         placeholder: 'ise-item-placeholder',
+        cursor: 'move',
         receive: function(event, ui){
             ui.item.sortable.cancel();
             var model = ui.item.sortable.model;
@@ -283,9 +286,11 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         var f = $scope.filters;
 
         //Filter on map
-        var map = $scope.maps[$scope.set.map].code;
-        if(map && ! item.maps[map]){
-            return false;
+        if($scope.set){
+            var map = $scope.maps[$scope.set.map].code;
+            if(map && ! item.maps[map]){
+                return false;
+            }
         }
 
         //Filter on tags
