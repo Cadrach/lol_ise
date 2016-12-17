@@ -237,6 +237,16 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
 
     /**
+     * Remove block from current set
+     * @param block
+     */
+    $scope.removeBlock = function(block){
+        if(confirm($scope.translate('Are you sure?'))) {
+            $scope.set.blocks.splice($scope.set.blocks.indexOf(block), 1);
+        }
+    }
+
+    /**
      * Select a set
      * @param theSet
      */

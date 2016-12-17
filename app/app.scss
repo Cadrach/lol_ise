@@ -222,6 +222,21 @@ input.form-control{
     border: 1px solid $color-border-item;
 }
 
+.btn-default{
+    border: 3px solid $color-border-input;
+    color: $color-text;
+    background: $color-background-start;
+    border-radius: 19px;
+    padding: 5px;
+    min-width: 34px;
+    height: 34px;
+    &:hover{
+        background: $color-background-end;
+        border-color: lighten($color-border-input, 10);
+        color: lighten($color-text, 10);
+    }
+}
+
 .mCustomScrollBox{
     .mCSB_dragger_bar{
         background: lighten($color-border-item, 50) !important;
@@ -264,6 +279,7 @@ item{
         left: 0;
         transition: all 0.25s;
         border-radius: 0;
+        padding: 0 3px;
     }
 
     &:hover{
@@ -459,6 +475,11 @@ set-dropper{
 
     .ise-block-items-dropzone{
         min-height: 48px;
+    }
+
+    .form-control{
+        float: left;
+        width: calc(100% - 50px)
     }
 }
 
