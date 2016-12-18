@@ -473,6 +473,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             //If the current set is no longer in the list of sets
             $scope.selectSet($scope.sets[0]);
         }
+        $scope.saveSetsToLocalStorage();
     });
 
     $scope.$watch('set', function(){
