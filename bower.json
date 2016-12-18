@@ -22,6 +22,8 @@
     "font-awesome": "^4.7.0",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "intro.js": "^2.4.0",
-    "angular-local-storage": "^0.5.2"
+    "angular-local-storage": "^0.5.2",
+    "downloadify": "https://github.com/dcneiner/Downloadify.git",
+    "bowser": "browser#^1.6.0"
   }
 }

@@ -134,7 +134,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         templateUrl: 'app/template/directive-set-dropper.html'
     }
 }])
-.directive('setDownloader', ['$window', function($window) {
+.directive('setDownloader', ['$window', '$uibModal', '$timeout', function($window, $uibModal, $timeout) {
     return {
         link: function(scope, elmt){
             /**
@@ -163,10 +163,38 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 zip.file('readme.txt', 'Use this folder to replace the Config/ folder in your League of Legends installation, usually located at %PROGRAMFILES%/Riot Games/League of Legends/')
 
                 //Send the zipped file
-                zip.generateAsync({type:"blob"})
-                    .then(function (blob) {
-                        saveAs(blob, "Lol_Item_Set.zip");
-                });
+                var filename = "Lol_Item_Set.zip";
+                if(bowser.chrome){
+                    //For Chrome it works nicely
+                    zip.generateAsync({type:"blob"}).then(function(blob){saveAs(blob, filename);});
+                }
+                else{
+                    //For the rest, a bit more work
+                    zip.generateAsync({type:"base64"})
+                        .then(function (blob) {
+                            var modal = $uibModal.open({
+                                templateUrl: 'app/template/modal-download.html'
+                            });
+                            modal.opened.then(function(){
+                                console.log('DDDD');
+                                $timeout(function(){
+                                    angular.element('#downloadify').downloadify({
+                                        swf: 'bower/downloadify/media/downloadify.swf',
+                                        downloadImage: 'bower/downloadify/images/download.png',
+                                        width: 175,
+                                        height: 30,
+                                        filename: filename,
+                                        data: function(){
+                                            return blob
+                                        },
+                                        dataType: 'base64'
+                                    });
+
+                                })
+                            })
+                        });
+                }
+
             }
 
         },
