@@ -457,6 +457,10 @@ set-dropper{
     }
 }
 
+input.form-control.ise-filter-string{
+    background-image:url(image/search.png);
+}
+
 .ise-item-placeholder{
     border: 2px dashed #000;
     background: opacify($color-border-item, .5);
@@ -478,6 +482,7 @@ set-dropper{
         background: $color-background-end;
         border-color: $color-border-item;
     }
+    &.right .arrow:after{border-right-color: $color-border-input;}
     .popover-content{color: #68bec5}
     stats{color: #96fa96;}
     unique, active{color: #fddb22;}

@@ -356,6 +356,9 @@ set-dropper {
   .ise-champions-sets champion:hover {
     background: #af9158; }
 
+input.form-control.ise-filter-string {
+  background-image: url(image/search.png); }
+
 .ise-item-placeholder {
   border: 2px dashed #000;
   background: #463714; }
@@ -373,6 +376,8 @@ set-dropper {
   .ise-item-popover h3 {
     background: #0b3240;
     border-color: #463714; }
+  .ise-item-popover.right .arrow:after {
+    border-right-color: #af9158; }
   .ise-item-popover .popover-content {
     color: #68bec5; }
   .ise-item-popover stats {

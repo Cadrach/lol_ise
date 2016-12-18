@@ -7,8 +7,8 @@ XXX - Remove block
 XXX - One champion drilled down at a time
 XXX HELP / TUTORIAL
 XXX - Drag & drop between blocks
-- local storage for first visit
-- Looking glass as icon for filters
+XXX - local storage for first visit
+XXX - Looking glass as icon for filters
 - local storage for sets
 - Champion filter at top
 - warning when leaving page and not downloaded (maybe not needed if local storage)
