@@ -457,6 +457,14 @@ set-dropper{
     }
 }
 
+.ise-modal-add-set{
+    champion:hover{
+        background-color: $color-border-input;
+        cursor: pointer;
+        color: $color-background-start;
+    }
+}
+
 input.form-control.ise-filter-string{
     background-image:url(image/search.png);
 }

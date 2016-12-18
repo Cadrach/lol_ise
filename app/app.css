@@ -356,6 +356,11 @@ set-dropper {
   .ise-champions-sets champion:hover {
     background: #af9158; }
 
+.ise-modal-add-set champion:hover {
+  background-color: #af9158;
+  cursor: pointer;
+  color: #010a13; }
+
 input.form-control.ise-filter-string {
   background-image: url(image/search.png); }
 

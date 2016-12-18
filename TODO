@@ -9,8 +9,8 @@ XXX HELP / TUTORIAL
 XXX - Drag & drop between blocks
 XXX - local storage for first visit
 XXX - Looking glass as icon for filters
-- local storage for sets
+XXX - local storage for sets
 - Champion filter at top
 - warning when leaving page and not downloaded (maybe not needed if local storage)
-- Analytics
+??? - Analytics
 - Store sets server side for stats / best set per champ <== later

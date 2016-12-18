@@ -117,8 +117,13 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.itemsArray = _.chain($scope.items).sortBy(function(item){return item.name}).sortBy(function(item){return item.gold.total}).value();
 
     //Sets we manage (init to default set) & current set
-    $scope.sets = [];
-    $timeout(function(){$scope.addSet($scope.championsArray[0]);});
+    if(localStorageService.get('sets')){
+        $scope.sets = localStorageService.get('sets');
+    }
+    else{
+        $scope.sets = [];
+    }
+
 
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
@@ -275,6 +280,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.openModalAddSet = function(){
         $uibModal.open({
             size: 'xl',
+            windowClass: 'ise-modal-add-set',
             templateUrl: 'app/template/modal-new-set.html?' + new Date,
             scope: $scope
         })
@@ -355,6 +361,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Pass the translation method
     $scope.translate = ddTranslate.get;
 
+    /**
+     * Open the help/welcome screen
+     */
     $scope.openModalHelp = function(){
         $uibModal.open({
             scope: $scope,
@@ -367,6 +376,16 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         })
     }
 
+    /**
+     * Save to local storage
+     */
+    $scope.saveSetsToLocalStorage = function(){
+        localStorageService.set('sets', $scope.sets);
+    }
+
+    /**
+     * Start the tour
+     */
     $scope.tour = function(){
         function get(value){return angular.element('[intro="'+value+'"]')[0]}
         function onExit(){
@@ -455,6 +474,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             $scope.selectSet($scope.sets[0]);
         }
     });
+
+    $scope.$watch('set', function(){
+        if($scope.set){
+            $scope.saveSetsToLocalStorage();
+        }
+    }, true)
 
     /**
      * **************************************************************************************
