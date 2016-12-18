@@ -21,6 +21,7 @@
     "angular-ui-select": "^0.19.6",
     "font-awesome": "^4.7.0",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
-    "intro.js": "^2.4.0"
+    "intro.js": "^2.4.0",
+    "angular-local-storage": "^0.5.2"
   }
 }

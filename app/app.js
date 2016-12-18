@@ -26,6 +26,8 @@ angular.module('appLolIse', [
     'ui.sortable',
     'ui.select',
 
+    'LocalStorageModule',
+
     'appLolIse.ddragon',
     'appLolIse.champion',
     'appLolIse.item',

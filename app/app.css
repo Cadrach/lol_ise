@@ -292,6 +292,20 @@ set-dropper {
   set-dropper [ngf-drop] {
     height: 100vh; }
 
+.ise-welcome .modal-body {
+  font-size: 16px;
+  line-height: 22px; }
+.ise-welcome .btn-success {
+  border: 2px solid #08c4bd; }
+.ise-welcome .btn-success:last-child {
+  border-color: #00668a; }
+.ise-welcome code {
+  font-size: 12px; }
+.ise-welcome ul {
+  margin: 10px; }
+.ise-welcome li {
+  margin: 10px; }
+
 .ise-checkbox input[type="checkbox"] {
   display: none; }
 .ise-checkbox input[type="checkbox"] + label span {

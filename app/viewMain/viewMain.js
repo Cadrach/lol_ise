@@ -57,7 +57,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         link: link
     }
 }])
-.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', 'ddTranslate', 'ddragon', 'source', function($scope, $timeout, $uibModal, ddTranslate, ddragon, source) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', 'localStorageService', 'ddTranslate', 'ddragon', 'source', function($scope, $timeout, $uibModal, localStorageService, ddTranslate, ddragon, source) {
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -355,6 +355,18 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Pass the translation method
     $scope.translate = ddTranslate.get;
 
+    $scope.openModalHelp = function(){
+        $uibModal.open({
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'ise-welcome',
+            templateUrl: 'app/template/modal-first-visit.html'
+        }).result.then($scope.tour, function(){
+            //No visit wanted
+            localStorageService.set('tourDone', true);
+        })
+    }
+
     $scope.tour = function(){
         function get(value){return angular.element('[intro="'+value+'"]')[0]}
         function onExit(){
@@ -421,7 +433,10 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         })
 
         intro.onexit(onExit);
-        intro.oncomplete(onExit);
+        intro.oncomplete(function(){
+            onExit();
+            localStorageService.set('tourDone', true);
+        });
 
         intro.start();
     }
@@ -440,4 +455,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             $scope.selectSet($scope.sets[0]);
         }
     });
+
+    /**
+     * **************************************************************************************
+     * BOOTSTRAP
+     */
+    if( ! localStorageService.get('tourDone')){
+        $scope.openModalHelp();
+    }
 }]);

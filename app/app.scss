@@ -29,6 +29,8 @@ $color-text: #efe5d1;
 $color-input: #9e998a;
 $color-button-danger: red;
 $color-button-shadow: #459295;
+$color-button-success-border-start: rgba(8,196,189,1);
+$color-button-success-border-end: rgba(0,102,138,1);
 $img-opacity: 1;
 
 //$color-background-start: #fff;
@@ -205,7 +207,7 @@ input.form-control{
     transition: all 0.5s;
 
     &:hover{
-        border-color: rgba(0,102,138,1);
+        border-color: $color-button-success-border-end;
 
         box-shadow: 1px 0px 19px 5px $color-button-shadow;
         -webkit-box-shadow: 1px 0px 19px 5px $color-button-shadow;
@@ -222,12 +224,12 @@ input.form-control{
 
     &:before{
         content: ' ';
-        background: -moz-linear-gradient(270deg, rgba(8,196,189,1) 0%, rgba(0,102,138,1) 100%); /* ff3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(8,196,189,1)), color-stop(100%, rgba(0,102,138,1))); /* safari4+,chrome */
-        background: -webkit-linear-gradient(270deg, rgba(8,196,189,1) 0%, rgba(0,102,138,1) 100%); /* safari5.1+,chrome10+ */
-        background: -o-linear-gradient(270deg, rgba(8,196,189,1) 0%, rgba(0,102,138,1) 100%); /* opera 11.10+ */
-        background: -ms-linear-gradient(270deg, rgba(8,196,189,1) 0%, rgba(0,102,138,1) 100%); /* ie10+ */
-        background: linear-gradient(180deg, rgba(8,196,189,1) 0%, rgba(0,102,138,1) 100%); /* w3c */
+        background: -moz-linear-gradient(270deg, $color-button-success-border-start 0%, $color-button-success-border-end 100%); /* ff3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $color-button-success-border-start), color-stop(100%, $color-button-success-border-end)); /* safari4+,chrome */
+        background: -webkit-linear-gradient(270deg, $color-button-success-border-start 0%, $color-button-success-border-end 100%); /* safari5.1+,chrome10+ */
+        background: -o-linear-gradient(270deg, $color-button-success-border-start 0%, $color-button-success-border-end 100%); /* opera 11.10+ */
+        background: -ms-linear-gradient(270deg, $color-button-success-border-start 0%, $color-button-success-border-end 100%); /* ie10+ */
+        background: linear-gradient(180deg, $color-button-success-border-start 0%, $color-button-success-border-end 100%); /* w3c */
         border-radius: 0;
         width: calc(100% + 6px);
         height: calc(100% + 6px);
@@ -359,6 +361,28 @@ set-dropper{
     background-color: rgba(0,0,0,0.5);
     [ngf-drop]{
         height: 100vh;
+    }
+}
+
+.ise-welcome{
+    .modal-body{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .btn-success{
+        border: 2px solid $color-button-success-border-start;
+    }
+    .btn-success:last-child{
+        border-color: $color-button-success-border-end;
+    }
+    code{
+        font-size: 12px;
+    }
+    ul{
+        margin: 10px;
+    }
+    li{
+        margin: 10px;
     }
 }
 
