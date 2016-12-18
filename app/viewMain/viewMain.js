@@ -171,33 +171,41 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.sortable = {
         placeholder: 'ise-item-placeholder',
         cursor: 'move',
+        connectWith: '.ise-block-items-dropzone',
         receive: function(event, ui){
-            ui.item.sortable.cancel();
-            var model = ui.item.sortable.model;
-            var id = model.id.toString();
-            var blockItems = ui.item.sortable.droptargetModel;
-            var position = ui.item.sortable.dropindex;
+            //Get source information (where is it coming from?)
+            var source = ui.item.sortable.sourceModel;
+            var isFromAnotherBlock = _.pluck($scope.set.blocks, 'items').indexOf(source) >= 0;
 
-            //If the item stacks, check if we should stack
-            if(model.stacks){
-                //Find item in current array
-                var found = _.findWhere(blockItems, {id: id});
-                if(found){
-                    if(model.stacks > found.count){
-                        found.count++;
-                        return; //we do nothing else
-                    }
-                    else{
-                        throw "Maximum reached";
+            //We must do some specifics if we pull from the items list, if it comes from another block nothing to do!
+            if( ! isFromAnotherBlock){
+                ui.item.sortable.cancel();
+                var model = ui.item.sortable.model;
+                var id = model.id.toString();
+                var blockItems = ui.item.sortable.droptargetModel;
+                var position = ui.item.sortable.dropindex;
+
+                //If the item stacks, check if we should stack
+                if(model.stacks){
+                    //Find item in current array
+                    var found = _.findWhere(blockItems, {id: id});
+                    if(found){
+                        if(model.stacks > found.count){
+                            found.count++;
+                            return; //we do nothing else
+                        }
+                        else{
+                            throw "Maximum reached";
+                        }
                     }
                 }
-            }
 
-            //Create item in block
-            blockItems.splice(position, 0, {
-                id: id,
-                count: 1
-            })
+                //Create item in block
+                blockItems.splice(position, 0, {
+                    id: id,
+                    count: 1
+                })
+            }
         }
     }
 

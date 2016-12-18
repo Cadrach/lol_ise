@@ -120,6 +120,8 @@
                     <i class="fa fa-trash"></i>
                 </div>
 
+                <div class="clearfix"></div>
+
                 <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
                     <item value="items[item.id]" count="item.count" ng-repeat="item in block.items">
                         <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">
@@ -133,6 +135,4 @@
         </div>
     </div>
 </div>
-
-<!--<pre>{{setsArray|json}}</pre>-->
 <!--<pre>{{tags|json}}</pre>-->
