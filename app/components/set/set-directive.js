@@ -160,7 +160,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 })
 
                 //Add a small readme in the .zip
-                zip.file('readme.txt', 'Use this folder to replace the Config/ folder in your League of Legends installation, usually located at %PROGRAMFILES%/Riot Games/League of Legends/')
+                zip.file('readme.txt', 'Downloaded from http://lol.item-set.com\nUse this folder to replace the Config/ folder in your League of Legends installation, usually located at %PROGRAMFILES%/Riot Games/League of Legends/')
 
                 //Send the zipped file
                 var filename = "Lol_Item_Set.zip";
