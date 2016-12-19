@@ -34,7 +34,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             scope.files = [];
             scope.interface = {show: false};
             var sets = [];
-            var mustHaveKeys = ['champion', 'type', 'map', 'mode', 'blocks'];
+            var mustHaveKeys = ['type', 'map', 'mode', 'blocks'];
 
             //Watch dropping files
             scope.$watch('files', function () {
@@ -55,11 +55,23 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             //Read the files & generate the sets
             function readFiles(files, position){
                 //Clear current set
+                var file = files[position];
                 if(position < files.length){
                     var reader = new FileReader;
                     reader.onload = function(e){
                         try{
+                            //The JSON
                             var s = JSON.parse(e.target.result);
+
+                            //Try to findout which champion we are working on, if not provided
+                            if( ! s.champion){
+                                for(var i=0; i<scope.champions.length; i++){
+                                    if(file.path.indexOf(scope.champions[i])>=0){
+                                        s.champion = scope.champions[i];
+                                        break;
+                                    }
+                                }
+                            }
                             if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
                                 sets.push(s);
                             }
@@ -129,7 +141,8 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         },
         restrict: 'E',
         scope: {
-            sets: '='
+            sets: '=',
+            champions: '='
         },
         templateUrl: 'app/template/directive-set-dropper.html'
     }

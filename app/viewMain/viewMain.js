@@ -139,6 +139,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Champions
     $scope.champions = champions;
     $scope.championsArray = _.chain(champions).toArray().sortBy('name').value();
+    $scope.championsNames = _.keys(champions);
 
     //Tags
     $scope.tags = _.chain($scope.items).pluck('tags').flatten().uniq().map(function(tag){
