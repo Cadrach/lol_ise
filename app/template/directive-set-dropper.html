@@ -6,4 +6,16 @@
      ngf-allow-dir="true"
      ngf-max-files="2000"
      accept="application/json"
-     ngf-pattern="'.json'">Drop pdfs or images here or click to upload</div>
+     style="visibility: hidden; opacity: 0"
+     ngf-pattern="'.json'"></div>
+
+<div
+        class="btn btn-success btn-block"
+        ngf-select
+        ng-model="files"
+        ngf-multiple="true"
+        ngf-max-files="2000"
+        accept="application/json"
+        ngf-pattern="'.json'">
+    <i class="fa fa-upload"></i>&nbsp;Upload
+</div>

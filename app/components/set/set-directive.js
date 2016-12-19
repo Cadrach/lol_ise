@@ -21,7 +21,7 @@
 
 angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
 
-.directive('setDropper', ['$window', function($window) {
+.directive('setDropper', ['$window', '$timeout', function($window, $timeout) {
 
     return {
         link: function(scope, elmt){
@@ -103,14 +103,14 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
 
             //Hide interface
             function interfaceShow(){
-                elmt.css('visibility', '');
-                elmt.css('opacity', 1);
+                elmt.find('[ngf-drop]').css('visibility', '');
+                elmt.find('[ngf-drop]').css('opacity', 1);
             }
 
             //Show interface
             function interfaceHide(){
-                elmt.css('visibility', 'hidden');
-                elmt.css('opacity', 0);
+                elmt.find('[ngf-drop]').css('visibility', 'hidden');
+                elmt.find('[ngf-drop]').css('opacity', 0);
             }
 
             /**
@@ -136,7 +136,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
              * **************************************************************************************
              * BOOTSTRAP
              */
-            interfaceHide();
+            $timeout(interfaceHide);
 
         },
         restrict: 'E',
