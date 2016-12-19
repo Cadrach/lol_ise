@@ -407,13 +407,18 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
         intro.addSteps([
             {
+                element: get('upload'),
+                intro: 'You can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets in one go!<br/><br/>Alternatively, you can upload your sets as <b>.json</b> files by clicking the "Upload" button.',
+                position: 'right'
+            },
+            {
                 element: get('downloader'),
                 intro: 'When you are done, use this button to download all your sets in one click.<br/><br/>You can then extract the zip archive and use it to replace your <code>.../League of Legends/Config/</code> folder.',
                 position: 'right'
             },
             {
                 element: get('new-set'),
-                intro: 'Create your sets by clicking on this button.<br/><br/>Alternatively, you can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets!',
+                intro: 'Add sets by clicking on this button.',
                 position: 'right'
             },
             {
