@@ -479,6 +479,7 @@ set-dropper{
     .modal-content{
         z-index: -2;
     }
+    .row:last-child>div{text-align: center}
 }
 
 input.form-control.ise-filter-string{

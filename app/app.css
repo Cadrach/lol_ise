@@ -368,6 +368,8 @@ set-dropper [ngf-drop] {
   opacity: 0.85; }
 .ise-modal-upload .modal-content {
   z-index: -2; }
+.ise-modal-upload .row:last-child > div {
+  text-align: center; }
 
 input.form-control.ise-filter-string {
   background-image: url(image/search.png); }
