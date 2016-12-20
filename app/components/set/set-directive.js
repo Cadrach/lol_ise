@@ -21,7 +21,7 @@
 
 angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
 
-.directive('setDropper', ['$window', '$timeout', function($window, $timeout) {
+.directive('setDropper', ['$window', '$timeout', '$uibModal', '$q', function($window, $timeout, $uibModal, $q) {
 
     return {
         link: function(scope, elmt){
@@ -31,16 +31,24 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
              * SCOPE VARS
              */
             //Default files list
-            scope.files = [];
+            scope.uploaded = {
+                files: []
+            };
             scope.interface = {show: false};
             var sets = [];
             var mustHaveKeys = ['type', 'map', 'mode', 'blocks', 'champion'];
+            var modal;
 
             //Watch dropping files
-            scope.$watch('files', function () {
-                if(scope.files.length){
+            scope.$watch('uploaded.files', function (files) {
+                if(files.length){
                     sets = [];
-                    readFiles(scope.files, 0);
+                    if(files.length == 1 && files[0].name.slice(-4) == '.zip'){
+                        readZip(files[0]);
+                    }
+                    else{
+                        readFiles(files, 0);
+                    }
                 }
                 else{
                     //If no files provided hide drop zone
@@ -48,60 +56,118 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 }
             });
 
+            //Open modal on button click
+            scope.openModal = function(){
+                modal = $uibModal.open({
+                    scope: scope,
+                    size: 'xl',
+                    windowClass: 'ise-modal-upload',
+                    templateUrl: 'app/template/modal-upload.html'
+                });
+            };
+
             /**
              * **************************************************************************************
              * LOCAL METHODS
              */
-            //Read the files & generate the sets
+            /**
+             * Read a zip file
+             * @param file
+             */
+            function readZip(file){
+                var zip = new JSZip();
+
+                //Load the zip file
+                zip.loadAsync(file)
+                    .then(function(zipContent) {
+                        //Now we have the list of content, extract only files
+                        var files = _.chain(zipContent.files).filter(function(f){return !f.dir}).value();
+
+                        //Read each file, and aggregate the promise for each
+                        var promises = files.map(function(zippedFile){
+                            return zip.file(zippedFile.name).async("string").then(function(content){
+                                integrateFile(content, {name: zippedFile.name, path: zippedFile.name});
+                            });
+                        })
+
+                        //Once all promises are done, apply the parsed set to our external scope
+                        $q.all(promises).then(applySets);
+                    });
+            }
+
+            /**
+             * Read the files & generate the sets
+             * @param files
+             * @param position
+             */
             function readFiles(files, position){
                 //Clear current set
                 var file = files[position];
+
+                //If we still have file to read, read them
                 if(position < files.length){
                     var reader = new FileReader;
                     reader.onload = function(e){
-                        try{
-                            //The JSON
-                            var s = JSON.parse(e.target.result);
-
-                            //Try to findout which champion we are working on, if not provided
-                            if( ! s.champion){
-                                for(var i=0; i<scope.champions.length; i++){
-                                    if(
-                                        file.name.indexOf(scope.champions[i])>=0
-                                        || file.path && file.path.indexOf(scope.champions[i])>=0
-                                    ){
-                                        s.champion = scope.champions[i];
-                                        break;
-                                    }
-                                }
-                            }
-                            if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
-                                sets.push(s);
-                            }
-                            else{
-                                console.error("Wrong format, missing: " + _.difference(mustHaveKeys, _.keys(s)).join(','));
-                            }
-                        } catch(e){
-                            //Probably wrong JSON format, or not a json file
-                            console.error("Wrong file: " + e);
-                        }
+                        integrateFile(e.target.result, file);
                         readFiles(files, position+1);
                     }
                     reader.readAsText(files[position]);
                 }
                 else{
-                    //Fill new set
-                    scope.sets.splice(0, scope.sets.length);
-                    sets.forEach(function(s){
-                        scope.sets.push(s);
-                    })
-
-                    //Hide interface
-                    interfaceHide();
-
-                    //Apply to force digest
-                    scope.$apply();
+                    //All files read, fill the sets object with all our new sets
+                    applySets();
                 }
+            }
+
+            /**
+             * Integrate a file into the tool
+             * @param jsonString
+             * @param file
+             */
+            function integrateFile(jsonString, file){
+                try{
+                    //The JSON
+                    var s = JSON.parse(jsonString);
+
+                    //Try to findout which champion we are working on, if not provided
+                    if( ! s.champion){
+                        for(var i=0; i<scope.champions.length; i++){
+                            if(
+                                file.name.indexOf(scope.champions[i])>=0
+                                    || file.path && file.path.indexOf(scope.champions[i])>=0
+                                ){
+                                s.champion = scope.champions[i];
+                                break;
+                            }
+                        }
+                    }
+                    if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
+                        sets.push(s);
+                    }
+                    else{
+                        //We are missing a required key to use the provided file
+                        console.error("Wrong format, missing: " + _.difference(mustHaveKeys, _.keys(s)).join(','));
+                    }
+                } catch(e){
+                    //Probably wrong JSON format, or not a json file
+                    console.error("Wrong file: " + file.name);
+                }
+            }
+
+            /**
+             * Apply our directive sets to the external scope
+             */
+            function applySets(){
+                scope.sets.splice(0, scope.sets.length);
+                sets.forEach(function(s){
+                    scope.sets.push(s);
+                })
+
+                //Hide interface
+                $timeout(interfaceHide)
+
+                //Apply to force digest
+//                try{scope.$apply()}catch(e){};
             }
 
             //Hide interface
@@ -114,6 +180,11 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             function interfaceHide(){
                 elmt.find('[ngf-drop]').css('visibility', 'hidden');
                 elmt.find('[ngf-drop]').css('opacity', 0);
+
+                if(modal){
+                    modal.close();
+                    modal = null;
+                }
             }
 
             /**
@@ -192,7 +263,6 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                                 templateUrl: 'app/template/modal-download.html'
                             });
                             modal.opened.then(function(){
-                                console.log('DDDD');
                                 $timeout(function(){
                                     angular.element('#downloadify').downloadify({
                                         swf: 'bower/downloadify/media/downloadify.swf',

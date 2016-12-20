@@ -7,3 +7,4 @@ tmp
 .idea
 source/*.inc.php
 source/*.json
+app/image/Corel Auto-Preserve/*

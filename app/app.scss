@@ -157,6 +157,9 @@ code{
     .modal-header, .modal-footer{
         border-color: $color-border-input;
     }
+    h3{
+        font-family: Beaufort;
+    }
 }
 
 .modal-xl{
@@ -464,6 +467,17 @@ set-dropper{
         background-color: $color-border-input;
         cursor: pointer;
         color: $color-background-start;
+    }
+}
+
+.ise-modal-upload{
+    img{
+        max-width: 100%;
+        border-radius: 8px;
+        opacity: 0.85;
+    }
+    .modal-content{
+        z-index: -2;
     }
 }
 

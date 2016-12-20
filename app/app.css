@@ -114,6 +114,8 @@ code {
   border-color: #af9158; }
   .modal-content .modal-header, .modal-content .modal-footer {
     border-color: #af9158; }
+  .modal-content h3 {
+    font-family: Beaufort; }
 
 .modal-xl {
   width: calc(100% - 60px); }
@@ -359,6 +361,13 @@ set-dropper [ngf-drop] {
   background-color: #af9158;
   cursor: pointer;
   color: #010a13; }
+
+.ise-modal-upload img {
+  max-width: 100%;
+  border-radius: 8px;
+  opacity: 0.85; }
+.ise-modal-upload .modal-content {
+  z-index: -2; }
 
 input.form-control.ise-filter-string {
   background-image: url(image/search.png); }

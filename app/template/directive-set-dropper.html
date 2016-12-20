@@ -1,6 +1,6 @@
 <div
      ngf-drop
-     ng-model="files"
+     ng-model="uploaded.files"
      ngf-drag-over-class="'dragover'"
      ngf-multiple="true"
      ngf-allow-dir="true"
@@ -9,14 +9,6 @@
      style="visibility: hidden; opacity: 0"
      ngf-pattern="'.json'"></div>
 
-<div
-        class="btn btn-success btn-block"
-        intro="upload"
-        ngf-select
-        ng-model="files"
-        ngf-multiple="true"
-        ngf-max-files="2000"
-        accept="application/json"
-        ngf-pattern="'.json'">
+<div class="btn btn-success btn-block" ng-click="openModal()" intro="upload">
     <i class="fa fa-upload"></i>&nbsp;Upload
 </div>
