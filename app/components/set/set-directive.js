@@ -34,7 +34,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             scope.files = [];
             scope.interface = {show: false};
             var sets = [];
-            var mustHaveKeys = ['type', 'map', 'mode', 'blocks'];
+            var mustHaveKeys = ['type', 'map', 'mode', 'blocks', 'champion'];
 
             //Watch dropping files
             scope.$watch('files', function () {
@@ -66,7 +66,10 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                             //Try to findout which champion we are working on, if not provided
                             if( ! s.champion){
                                 for(var i=0; i<scope.champions.length; i++){
-                                    if(file.path.indexOf(scope.champions[i])>=0){
+                                    if(
+                                        file.name.indexOf(scope.champions[i])>=0
+                                        || file.path && file.path.indexOf(scope.champions[i])>=0
+                                    ){
                                         s.champion = scope.champions[i];
                                         break;
                                     }
@@ -166,7 +169,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 //Add each set to the zip
                 scope.sets.forEach(function(s){
                     var champ = s.champion ? s.champion:'Global';
-                    var root = s.champion ? 'Config/Champions/' + champ + '/Recommended/' : 'Config/Global/Recommended/';
+                    var root = s.champion && s.champion!='Global' ? 'Config/Champions/' + champ + '/Recommended/' : 'Config/Global/Recommended/';
                     champions[champ] = typeof champions[champ] == 'undefined' ? 0:champions[champ]+1;
                     var path = root + champ + champions[champ] + '.json';
                     zip.file(path, angular.toJson(s));

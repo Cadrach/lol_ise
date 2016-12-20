@@ -124,7 +124,6 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         $scope.sets = [];
     }
 
-
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
     $scope.maps = {
@@ -137,6 +136,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.mapsArray = _.toArray($scope.maps);
 
     //Champions
+    champions['Global'] = {
+        id: 'Global',
+        name: 'Global Set',
+        title: 'Will be available to all champions',
+        image: {sprite: 'passive0.png'}
+    };
     $scope.champions = champions;
     $scope.championsArray = _.chain(champions).toArray().sortBy('name').value();
     $scope.championsNames = _.keys(champions);
