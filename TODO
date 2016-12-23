@@ -17,6 +17,7 @@ XXX - Allow uploading a .zip file
 - Handle to drag & drop blocks
 - Firefox support
 - Fix scrollbar on blocks side when direct loading a set
+- Allow specific items for champs (like Silver Serpent for Gangplank)
 
 - Champion filter at top
 - warning when leaving page and not downloaded (maybe not needed if local storage)
