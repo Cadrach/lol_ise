@@ -175,14 +175,14 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         helper: 'clone',
         appendTo: 'body',
         cursor: 'move',
-        placeholder: 'ise-item-placeholder',
+        placeholder: 'ise-drag-placeholder',
         connectWith: '.ise-block-items-dropzone',
         update: function(event, ui){ui.item.sortable.cancel();}
     }
 
     //Sortable config (config for each block)
     $scope.sortable = {
-        placeholder: 'ise-item-placeholder',
+        placeholder: 'ise-drag-placeholder',
         cursor: 'move',
         connectWith: '.ise-block-items-dropzone',
         receive: function(event, ui){
@@ -220,6 +220,13 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
                 })
             }
         }
+    }
+
+    $scope.sortableBlocks = {
+        placeholder: 'ise-drag-placeholder ise-drag-placeholder-block',
+        cursor: 'move',
+        connectWith: '.ise-block',
+        handle: '.ise-drag-handle'
     }
 
     /**

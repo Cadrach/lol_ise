@@ -374,14 +374,24 @@ set-dropper [ngf-drop] {
 input.form-control.ise-filter-string {
   background-image: url(image/search.png); }
 
-.ise-item-placeholder {
+.ise-drag-handle {
+  color: #af9158;
+  width: 12px;
+  cursor: pointer;
+  height: 32px;
+  line-height: 32px; }
+
+.ise-drag-placeholder {
   border: 2px dashed #000;
   background: #463714; }
+  .ise-drag-placeholder.ise-drag-placeholder-block {
+    height: 100px;
+    margin-bottom: 20px; }
 
 .ise-items-list {
   line-height: 0;
   padding: 0; }
-  .ise-items-list .ise-item-placeholder {
+  .ise-items-list .ise-drag-placeholder {
     display: none !important; }
 
 .ise-item-popover {

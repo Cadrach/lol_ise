@@ -5,20 +5,22 @@ XXX - CSS dropdown + select2 + buttons
 ??? - CSS: more image / graphics
 XXX - Remove block
 XXX - One champion drilled down at a time
-XXX HELP / TUTORIAL
+XXX - HELP / TUTORIAL
 XXX - Drag & drop between blocks
 XXX - local storage for first visit
 XXX - Looking glass as icon for filters
 XXX - local storage for sets
 
+Added:
 XXX - Add a way to manage global sets (look at: https://developer.riotgames.com/docs/item-sets)
 XXX - Allow uploading a .zip file
-- Toggle checkbox to have a way to ignore a stat
-- Handle to drag & drop blocks
+XXX - Handle to drag & drop blocks
 XXX - Firefox support
 XXX - Fix scrollbar on blocks side when direct loading a set
 XXX - Allow specific items for champs (like Silver Serpent for Gangplank)
+- Toggle checkbox to have a way to ignore a stat
 
+Maybes:
 - Champion filter at top
 - warning when leaving page and not downloaded (maybe not needed if local storage)
 ??? - Analytics
