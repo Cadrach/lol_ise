@@ -15,8 +15,8 @@ XXX - Add a way to manage global sets (look at: https://developer.riotgames.com/
 XXX - Allow uploading a .zip file
 - Toggle checkbox to have a way to ignore a stat
 - Handle to drag & drop blocks
-- Firefox support
-- Fix scrollbar on blocks side when direct loading a set
+XXX - Firefox support
+XXX - Fix scrollbar on blocks side when direct loading a set
 - Allow specific items for champs (like Silver Serpent for Gangplank)
 
 - Champion filter at top

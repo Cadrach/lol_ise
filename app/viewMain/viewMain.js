@@ -39,7 +39,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             e.css('height', 'calc(100vh - ' + (e.offset().top+10) + 'px)');
         }
 
-        element.mCustomScrollbar({
+        var scrollable = element.mCustomScrollbar({
             theme:"dark"
         });
 
@@ -47,6 +47,11 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             angular.element($window).resize(autosize);
             $timeout(autosize);
         }
+
+        //Update scrollable
+        scope.$on('update-scrollable', function(){
+            scrollable.mCustomScrollbar('update');
+        })
     }
 
     return {
@@ -268,6 +273,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.selectSet = function(theSet){
         $scope.set = theSet;
         $scope.champion = theSet ? theSet.champion:null;
+        $scope.$broadcast('update-scrollable');
     }
 
     /**
