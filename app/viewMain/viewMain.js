@@ -106,11 +106,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         if( ! item.gold.purchasable || (item.hideFromAll && !item.plaintext)){
             delete $scope.items[key]; //delete obsoletes
         }
-        else if( ! item.gold.total && !item.tags.length && item.consumed){
+        else if( ! item.gold.total && !item.tags.length && item.consumed && !item.requiredChampion){
             delete $scope.items[key]; //delete other mode items
-        }
-        else if( ! item.gold.global && item.requiredChampion){
-            delete $scope.items[key]; //delete default item (like Kalista's)
         }
 
         //Create search properties
@@ -348,6 +345,11 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         if(item.exactSearch.indexOf(s) >= 0){
             return true;
         } else if(f.string && item.search.toLowerCase().indexOf(s) < 0){
+            return false;
+        }
+
+        //Filter on champion
+        if(item.requiredChampion && $scope.set && item.requiredChampion != $scope.set.champion){
             return false;
         }
 
