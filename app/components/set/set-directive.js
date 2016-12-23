@@ -62,7 +62,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     scope: scope,
                     size: 'xl',
                     windowClass: 'ise-modal-upload',
-                    templateUrl: 'app/template/modal-upload.html'
+                    templateUrl: 'app/template/modal-upload.html?v=' + codeVersion
                 });
             };
 
@@ -218,7 +218,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             sets: '=',
             champions: '='
         },
-        templateUrl: 'app/template/directive-set-dropper.html'
+        templateUrl: 'app/template/directive-set-dropper.html?v=' + codeVersion
     }
 }])
 .directive('setDownloader', ['$window', '$uibModal', '$timeout', function($window, $uibModal, $timeout) {
@@ -260,7 +260,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     zip.generateAsync({type:"base64"})
                         .then(function (blob) {
                             var modal = $uibModal.open({
-                                templateUrl: 'app/template/modal-download.html'
+                                templateUrl: 'app/template/modal-download.html?v=' + codeVersion
                             });
                             modal.opened.then(function(){
                                 $timeout(function(){

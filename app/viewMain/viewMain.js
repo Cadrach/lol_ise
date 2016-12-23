@@ -23,7 +23,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/editor/:language?', {
-        templateUrl: 'app/viewMain/viewMain.html',
+        templateUrl: 'app/viewMain/viewMain.html?v=' + codeVersion,
         controller: 'ViewMainCtrl',
         resolve: {
             source: function(ddragon, $route){
@@ -297,7 +297,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         $uibModal.open({
             size: 'xl',
             windowClass: 'ise-modal-add-set',
-            templateUrl: 'app/template/modal-new-set.html?' + new Date,
+            templateUrl: 'app/template/modal-new-set.html?v=' + codeVersion,
             scope: $scope
         })
     }
@@ -390,7 +390,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             scope: $scope,
             backdrop: 'static',
             windowClass: 'ise-welcome',
-            templateUrl: 'app/template/modal-first-visit.html'
+            templateUrl: 'app/template/modal-first-visit.html?v=' + codeVersion
         }).result.then($scope.tour, function(){
             //No visit wanted
             localStorageService.set('tourDone', true);

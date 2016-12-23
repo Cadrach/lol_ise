@@ -45,7 +45,7 @@ angular.module('appLolIse.champion.champion-directive', [])
             champion: '=value',
             small: '@'
         },
-        templateUrl: 'app/template/directive-champion.html'
+        templateUrl: 'app/template/directive-champion.html?v=' + codeVersion
 
     }
 }]);
