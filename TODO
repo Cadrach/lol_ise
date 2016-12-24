@@ -22,6 +22,9 @@ XXX - Allow specific items for champs (like Silver Serpent for Gangplank)
 General:
 - Toggle checkbox to have a way to ignore a stat
 - Filter when adding champ & for sets
+- Add price
+- Add builds into / from
+- Drag & drop blocks to the bottom provokes a glitch
 
 Advanced mode:
 - Add a checkbox for an "advanced" mode
@@ -29,6 +32,7 @@ Advanced mode:
 - Button to download the .json directly
 
 Maybes:
+- Game modes & special maps
 - Champion filter at top
 - warning when leaving page and not downloaded (maybe not needed if local storage)
 ??? - Analytics
