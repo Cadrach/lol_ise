@@ -26,12 +26,12 @@ General:
 - Add builds into / from
 - Drag & drop blocks to the bottom provokes a glitch (Firefox 50.1 Windows 8.1)
 - Duplicate a set for another champion
-- Language name for Korean is using North Korean language name: 조선말 should not be used, should use 한국어 instead
+XXX - Language name for Korean is using North Korean language name: 조선말 should not be used, should use 한국어 instead
 
 Advanced mode:
 - Add a checkbox for an "advanced" mode
 - Button to delete a full champion
-- Button to download the .json directly
+XXX - Button to download the .json directly
 
 Maybes:
 - Allow champion specific items for global sets

@@ -95,7 +95,21 @@
 
 <div class="col-xs-4 ise-set" ng-show="set" intro="block-set">
 
-    <h2 class="ise-title-set">{{translate('Details_')}}&nbsp;<span class="ise-sub-title">{{set.title}}</span></h2>
+    <h2 class="ise-title-set">
+        {{translate('Details_')}}&nbsp;<span class="ise-sub-title">{{set.title}}</span>
+
+
+        <div class="dropdown pull-right" uib-dropdown dropdown-append-to-body="true">
+            <div class="btn btn-default" uib-dropdown-toggle>
+                <i class="fa fa-cogs"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+                <li><a><i class="fa fa-copy"></i>&nbsp;Duplicate</a></li>
+                <li ng-click="downloadJson()"><a><i class="fa fa-download"></i>&nbsp;Download <b>.json</b> file</a></li>
+                <!--<li class="divider"></li>-->
+            </ul>
+        </div>
+    </h2>
 
     <div intro="set-info">
         <champion value="champions[set.champion]"></champion>
@@ -147,4 +161,5 @@
         </div>
     </div>
 </div>
+<a id="jsonDownloader" display:none></a>
 <!--<pre>{{tags|json}}</pre>-->

@@ -384,6 +384,17 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.translate = ddTranslate.get;
 
     /**
+     * Direct download one json
+     */
+    $scope.downloadJson = function(){
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(angular.toJson($scope.set));
+        var dlAnchorElem = angular.element('#jsonDownloader')[0];
+        dlAnchorElem.setAttribute("href",     dataStr     );
+        dlAnchorElem.setAttribute("download", $scope.set.champion + ".json");
+        dlAnchorElem.click();
+    }
+
+    /**
      * Open the help/welcome screen
      */
     $scope.openModalHelp = function(){
