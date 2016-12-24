@@ -530,6 +530,12 @@ input.form-control.ise-filter-string{
     .popover-content{color: #68bec5}
     stats{color: #96fa96;}
     unique, active{color: #fddb22;}
+    .ise-item-gold{
+        float: right;
+        background: url(image/gold.png) no-repeat;
+        padding-left: 25px;
+        color: $color-input;
+    }
 }
 
 .ise-item-tags{
