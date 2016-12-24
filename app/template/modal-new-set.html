@@ -10,10 +10,7 @@
     <div class="clearfix"></div>
 
     <div class="col-xs-3 col-md-2" ng-repeat="c in championsArray" ng-if="c.id!='Global'">
-        <champion class="{{set.champion == c.id ? 'selected':''}}" value="c" small="true" ng-click="addSet(c);$close();"></champion>
+        <champion class="{{set.champion == c.id ? 'selected':''}}" value="c" small="true" ng-click="$close(c);"></champion>
     </div>
     <div class="clearfix"></div>
-</div>
-<div class="modal-footer">
-
 </div>

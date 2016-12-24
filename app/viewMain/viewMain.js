@@ -295,12 +295,16 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * Open the modal to add a set
      */
     $scope.openModalAddSet = function(){
-        $uibModal.open({
+        var modal = $uibModal.open({
             size: 'xl',
             windowClass: 'ise-modal-add-set',
             templateUrl: 'app/template/modal-new-set.html?v=' + codeVersion,
             scope: $scope
-        })
+        });
+
+        modal.result.then($scope.addSet);
+
+        return modal;
     }
 
     /**
@@ -395,6 +399,20 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
 
     /**
+     *
+     */
+    $scope.duplicateSet = function(){
+        var currentSet = angular.copy($scope.set);
+        delete currentSet.champion;
+        var modal = $scope.openModalAddSet({
+            title: 'Duplicate set:' + currentSet.title
+        });
+        modal.result.then(function(){
+            angular.extend($scope.set, currentSet);
+        })
+    }
+
+    /**
      * Open the help/welcome screen
      */
     $scope.openModalHelp = function(){
@@ -471,6 +489,11 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             {
                 element: get('set-blocks'),
                 intro: 'Your current set\'s blocks are displayed here. You can rename them and reorder items inside them.',
+                position: 'left'
+            },
+            {
+                element: get('set-advanced'),
+                intro: 'This button can be used to perform advanced action on your set. You can ignore it if you want to keep it simple.',
                 position: 'left'
             },
             {
