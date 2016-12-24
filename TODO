@@ -18,7 +18,15 @@ XXX - Handle to drag & drop blocks
 XXX - Firefox support
 XXX - Fix scrollbar on blocks side when direct loading a set
 XXX - Allow specific items for champs (like Silver Serpent for Gangplank)
+
+General:
 - Toggle checkbox to have a way to ignore a stat
+- Filter when adding champ & for sets
+
+Advanced mode:
+- Add a checkbox for an "advanced" mode
+- Button to delete a full champion
+- Button to download the .json directly
 
 Maybes:
 - Champion filter at top
