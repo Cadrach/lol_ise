@@ -24,7 +24,9 @@ General:
 - Filter when adding champ & for sets
 - Add price
 - Add builds into / from
-- Drag & drop blocks to the bottom provokes a glitch
+- Drag & drop blocks to the bottom provokes a glitch (Firefox 50.1 Windows 8.1)
+- Duplicate a set for another champion
+- Language name for Korean is using North Korean language name: 조선말 should not be used, should use 한국어 instead
 
 Advanced mode:
 - Add a checkbox for an "advanced" mode
@@ -32,6 +34,9 @@ Advanced mode:
 - Button to download the .json directly
 
 Maybes:
+- Allow champion specific items for global sets
+- Search on specific stats (like MANA)
+- Special tab for champ/mode specific items
 - Game modes & special maps
 - Champion filter at top
 - warning when leaving page and not downloaded (maybe not needed if local storage)
