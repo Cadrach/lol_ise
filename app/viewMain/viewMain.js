@@ -96,6 +96,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      */
     //Version & languages
     $scope.version = source.data.champion.version;
+    $scope.codeVersion = codeVersion;
     $scope.languages = _.chain(source.config.languages).map(function(lg){return lg.slice(0,2)}).uniq().value();
     $scope.language = ddragon.getLanguage().slice(0,2);
 
@@ -487,6 +488,17 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
 
     /**
+     * Open changelog
+     */
+    $scope.openModalVersion = function(){
+        $uibModal.open({
+            scope: $scope,
+            windowClass: 'ise-welcome',
+            templateUrl: 'app/template/modal-version.html?v=' + codeVersion
+        });
+    }
+
+    /**
      * **************************************************************************************
      * WATCHES
      */
@@ -515,4 +527,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     if( ! localStorageService.get('tourDone')){
         $scope.openModalHelp();
     }
+    else if (localStorageService.get('latestVersionSeen') != codeVersion){
+        $scope.openModalVersion();
+    }
+    //In every case, store latest code version seen
+    localStorageService.set('latestVersionSeen', codeVersion);
 }]);

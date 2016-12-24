@@ -64,6 +64,11 @@ body {
   .navbar.navbar-default a:hover {
     cursor: pointer;
     opacity: 0.75; }
+  .navbar.navbar-default .ise-code-version {
+    font-size: 8px;
+    position: absolute;
+    top: 2px;
+    right: 4px; }
 
 .dropdown-menu {
   background: #040b11;
@@ -295,7 +300,8 @@ set-dropper [ngf-drop] {
 
 .ise-welcome .modal-body {
   font-size: 16px;
-  line-height: 22px; }
+  line-height: 22px;
+  max-height: calc(100vh - 200px); }
 .ise-welcome .btn-success {
   border: 2px solid #08c4bd; }
 .ise-welcome .btn-success:last-child {

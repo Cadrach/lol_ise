@@ -97,6 +97,12 @@ body{
         background: $color-background-input-start;
     }
     a:hover{cursor: pointer; opacity: 0.75}
+    .ise-code-version{
+        font-size: 8px;
+        position: absolute;
+        top: 2px;
+        right: 4px;
+    }
 }
 
 .dropdown-menu{
@@ -373,6 +379,7 @@ set-dropper{
     .modal-body{
         font-size: 16px;
         line-height: 22px;
+        max-height: calc(100vh - 200px);
     }
     .btn-success{
         border: 2px solid $color-button-success-border-start;
