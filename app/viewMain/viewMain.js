@@ -361,7 +361,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         }
 
         //Filter on champion
-        if(item.requiredChampion && $scope.set && item.requiredChampion != $scope.set.champion){
+        if(item.requiredChampion && $scope.set && $scope.set.champion != 'Global' && item.requiredChampion != $scope.set.champion){
             return false;
         }
 
