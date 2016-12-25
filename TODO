@@ -24,11 +24,14 @@ XXX - Add price
 XXX - Faster scrolling of item list
 
 General:
+- IMPORTANT: fix scrollbar for blocks
 - Toggle checkbox to have a way to ignore a stat
 - Filter when adding champ & for sets
 - Add builds into / from
 - Make work or remove clickable info in item description
 - Drag & drop blocks to the bottom provokes a glitch (Firefox 50.1 Windows 8.1)
+- In english, using Armor in description & Armour in tags
+- Add dropdown to load the recommended item set of a champion
 
 Advanced mode:
 - Add a checkbox for an "advanced" mode
@@ -37,6 +40,8 @@ XXX - Button to download the .json directly
 
 Maybes:
 XXX - Allow champion specific items for global sets
+- Allow duplicating a set for multiple champs at once (maybe using shift?)
+- Fix rendering on Vivaldi Browser (Chromium based) with Windows 10
 - Search on specific stats (like MANA)
 - Special tab for champ/mode specific items
 - Game modes & special maps
