@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    <div scrollable autosize-from-top>
+    <div scrollable="{scrollInertia: 50}" autosize-from-top>
         <div ui-sortable="draggable" ng-model="itemsArray">
             <item value="item" ng-repeat="item in itemsArray" ng-show="isShownItem(item)"></item>
         </div>

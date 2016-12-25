@@ -39,9 +39,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             e.css('height', 'calc(100vh - ' + (e.offset().top+10) + 'px)');
         }
 
-        var scrollable = element.mCustomScrollbar({
+        var scrollable = element.mCustomScrollbar(angular.extend({
             theme:"dark"
-        });
+        }, scope.scrollable));
 
         if(typeof scope.autosizeFromTop !== 'undefined'){
             angular.element($window).resize(autosize);
@@ -57,6 +57,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     return {
         restrict: 'A',
         scope: {
+            scrollable: '=',
             autosizeFromTop: '@'
         },
         link: link
