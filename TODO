@@ -43,6 +43,7 @@ XXX - Allow champion specific items for global sets
 - Allow duplicating a set for multiple champs at once (maybe using shift?)
 - Fix rendering on Vivaldi Browser (Chromium based) with Windows 10
 - Search on specific stats (like MANA)
+- Magic key to click items into blocks
 - Special tab for champ/mode specific items
 - Game modes & special maps
 - Champion filter at top
