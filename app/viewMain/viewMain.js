@@ -155,8 +155,16 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         var colloq = language['colloq_' + tag] && language['colloq_' + tag].length>1 ? language['colloq_' + tag]:'';
         var translate = language[tag] ? language[tag]:'';
 
-        var label = colloq ? _.last(colloq.split(';')).toUpperCase() : translate;
+        //Improve readability of colloquial
+        var label = colloq ? _.last(colloq.split(';')) : translate;
+        if(colloq && label.length<=4){
+            label = label.toUpperCase()
+        }
+        else if(colloq){
+            label = label.charAt(0).toUpperCase() + label.slice(1);
+        }
 
+        //
         if(label){
             return {
                 code: tag,
