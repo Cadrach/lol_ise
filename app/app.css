@@ -206,9 +206,9 @@ input.form-control {
   color: #efe5d1;
   background: #010a13;
   border-radius: 19px;
-  padding: 5px;
-  min-width: 34px;
-  height: 34px; }
+  padding: 4px;
+  min-width: 32px;
+  height: 32px; }
   .btn-default:hover {
     background: #0b3240;
     border-color: #c0a87a;

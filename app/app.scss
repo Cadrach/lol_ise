@@ -259,9 +259,9 @@ input.form-control{
     color: $color-text;
     background: $color-background-start;
     border-radius: 19px;
-    padding: 5px;
-    min-width: 34px;
-    height: 34px;
+    padding: 4px;
+    min-width: 32px;
+    height: 32px;
     &:hover{
         background: $color-background-end;
         border-color: lighten($color-border-input, 10);
