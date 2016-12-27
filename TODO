@@ -25,6 +25,7 @@ XXX - Faster scrolling of item list
 
 General:
 - IMPORTANT: fix scrollbar for blocks
+- load/share set as URL
 - Toggle checkbox to have a way to ignore a stat
 - Filter when adding champ & for sets
 - Add builds into / from
