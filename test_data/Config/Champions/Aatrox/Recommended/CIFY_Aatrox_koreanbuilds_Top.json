@@ -1,0 +1,114 @@
+{
+    "map": "any",
+    "blocks": [
+        {
+            "items": [
+                {
+                    "id": "3153",
+                    "count": 1
+                },
+                {
+                    "id": "3009",
+                    "count": 1
+                },
+                {
+                    "id": "3074",
+                    "count": 1
+                },
+                {
+                    "id": "3026",
+                    "count": 1
+                },
+                {
+                    "id": "3156",
+                    "count": 1
+                },
+                {
+                    "id": "1055",
+                    "count": 1
+                },
+                {
+                    "id": "2003",
+                    "count": 1
+                },
+                {
+                    "id": "1053",
+                    "count": 1
+                },
+                {
+                    "id": "2043",
+                    "count": 1
+                }
+            ],
+            "type": "t Rank: Master - 156 LP -  games played"
+        },
+        {
+            "items": [
+                {
+                    "id": "2003",
+                    "count": 1
+                },
+                {
+                    "id": "2004",
+                    "count": 1
+                },
+                {
+                    "id": "2043",
+                    "count": 1
+                },
+                {
+                    "id": "2031",
+                    "count": 1
+                },
+                {
+                    "id": "2032",
+                    "count": 1
+                },
+                {
+                    "id": "2033",
+                    "count": 1
+                },
+                {
+                    "id": "2138",
+                    "count": 1
+                },
+                {
+                    "id": "2140",
+                    "count": 1
+                },
+                {
+                    "id": "2139",
+                    "count": 1
+                }
+            ],
+            "type": "Consumables | Frequent: W.Q.E.E - E>W>Q"
+        },
+        {
+            "items": [
+                {
+                    "id": "3361",
+                    "count": 1
+                },
+                {
+                    "id": "3362",
+                    "count": 1
+                },
+                {
+                    "id": "3364",
+                    "count": 1
+                },
+                {
+                    "id": "3363",
+                    "count": 1
+                }
+            ],
+            "type": "Trinkets | Wins: W.Q.E.E - E>W>Q"
+        }
+    ],
+    "title": "KRB Top 6.14",
+    "priority": false,
+    "mode": "any",
+    "type": "custom",
+    "sortrank": 1,
+    "champion": "Aatrox"
+}

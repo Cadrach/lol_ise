@@ -26,9 +26,11 @@ angular.module('appLolIse.item.item-directive', [])
 
     return {
         link: function(scope, elmt){
-            scope.url = url;
-            scope.popoverTplUrl = 'app/template/directive-item-popover.html?v=' + codeVersion;
-            scope.description = $sce.trustAsHtml(scope.item.description);
+            if(scope.item){
+                scope.url = url;
+                scope.popoverTplUrl = 'app/template/directive-item-popover.html?v=' + codeVersion;
+                scope.description = $sce.trustAsHtml(scope.item.description);
+            }
             elmt.click(function(){
                 console.log(scope.item);
             })
