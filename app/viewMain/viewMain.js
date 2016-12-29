@@ -403,8 +403,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.downloadJson = function(){
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(angular.toJson($scope.set));
         var dlAnchorElem = angular.element('#jsonDownloader')[0];
+        var filename = $scope.set.filename ? $scope.set.filename : $scope.set.champion  + ".json";
         dlAnchorElem.setAttribute("href",     dataStr     );
-        dlAnchorElem.setAttribute("download", $scope.set.champion + ".json");
+        dlAnchorElem.setAttribute("download", filename);
         dlAnchorElem.click();
     }
 

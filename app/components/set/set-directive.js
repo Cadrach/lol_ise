@@ -142,6 +142,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                         }
                     }
                     if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
+                        s.filename = file.name;
                         sets.push(s);
                     }
                     else{
@@ -238,12 +239,24 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 }
 
                 //Add each set to the zip
+                var pathes = [];
                 scope.sets.forEach(function(s){
                     var champ = s.champion ? s.champion:'Global';
                     var root = s.champion && s.champion!='Global' ? 'Config/Champions/' + champ + '/Recommended/' : 'Config/Global/Recommended/';
+
+                    //Count files per champs
                     champions[champ] = typeof champions[champ] == 'undefined' ? 0:champions[champ]+1;
-                    var path = root + champ + champions[champ] + '.json';
+
+                    //Define filename
+                    var filename = s.filename ? s.filename : champ + champions[champ] + '.json';
+                    var path = root + filename;
+
+                    //Rename if filename already present
+                    if(pathes.indexOf(path)>=0){
+                        path = root + champ + 'duplicate_' + filename;
+                    }
                     zip.file(path, angular.toJson(s));
+                    pathes.push(path);
                 })
 
                 //Add a small readme in the .zip
