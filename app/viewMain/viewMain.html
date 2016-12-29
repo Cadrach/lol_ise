@@ -98,15 +98,23 @@
     <h2 class="ise-title-set">
         {{translate('Details_')}}&nbsp;<span class="ise-sub-title">{{set.title}}</span>
 
-        <div class="dropdown pull-right" uib-dropdown dropdown-append-to-body="true" intro="set-advanced">
-            <div class="btn btn-default" uib-dropdown-toggle>
-                <i class="fa fa-cogs"></i>
+        <div class="pull-right">
+
+            <!-- Button to share the set -->
+            <div class="btn btn-default" ng-click="openModalSharing()" uib-tooltip="Share this Set"><i class="fa fa-share-alt"></i></div>
+
+            <!-- Button for advanced options for the set -->
+            <div class="dropdown pull-right" uib-dropdown dropdown-append-to-body="true" intro="set-advanced">
+                <div class="btn btn-default" uib-dropdown-toggle>
+                    <i class="fa fa-cogs"></i>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+                    <li ng-click="duplicateSet()"><a><i class="fa fa-copy"></i>&nbsp;Duplicate for another Champion</a></li>
+                    <li ng-click="downloadJson()"><a><i class="fa fa-download"></i>&nbsp;Download <b>.json</b> file</a></li>
+                    <!--<li class="divider"></li>-->
+                </ul>
             </div>
-            <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
-                <li ng-click="duplicateSet()"><a><i class="fa fa-copy"></i>&nbsp;Duplicate for another Champion</a></li>
-                <li ng-click="downloadJson()"><a><i class="fa fa-download"></i>&nbsp;Download <b>.json</b> file</a></li>
-                <!--<li class="divider"></li>-->
-            </ul>
+
         </div>
     </h2>
 
@@ -160,5 +168,7 @@
         </div>
     </div>
 </div>
-<a id="jsonDownloader" display:none></a>
-<!--<pre>{{tags|json}}</pre>-->
+
+<!-- Used for single JSON download -->
+<a id="jsonDownloader" style="display:none"></a>
+

@@ -105,6 +105,8 @@ h2 {
     background-image: url(image/content_type_icon_story.png); }
   h2 .ise-sub-title {
     font-size: 18px; }
+  h2 .btn.btn-default {
+    margin-left: 4px; }
 
 code {
   white-space: nowrap; }

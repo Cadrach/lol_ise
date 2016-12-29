@@ -63,7 +63,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         link: link
     }
 }])
-.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', 'localStorageService', 'ddTranslate', 'ddragon', 'source', function($scope, $timeout, $uibModal, localStorageService, ddTranslate, ddragon, source) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', '$window', 'localStorageService', 'ddTranslate', 'ddragon', 'source',
+    function($scope, $timeout, $uibModal, $location, $window, localStorageService, ddTranslate, ddragon, source) {
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -433,7 +434,39 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         }).result.then($scope.tour, function(){
             //No visit wanted
             localStorageService.set('tourDone', true);
+        });
+    }
+
+    /**
+     * Open the modal to share a set
+     */
+    $scope.openModalSharing = function(){
+        //New scope
+        var scope = $scope.$new();
+
+        //Clear a copy of the set
+        var keysToKeep = ['blocks','champion','map','title','mode'];
+        var copy = angular.copy($scope.set);
+        _.mapObject(copy, function(v, k){
+            if(keysToKeep.indexOf(k) < 0){
+                delete copy[k];
+            }
         })
+
+        //Compress set
+        scope.sharingId = btoa(angular.toJson(copy));
+
+        //URL
+        scope.url = $window.location.protocol + "//" + $window.location.host + $window.location.pathname + '#!' + $location.path() + '?s=';
+
+        //Length of the final URL
+        scope.warningBigSet = (scope.sharingId + scope.url).length > 2000;
+
+        $uibModal.open({
+            scope: scope,
+            windowClass: 'ise-welcome',
+            templateUrl: 'app/template/modal-sharing.html?v=' + codeVersion
+        });
     }
 
     /**
@@ -575,4 +608,15 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
     //In every case, store latest code version seen
     localStorageService.set('latestVersionSeen', codeVersion);
+
+    //Shared set
+    if($location.search().s){
+        var theSet = angular.extend(angular.copy(defaultSet), JSON.parse(atob($location.search().s)));
+
+        //Check that no set exists with the same champion & title
+        if( ! _.findWhere($scope.sets, {title: theSet.title, champion: theSet.champion})){
+            $scope.sets.push(theSet);
+            $scope.selectSet(theSet);
+        }
+    }
 }]);
