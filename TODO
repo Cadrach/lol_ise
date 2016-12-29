@@ -22,10 +22,11 @@ XXX - Duplicate a set for another champion
 XXX - Language name for Korean is using North Korean language name: 조선말 should not be used, should use 한국어 instead
 XXX - Add price
 XXX - Faster scrolling of item list
+XXX - load/share set as URL
+XXX - ALREADY IN - Search on specific stats (like MANA)
 
 General:
 - IMPORTANT: fix scrollbar for blocks
-- load/share set as URL
 - Toggle checkbox to have a way to ignore a stat
 - Filter when adding champ & for sets
 - Add builds into / from
@@ -43,7 +44,6 @@ Maybes:
 XXX - Allow champion specific items for global sets
 - Allow duplicating a set for multiple champs at once (maybe using shift?)
 - Fix rendering on Vivaldi Browser (Chromium based) with Windows 10
-- Search on specific stats (like MANA)
 - Magic key to click items into blocks
 - Special tab for champ/mode specific items
 - Game modes & special maps
