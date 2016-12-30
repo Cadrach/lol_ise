@@ -1,4 +1,25 @@
 <div>
     <div ng-bind-html="description"></div>
     <div class="ise-item-gold">{{item.gold.total}}</div>
+    <div class="clearfix"></div>
+    <ul class="ise-item-popover-chart" ng-if="item.from.length && items" ng-init="loadChart()">
+        <li>
+            <item value="item"></item>
+            <ul ng-if="item.from.length">
+                <li ng-repeat="i1 in item.from track by $index">
+                    <item value="items[i1]"></item>
+                    <ul ng-if="items[i1].from.length">
+                        <li ng-repeat="i2 in items[i1].from track by $index">
+                            <item value="items[i2]"></item>
+                            <ul ng-if="items[i2].from.length">
+                                <li ng-repeat="i3 in items[i2].from track by $index">
+                                    <item value="items[i3]"></item>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>

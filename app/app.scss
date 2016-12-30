@@ -287,6 +287,62 @@ input.form-control{
     }
 }
 
+
+.jOrgChart{
+    padding: 10px;
+    border-top: 1px solid $color-border-item;
+    table{
+        margin: auto;
+    }
+    tr{
+        visibility: inherit !important;
+    }
+    .line {
+        height: 10px;
+        line-height: 0px;
+        width: 2px;
+    }
+    .down {
+        background-color 	: $color-border-input;
+        margin 				: 0px auto;
+        height: 10px;
+    }
+
+    .top {
+        border-top          : 2px solid $color-border-input;
+    }
+
+    .left {
+        border-right          : 2px solid $color-border-input;
+    }
+
+    .right {
+        border-left           : 2px solid $color-border-input;
+    }
+
+    /* node cell */
+    td {
+        text-align            : center;
+        vertical-align        : top;
+        padding               : 0;
+    }
+
+    /* The node */
+    .node-cell{
+        //height: 54px !important;
+        overflow: hidden;
+        background: none;
+    }
+    .node {
+        background: none;
+        display               : block;
+        width                 : 60px;
+        height                : 54px;
+        z-index 			  : 10;
+        margin                : auto;
+    }
+}
+
 item{
     position: relative;
     display: inline-block !important;

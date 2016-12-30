@@ -226,6 +226,44 @@ input.form-control {
   overflow: inherit;
   overflow-y: hidden; }
 
+.jOrgChart {
+  padding: 10px;
+  border-top: 1px solid #463714;
+  /* node cell */
+  /* The node */ }
+  .jOrgChart table {
+    margin: auto; }
+  .jOrgChart tr {
+    visibility: inherit !important; }
+  .jOrgChart .line {
+    height: 10px;
+    line-height: 0px;
+    width: 2px; }
+  .jOrgChart .down {
+    background-color: #af9158;
+    margin: 0px auto;
+    height: 10px; }
+  .jOrgChart .top {
+    border-top: 2px solid #af9158; }
+  .jOrgChart .left {
+    border-right: 2px solid #af9158; }
+  .jOrgChart .right {
+    border-left: 2px solid #af9158; }
+  .jOrgChart td {
+    text-align: center;
+    vertical-align: top;
+    padding: 0; }
+  .jOrgChart .node-cell {
+    overflow: hidden;
+    background: none; }
+  .jOrgChart .node {
+    background: none;
+    display: block;
+    width: 60px;
+    height: 54px;
+    z-index: 10;
+    margin: auto; }
+
 item {
   position: relative;
   display: inline-block !important;

@@ -24,6 +24,7 @@
     "intro.js": "^2.4.0",
     "angular-local-storage": "^0.5.2",
     "downloadify": "https://github.com/dcneiner/Downloadify.git",
-    "bowser": "browser#^1.6.0"
+    "bowser": "browser#^1.6.0",
+    "js-org-chart": "https://github.com/wesnolte/jOrgChart.git"
   }
 }

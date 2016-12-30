@@ -21,7 +21,7 @@
 
 angular.module('appLolIse.item.item-directive', [])
 
-.directive('item', ['$sce', 'ddragon', function($sce, ddragon) {
+.directive('item', ['$sce', '$timeout', 'ddragon', function($sce, $timeout, ddragon) {
     var url = ddragon.getBaseUrl() + "img";
 
     return {
@@ -30,15 +30,30 @@ angular.module('appLolIse.item.item-directive', [])
                 scope.url = url;
                 scope.popoverTplUrl = 'app/template/directive-item-popover.html?v=' + codeVersion;
                 scope.description = $sce.trustAsHtml(scope.item.description);
+
+                scope.popoverId = _.uniqueId('popover-item-');
             }
             elmt.click(function(){
                 console.log(scope.item);
             })
+
+            scope.loadChart = function(){
+                $timeout(function(){
+                    var popover = angular.element('.' + scope.popoverId);
+                    var e = popover.find('.ise-item-popover-chart');
+                    e.hide();
+                    e.jOrgChart({
+                        chartElement: popover
+                    });
+                })
+
+            }
         },
         restrict: 'E',
         transclude: true,
         scope: {
             item: '=value',
+            items: '=',
             count: '='
         },
         templateUrl: 'app/template/directive-item.html?v=' + codeVersion

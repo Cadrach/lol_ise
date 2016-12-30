@@ -87,7 +87,7 @@
 
     <div scrollable="{scrollInertia: 50}" autosize-from-top>
         <div ui-sortable="draggable" ng-model="itemsArray">
-            <item value="item" ng-repeat="item in itemsArray" ng-show="isShownItem(item)"></item>
+            <item value="item" items="items" ng-repeat="item in itemsArray" ng-show="isShownItem(item)"></item>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -155,7 +155,7 @@
                     <div class="clearfix"></div>
 
                     <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
-                        <item value="items[item.id]" count="item.count" ng-repeat="item in block.items" ng-show="items[item.id]">
+                        <item value="items[item.id]" items="items" count="item.count" ng-repeat="item in block.items" ng-show="items[item.id]">
                             <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">
                                 <i class="fa fa-trash"></i>
                             </div>
