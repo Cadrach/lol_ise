@@ -1,0 +1,14 @@
+$icon-font-path: '../jspm_packages/github/twbs/bootstrap-sass@3.3.7/assets/fonts/bootstrap/';
+$tooltip-bg: #0b3240;
+$popover-arrow-color: #af9158;
+
+@import "../jspm_packages/github/h5bp/html5-boilerplate@5.3.0/dist/css/normalize.css";
+@import "../jspm_packages/github/h5bp/html5-boilerplate@5.3.0/dist/css/main.css";
+@import "../jspm_packages/github/twbs/bootstrap-sass@3.3.7/assets/stylesheets/bootstrap";
+@import "../jspm_packages/github/angular-ui/ui-select@0.19.6/dist/select.css";
+@import "../jspm_packages/github/angular-ui/bootstrap-bower@2.4.0/ui-bootstrap-csp.css";
+@import "../jspm_packages/npm/font-awesome@4.7.0/css/font-awesome.css";
+@import "../jspm_packages/github/malihu/malihu-custom-scrollbar-plugin@3.1.5/jquery.mCustomScrollbar.css";
+@import "../jspm_packages/npm/intro.js@2.4.0/introjs.css";
+
+@import 'app/main';

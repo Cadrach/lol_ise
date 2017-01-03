@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FountainJS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
+
+    <!-- build:css(.tmp) index.css -->
+    <link rel="stylesheet" href="index.css"></link>
+    <!-- endbuild -->
+  </head>
+
+
+  <body ng-app="appLolIse">
+    <div ng-view></div>
+  </body>
+
+  <!-- build:js(.tmp) index.js -->
+  <script src="jspm_packages/system.js"></script>
+  <script src="jspm.browser.js"></script>
+  <script src="jspm.config.js"></script>
+
+  <script>
+    System.import('src/index.js');
+  </script>
+  <!-- endbuild -->
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-89128564-1', 'auto');
+    ga('send', 'pageview');
+
+    /*
+    //Load downloadify scripts if not on chrome
+    if( ! bowser.chrome){
+      jQuery.getScript('jspm_packages/github/dcneiner/Downloadify@0.2.1/js/swfobject.js');
+      jQuery.getScript('jspm_packages/github/dcneiner/Downloadify@0.2.1/js/downloadify.min.js');
+    }
+    */
+
+  </script>
+</html>
+

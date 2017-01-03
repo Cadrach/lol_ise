@@ -1,0 +1,23 @@
+{
+  "generator-fountain-angular1": {
+    "version": "1.0.0-rc2",
+    "props": {
+      "resolved": "/home/toilal/.npm/lib/node_modules/generator-fountain-angular1/generators/app/index.js",
+      "namespace": "fountain-angular1:app",
+      "argv": {
+        "remain": [],
+        "cooked": [],
+        "original": []
+      },
+      "framework": "angular1",
+      "modules": "systemjs",
+      "css": "scss",
+      "js": "babel",
+      "ci": [
+        "travis"
+      ],
+      "sample": "hello",
+      "router": "none"
+    }
+  }
+}
