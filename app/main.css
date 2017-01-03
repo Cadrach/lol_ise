@@ -5243,49 +5243,49 @@ button.close {
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #0b3240; }
+  border-top-color: #af9158; }
 .tooltip.top-left .tooltip-arrow {
   bottom: 0;
   right: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #0b3240; }
+  border-top-color: #af9158; }
 .tooltip.top-right .tooltip-arrow {
   bottom: 0;
   left: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #0b3240; }
+  border-top-color: #af9158; }
 .tooltip.right .tooltip-arrow {
   top: 50%;
   left: 0;
   margin-top: -5px;
   border-width: 5px 5px 5px 0;
-  border-right-color: #0b3240; }
+  border-right-color: #af9158; }
 .tooltip.left .tooltip-arrow {
   top: 50%;
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
-  border-left-color: #0b3240; }
+  border-left-color: #af9158; }
 .tooltip.bottom .tooltip-arrow {
   top: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #0b3240; }
+  border-bottom-color: #af9158; }
 .tooltip.bottom-left .tooltip-arrow {
   top: 0;
   right: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #0b3240; }
+  border-bottom-color: #af9158; }
 .tooltip.bottom-right .tooltip-arrow {
   top: 0;
   left: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #0b3240; }
+  border-bottom-color: #af9158; }
 
 .popover {
   position: absolute;
@@ -5365,7 +5365,7 @@ button.close {
     bottom: 1px;
     margin-left: -10px;
     border-bottom-width: 0;
-    border-top-color: #fff; }
+    border-top-color: #af9158; }
 .popover.right > .arrow {
   top: 50%;
   left: -11px;
@@ -5378,7 +5378,7 @@ button.close {
     left: 1px;
     bottom: -10px;
     border-left-width: 0;
-    border-right-color: #fff; }
+    border-right-color: #af9158; }
 .popover.bottom > .arrow {
   left: 50%;
   margin-left: -11px;
@@ -5391,7 +5391,7 @@ button.close {
     top: 1px;
     margin-left: -10px;
     border-top-width: 0;
-    border-bottom-color: #fff; }
+    border-bottom-color: #af9158; }
 .popover.left > .arrow {
   top: 50%;
   right: -11px;
@@ -5403,7 +5403,7 @@ button.close {
     content: " ";
     right: 1px;
     border-right-width: 0;
-    border-left-color: #fff;
+    border-left-color: #af9158;
     bottom: -10px; }
 
 .carousel {

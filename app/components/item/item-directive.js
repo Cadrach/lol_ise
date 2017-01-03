@@ -28,22 +28,33 @@ angular.module('appLolIse.item.item-directive', [])
         link: function(scope, elmt){
             if(scope.item){
                 scope.url = url;
+                scope.popoverPlacement = scope.popoverPlacement ? scope.popoverPlacement:'auto';
+                scope.size = scope.size ? scope.size:48;
                 scope.popoverTplUrl = 'app/template/directive-item-popover.html?v=' + codeVersion;
                 scope.description = $sce.trustAsHtml(scope.item.description);
 
                 scope.popoverId = _.uniqueId('popover-item-');
+
+                //compute background position
+                scope.background = 'background-position: ' + (scope.size / -48 * scope.item.image.x) + 'px ' + (scope.size / -48 * scope.item.image.y) +'px;'
+                    + 'background-size:' + (scope.size * 10) + 'px;'
+                    + 'width: ' + (scope.size) + 'px;'
+                    + 'height: ' + (scope.size) + 'px;'
+                ;
             }
             elmt.click(function(){
                 console.log(scope.item);
             })
 
+
+
             scope.loadChart = function(){
                 $timeout(function(){
                     var popover = angular.element('.' + scope.popoverId);
-                    var e = popover.find('.ise-item-popover-chart');
+                    var e = popover.find('.ise-item-popover-hierarchy');
                     e.hide();
                     e.jOrgChart({
-                        chartElement: popover
+                        chartElement: popover.find('.ise-item-popover-chart')
                     });
                 })
 
@@ -54,7 +65,9 @@ angular.module('appLolIse.item.item-directive', [])
         scope: {
             item: '=value',
             items: '=',
-            count: '='
+            count: '=',
+            popoverPlacement: '@',
+            size: '@'
         },
         templateUrl: 'app/template/directive-item.html?v=' + codeVersion
     }

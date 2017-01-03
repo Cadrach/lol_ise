@@ -155,7 +155,7 @@
                     <div class="clearfix"></div>
 
                     <div class="ise-block-items-dropzone" ui-sortable="sortable" ng-model="block.items">
-                        <item value="items[item.id]" items="items" count="item.count" ng-repeat="item in block.items" ng-show="items[item.id]">
+                        <item value="items[item.id]" items="items" count="item.count" ng-repeat="item in block.items" ng-show="items[item.id]" popover-placement="left">
                             <div class="btn btn-xs btn-danger" ng-click="removeItemFromBlock(block, item, $event)">
                                 <i class="fa fa-trash"></i>
                             </div>

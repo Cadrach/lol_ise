@@ -228,7 +228,7 @@ input.form-control {
 
 .jOrgChart {
   padding: 10px;
-  border-top: 1px solid #463714;
+  padding-top: 0;
   /* node cell */
   /* The node */ }
   .jOrgChart table {
@@ -259,16 +259,16 @@ input.form-control {
   .jOrgChart .node {
     background: none;
     display: block;
-    width: 60px;
-    height: 54px;
+    width: 54px;
+    height: 28px;
     z-index: 10;
     margin: auto; }
+  .jOrgChart > table > tbody > tr:first-child .node {
+    height: 54px; }
 
 item {
   position: relative;
   display: inline-block !important;
-  width: 50px;
-  height: 50px;
   margin: 2px;
   border: 1px solid #463714;
   cursor: pointer; }
@@ -447,14 +447,12 @@ input.form-control.ise-filter-string {
     display: none !important; }
 
 .ise-item-popover {
-  width: 300px;
+  font-size: 12px;
   background: #010a13;
   border-color: #463714; }
   .ise-item-popover h3 {
     background: #0b3240;
     border-color: #463714; }
-  .ise-item-popover.right .arrow:after {
-    border-right-color: #af9158; }
   .ise-item-popover .popover-content {
     color: #68bec5; }
   .ise-item-popover stats {
@@ -466,6 +464,11 @@ input.form-control.ise-filter-string {
     background: url(image/gold.png) no-repeat;
     padding-left: 25px;
     color: #9e998a; }
+  .ise-item-popover .ise-item-popover-chart {
+    margin-left: -15px;
+    width: calc(100% + 30px);
+    border-bottom: 1px solid #463714;
+    margin-bottom: 10px; }
 
 .ise-item-tags {
   padding-bottom: 5px;

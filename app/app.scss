@@ -290,7 +290,7 @@ input.form-control{
 
 .jOrgChart{
     padding: 10px;
-    border-top: 1px solid $color-border-item;
+    padding-top: 0;
     table{
         margin: auto;
     }
@@ -336,18 +336,20 @@ input.form-control{
     .node {
         background: none;
         display               : block;
-        width                 : 60px;
-        height                : 54px;
+        width                 : 54px;
+        height                : 28px;
         z-index 			  : 10;
         margin                : auto;
+    }
+
+    &>table>tbody>tr:first-child .node{
+        height                : 54px;
     }
 }
 
 item{
     position: relative;
     display: inline-block !important;
-    width: 50px;
-    height: 50px;
     margin: 2px;
     border: 1px solid $color-border-item;
     cursor: pointer;
@@ -585,14 +587,15 @@ input.form-control.ise-filter-string{
 }
 
 .ise-item-popover{
-    width: 300px;
+    //min-width: 300px;
+    font-size: 12px;
     background: $color-background-start;
     border-color: $color-border-item;
     h3{
         background: $color-background-end;
         border-color: $color-border-item;
     }
-    &.right .arrow:after{border-right-color: $color-border-input;}
+
     .popover-content{color: #68bec5}
     stats{color: #96fa96;}
     unique, active{color: #fddb22;}
@@ -601,6 +604,13 @@ input.form-control.ise-filter-string{
         background: url(image/gold.png) no-repeat;
         padding-left: 25px;
         color: $color-input;
+    }
+    .ise-item-popover-chart{
+        margin-left: -15px;
+        width: calc(100% + 30px);
+
+        border-bottom: 1px solid $color-border-item;
+        margin-bottom: 10px;
     }
 }
 
