@@ -1,11 +1,9 @@
-logs/*
-!.gitkeep
+.tmp/
+coverage/
+dist/
 node_modules/
-bower/
-tmp
-.DS_Store
-.idea
-source/*.inc.php
-source/*.json
+jspm_packages/
+
 node/conf.json
-app/image/Corel Auto-Preserve/*
+src/source/*.inc.php
+src/source/*.json

@@ -11,7 +11,7 @@ var conf = require('./conf.json');
  * @param {ConfigData} configData
  */
 function configWriter(configData) {
-    fs.writeFile(__dirname + '/../source/config.json', JSON.stringify(configData, null, 2))
+    fs.writeFile(__dirname + '/../src/source/config.json', JSON.stringify(configData, null, 2))
 }
 
 /**
@@ -21,7 +21,7 @@ function configWriter(configData) {
  * @param {LanguageData} languageData
  */
 function languageWriter(language, languageData) {
-    fs.writeFile(__dirname + '/../source/data_' + language + '.json', JSON.stringify(languageData, null, 2));
+    fs.writeFile(__dirname + '/../src/source/data_' + language + '.json', JSON.stringify(languageData, null, 2));
 }
 
 // Write data files.
