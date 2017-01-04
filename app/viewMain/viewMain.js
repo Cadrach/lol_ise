@@ -319,7 +319,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.selectSet = function(theSet){
         $scope.set = theSet;
         $scope.champion = theSet ? theSet.champion:null;
-        $scope.$broadcast('update-scrollable');
+        $timeout(function(){$scope.$broadcast('update-scrollable');}, 250)
     }
 
     /**
@@ -353,8 +353,10 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * @param champion
      */
     $scope.addSet = function(champion){
-        var theSet = angular.copy(defaultSet);
+        var theSet = angular.copy(defaultSet)
+
         theSet.champion = champion.id;
+        theSet.blocks = angular.copy(_.findWhere(champion.recommended, {map: 'SR', mode: 'CLASSIC'})).blocks;
         $scope.sets.push(theSet);
         $scope.selectSet(theSet);
     }
