@@ -60,7 +60,7 @@ angular.module('appLolIse.ddragon.ddragon-service', [])
             interfaceLanguage = language;
 
             //Now we fetch the correct source for our languate
-            return $http.get('source/data_'+language+'.json?' + version).then(function(response){
+            return $http.get('source/data_'+language+'.json?p=' + version + '&v=' + codeVersion).then(function(response){
                 //Set language
                 ddTranslate.setLanguage(response.data.language.data);
                 defer.resolve({

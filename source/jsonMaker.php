@@ -29,6 +29,8 @@ foreach($languages as $language){
     $json['champion'] = get($ddragon . $version . "/data/$language/champion.json");
     $json['language'] = get($ddragon . $version . "/data/$language/language.json");
     $json['language']['data']['native_ko'] = '한국어';
+    $json['language']['data']['Jungle'] = 'Jungle';
+    $json['language']['data']['Vision'] = 'Vision';
     file_put_contents("data_$language.json", json_encode($json));
 }
 echo $version;
