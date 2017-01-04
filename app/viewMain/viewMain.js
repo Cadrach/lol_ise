@@ -50,6 +50,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
         //Update scrollable
         scope.$on('update-scrollable', function(){
+            autosize();
             scrollable.mCustomScrollbar('update');
         })
     }
