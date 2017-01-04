@@ -20,7 +20,7 @@ $version = get($url . "versions?api_key=" . RIOT_API_KEY)[0];
 $languages = get($ddragon . 'languages.json');
 
 //Config json
-file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages]));
+file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'generatedOn' => date('Y-m-d H:i:s')]));
 
 //Ddragon data, per language
 foreach($languages as $language){
