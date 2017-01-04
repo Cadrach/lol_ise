@@ -113,6 +113,32 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             delete $scope.items[key]; //delete other mode items
         }
 
+        //Try to fix some jungle items
+        if( ! item.tags.length){
+            _.each(item.from, function(fromId){
+                if(items[fromId].tags.indexOf('Jungle')>=0){
+                    item.tags.push('Jungle');
+                }
+            });
+
+            //Fix tags for some stats
+            if(item.stats.FlatMagicDamageMod){
+                item.tags.push('SpellDamage');
+            }
+            if(item.stats.FlatPhysicalDamageMod){
+                item.tags.push('Damage');
+            }
+            if(item.stats.FlatHPPoolMod){
+                item.tags.push('Health');
+            }
+            if(item.stats.PercentAttackSpeedMod){
+                item.tags.push('AttackSpeed');
+            }
+            if(item.stats.PercentMovementSpeedMod){
+                item.tags.push('NonbootsMovement');
+            }
+        }
+
         //Create search properties
         item.search = [item.name].concat(item.colloq.split(';')).join('|').toLowerCase();
         item.exactSearch = item.tags.concat(item.stats).map(function(v){return v.toLowerCase ? v.toLowerCase():''});
