@@ -115,13 +115,17 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
         //Try to fix some jungle items
         if( ! item.tags.length){
+            //Read hierarchy to fix some missing tags
             _.each(item.from, function(fromId){
                 if(items[fromId].tags.indexOf('Jungle')>=0){
                     item.tags.push('Jungle');
                 }
+                if(items[fromId].tags.indexOf('CooldownReduction')>=0){
+                    item.tags.push('CooldownReduction');
+                }
             });
 
-            //Fix tags for some stats
+            //Fix tags based on some stats
             if(item.stats.FlatMagicDamageMod){
                 item.tags.push('SpellDamage');
             }
