@@ -42,7 +42,6 @@ foreach($languages as $language){
     }
 
     file_put_contents("data_$language.json", json_encode($json));
-    break;
     sleep(1); //ensure no bypass of rate limit
 }
 echo $version;
