@@ -1,8 +1,20 @@
 <div>
-    <div class="ise-item-popover-chart"></div>
+    <!-- Builds into item icons -->
+    <div class="ise-item-popover-builds-into" ng-show="items[item.into[0]] || items[item.into[1]]">
+        <item ng-repeat="i in item.into" ng-if="items[i]" value="items[i]" size="24"></item>
+    </div>
+
+    <!-- Hierarchy chart display -->
+    <div class="ise-item-popover-chart" ng-show="items"></div>
+
+    <!-- Description -->
     <div ng-bind-html="description"></div>
+
+    <!-- Gold -->
     <div class="ise-item-gold">{{item.gold.total}}</div>
     <div class="clearfix"></div>
+
+    <!-- Hierarchy chart data (hidden) -->
     <ul class="ise-item-popover-hierarchy" ng-if="items" ng-init="loadChart()">
         <li>
             <item value="item"></item>

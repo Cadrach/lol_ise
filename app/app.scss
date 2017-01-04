@@ -291,6 +291,7 @@ input.form-control{
 .jOrgChart{
     padding: 10px;
     padding-top: 0;
+    padding-bottom: 6px;
     table{
         margin: auto;
     }
@@ -605,12 +606,15 @@ input.form-control.ise-filter-string{
         padding-left: 25px;
         color: $color-input;
     }
-    .ise-item-popover-chart{
-        margin-left: -15px;
-        width: calc(100% + 30px);
+    .ise-item-popover-chart, .ise-item-popover-builds-into{
+        margin-left: -14px;
+        width: calc(100% + 28px);
 
         border-bottom: 1px solid $color-border-item;
         margin-bottom: 10px;
+        padding: 10px;
+        padding-top: 0;
+        padding-bottom: 3px;
     }
 }
 
