@@ -72,8 +72,7 @@ body {
 
 .dropdown-menu {
   background: #040b11;
-  color: #f0e6c6;
-  border-color: #463714; }
+  color: #f0e6c6; }
   .dropdown-menu > li > a {
     color: #efe5d1; }
   .dropdown-menu > li > a:hover {
@@ -86,9 +85,10 @@ body {
 
 .ui-select-bootstrap .ui-select-choices-row > span {
   color: #9e998a; }
-
 .ui-select-bootstrap .ui-select-choices-row.active > span {
   background: #af9158; }
+.ui-select-bootstrap.open {
+  z-index: 10000 !important; }
 
 h2 {
   font-family: Beaufort;
@@ -215,6 +215,9 @@ input.form-control {
     background: #0b3240;
     border-color: #c0a87a;
     color: #fcfaf7; }
+
+.popover {
+  box-shadow: 0px 0px 25px 13px rgba(0, 0, 0, 0.75); }
 
 .mCustomScrollBox .mCSB_dragger_bar {
   background: #dabf7f !important; }
@@ -449,8 +452,7 @@ input.form-control.ise-filter-string {
 
 .ise-item-popover {
   font-size: 12px;
-  background: #010a13;
-  border-color: #463714; }
+  background: #010a13; }
   .ise-item-popover h3 {
     background: #0b3240;
     border-color: #463714; }

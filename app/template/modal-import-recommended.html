@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title"><i class="fa fa-map-signs"></i> Import {{translate('RecommendedItems')}}</h3>
+</div>
+
+<div class="modal-body">
+
+
+    <ui-select ng-model="selectedSet" append-to-body="true">
+        <ui-select-match placeholder="{{translate('RecommendedItems')}}">{{maps[$select.selected.map].name}}</ui-select-match>
+        <ui-select-choices repeat="s in champions[set.champion].recommended">
+            {{maps[s.map].name}}
+        </ui-select-choices>
+    </ui-select>
+
+    <br/>
+
+    <div class="alert alert-danger">
+        <i class="fa fa-warning"></i> <b>Warning, this will replace your current set</b>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <div class="btn btn-success btn-block" ng-click="$close(selectedSet)">Import</div>
+</div>

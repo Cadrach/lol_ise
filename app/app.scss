@@ -108,7 +108,7 @@ body{
 .dropdown-menu{
     background: $color-background-input-start;
     color: $color-title;
-    border-color: $color-border-item;
+//    border-color: $color-border-item;
     &>li>a{color: $color-text}
     &>li>a:hover{color: $color-background-input-start; background: $color-title;}
 }
@@ -117,11 +117,16 @@ body{
     border-radius: 0;
     border-color: $color-border-item;
 }
-.ui-select-bootstrap .ui-select-choices-row>span{
-    color: $color-input;
-}
-.ui-select-bootstrap .ui-select-choices-row.active>span{
-    background: $color-border-input;
+.ui-select-bootstrap{
+    .ui-select-choices-row>span{
+        color: $color-input;
+    }
+    .ui-select-choices-row.active>span{
+        background: $color-border-input;
+    }
+    &.open{
+        z-index: 10000 !important;
+    }
 }
 
 h2{
@@ -270,6 +275,10 @@ input.form-control{
         border-color: lighten($color-border-input, 10);
         color: lighten($color-text, 10);
     }
+}
+
+.popover{
+    box-shadow: 0px 0px 25px 13px rgba(0, 0, 0, 0.75);
 }
 
 .mCustomScrollBox{
@@ -591,7 +600,6 @@ input.form-control.ise-filter-string{
     //min-width: 300px;
     font-size: 12px;
     background: $color-background-start;
-    border-color: $color-border-item;
     h3{
         background: $color-background-end;
         border-color: $color-border-item;

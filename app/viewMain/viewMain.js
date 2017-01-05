@@ -349,6 +349,29 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
 
     /**
+     * Open the modal to import recommended items
+     */
+    $scope.openModalImportRecommended = function(){
+
+        var scope = $scope.$new();
+        scope.selectedSet = _.findWhere($scope.champions[$scope.set.champion].recommended, {map:'SR'});
+
+        var modal = $uibModal.open({
+//            windowClass: 'ise-modal-add-set',
+            templateUrl: 'app/template/modal-import-recommended.html?v=' + codeVersion,
+            scope: scope
+        });
+
+        modal.result.then(function(recommendedSet){
+            if(recommendedSet){
+                $scope.set.blocks = angular.copy(recommendedSet.blocks);
+            }
+        });
+
+        return modal;
+    }
+
+    /**
      * Add a set for a champion
      * @param champion
      */

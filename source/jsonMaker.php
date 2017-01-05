@@ -38,7 +38,10 @@ foreach($languages as $language){
 
     //For each champion, fetch the recommended data from the full data
     foreach($json['champion']['data'] as $key=>&$champ){
-        $champ['recommended'] = $recommended[$key]['recommended'];
+        $champ['recommended'] = array_values(array_filter($recommended[$key]['recommended'], function($set){
+            //Only keep relevant item sets
+            return in_array($set['mode'], ['CLASSIC', 'ARAM']);
+        }));
     }
 
     file_put_contents("data_$language.json", json_encode($json));
