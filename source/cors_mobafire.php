@@ -42,40 +42,46 @@ foreach($riotData['champion']['data'] as $champ){
 
 $sets = [];
 $errors = [];
-foreach($xml->xpath('//div[@class="build-wrap"]') as $build){
-    //Get build title
-    $title = (string) $build->xpath('.//div[@class="build-title"]//h2')[0];
-    foreach($build->xpath('.//div[@class="item-wrap self-clear float-left"]') as $sectionBlock){
 
-        //Create block
-        $block = [
-            'type' => trim($sectionBlock->xpath('h2')[0]),
-            'items' => [],
-        ];
+if(isset($champion)){
+    foreach($xml->xpath('//div[@class="build-wrap"]') as $build){
+        //Get build title
+        $title = (string) $build->xpath('.//div[@class="build-title"]//h2')[0];
+        foreach($build->xpath('.//div[@class="item-wrap self-clear float-left"]') as $sectionBlock){
 
-        //Read all items
-        foreach($sectionBlock->xpath('.//div[@class="item-title"]/span') as $itemBlock){
-            $itemName = (string) $itemBlock;
-            if(isset($itemIds[$itemName])){
-                $block['items'][] = [
-                    'count' => 1,
-                    'id' => $itemIds[$itemName],
-                ];
+            //Create block
+            $block = [
+                'type' => trim($sectionBlock->xpath('h2')[0]),
+                'items' => [],
+            ];
+
+            //Read all items
+            foreach($sectionBlock->xpath('.//div[@class="item-title"]/span') as $itemBlock){
+                $itemName = (string) $itemBlock;
+                if(isset($itemIds[$itemName])){
+                    $block['items'][] = [
+                        'count' => 1,
+                        'id' => $itemIds[$itemName],
+                    ];
+                }
+                else{
+                    $errors[] = "In Set [$title] for block [{$block['type']}], item [$itemName] does not exist in current patch.";
+                }
             }
-            else{
-                $errors[] = "In Set [$title] for block [{$block['type']}], item [$itemName] does not exist in current patch.";
-            }
+            $blocks[] = $block;
         }
-        $blocks[] = $block;
-    }
 
-    //Add set to our list of sets
-    $sets[] = [
-        'title' => $title,
-        'filename' => "mobafire_{$champion['id']}_$buildId_Build.json",
-        'champion' => $champion['id'],
-        'blocks' => $blocks,
-    ];
+        //Add set to our list of sets
+        $sets[] = [
+            'title' => $title,
+            'filename' => "mobafire_{$champion['id']}_{$buildId}_Build.json",
+            'champion' => $champion['id'],
+            'blocks' => $blocks,
+        ];
+    }
+}
+else{
+    $errors[] = 'Unable to find build';
 }
 
 //Render the JSON
