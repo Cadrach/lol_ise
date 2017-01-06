@@ -25,6 +25,7 @@ XXX - Faster scrolling of item list
 XXX - load/share set as URL
 XXX - ALREADY IN - Search on specific stats (like MANA)
 XXX - IMPORTANT: fix scrollbar for blocks
+XXX - Add dropdown to load the recommended item set of a champion
 
 General:
 - Toggle checkbox to have a way to ignore a stat
@@ -33,7 +34,6 @@ General:
 - Make work or remove clickable info in item description
 - Drag & drop blocks to the bottom provokes a glitch (Firefox 50.1 Windows 8.1)
 - In english, using Armor in description & Armour in tags
-- Add dropdown to load the recommended item set of a champion
 
 Advanced mode:
 - Add a checkbox for an "advanced" mode
