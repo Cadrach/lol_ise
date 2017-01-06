@@ -14,7 +14,7 @@ function get($url){
 $apiVersion = '1.2';
 $url = "https://global.api.pvp.net/api/lol/static-data/euw/v$apiVersion/";
 $ddragon = "http://ddragon.leagueoflegends.com/cdn/";
-https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=recommended&api_key=RGAPI-4d0b311d-a616-475f-a012-8c04969b078e
+
 //Fetch latest version
 $version = get($url . "versions?api_key=" . RIOT_API_KEY)[0];
 $languages = get($ddragon . 'languages.json');
