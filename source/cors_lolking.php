@@ -14,7 +14,7 @@ if(!$buildId){
 //$url = 'http://www.lolking.net/guides/386351';
 //$url = 'http://www.lolking.net/guides/243252';
 $url = 'http://www.lolking.net/guides/' . $buildId;
-$html = str_replace("\r","", file_get_contents($url));
+$html = file_get_contents($url);
 
 //Fetch sections
 preg_match('/<section id="items">(.*?)<\/section>/is', $html, $matches);
@@ -73,17 +73,15 @@ foreach(json_decode(file_get_contents('data_en_US.json'), true)['champion']['dat
 preg_match('/<div class="guide-breadcrumb">.*?<span>(.*?)<\/span>/is', $html, $matches);
 $title = $matches[1];
 
-
 $set = [
     'title' => $title,
+    'filename' => "lolking_{$champion['id']}_$buildId.json",
     'champion' => $champion['id'],
-    'mode' => 'any',
-    'map' => 'any',
-    'type' => 'custom',
-    'priority' => false,
-    'sortrank' => null,
     'blocks' => $blocks,
 ];
 
 header('Content-Type: application/json');
-echo json_encode($set);
+echo json_encode([
+    'errors' => $errors,
+    'sets' => [$set],
+]);
