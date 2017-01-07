@@ -48,8 +48,8 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             };
             scope.interface = {
                 show: false,
-                method: 4,
-                websiteUrl: 'http://www.mobafire.com/league-of-legends/build/hit-hard-and-fast-97950'
+                method: 1,
+                websiteUrl: ''
             };
             var sets = [];
             var mustHaveKeys = ['type', 'map', 'mode', 'blocks', 'champion'];
