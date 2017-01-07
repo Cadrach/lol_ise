@@ -180,7 +180,6 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     };
     $scope.champions = champions;
     $scope.championsArray = _.chain(champions).toArray().sortBy('name').value();
-    $scope.championsNames = _.keys(champions);
 
     //Tags
     $scope.tags = _.chain($scope.items).pluck('tags').flatten().uniq().map(function(tag){
@@ -557,7 +556,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         intro.addSteps([
             {
                 element: get('upload'),
-                intro: 'You can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets in one go!<br/><br/>Alternatively, you can upload your sets as <b>.json</b> files by clicking the "Upload" button.',
+                intro: 'You can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets in one go!<br/><br/>Alternatively, you can upload your sets as <b>.json</b> files by clicking the "Upload" button.<br/><br/>You can also import builds from website like mobafire or lolking.',
                 position: 'right'
             },
             {
@@ -651,7 +650,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         if($scope.set){
             $scope.saveSetsToLocalStorage();
         }
-    }, true)
+    }, true);
+
+    //When adding a Set select it
+    $scope.$on('added-set', function(e, s){
+        $scope.selectSet(s);
+    });
 
     /**
      * **************************************************************************************

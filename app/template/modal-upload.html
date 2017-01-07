@@ -63,26 +63,36 @@
                 <a class="list-group-item" href="http://www.lolking.net/guides/" target="_blank"><img src="app/image/icon_lolking.png"/> LoLKing <i class="fa fa-external-link fa-lg pull-right"></i></a>
             </div>
 
-            Simply copy & paste the guide URL into the input below and click "Import".
+            If you would like to see other websites, <a href="https://github.com/Cadrach/lol_ise/issues" target="_blank">raise a ticket <i class="fa fa-external-link"></i></a>.
             <br/>
             <br/>
             The build(s) will be added to you current list of sets (it will not remove any existing sets, unlike other methods)
             <br/>
             <br/>
-            <!--Example URLs:-->
-            <!--<br/>-->
-            <!--<code>http://www.mobafire.com/league-of-legends/build/name-of-the-guide-124567</code>-->
-            <!--<br/><br/>-->
-            <!--<code>http://www.lolking.net/guides/123456</code>-->
-            <!--<br/>-->
-            <!--<br/>-->
-            <input class="form-control" placeholder="Paste your URL here" ng-model="interface.websiteUrl"/>
-            <div class="btn btn-success ">Import</div>
+            <input class="form-control" placeholder="Paste your URL here" ng-model="interface.websiteUrl" select-on-click/>
+
+            <div class="alert alert-danger" ng-show="interface.websiteUrlError">
+                <h4><i class="fa fa-warning"></i> Unrecognized URL</h4>
+                <b>Example URLs:</b>
+                <br/>
+                http://www.mobafire.com/league-of-legends/build/name-of-the-guide-124567
+                <br/>
+                http://www.lolking.net/guides/123456
+            </div>
 
             <div ng-show="websiteImport.sets.length">
-                <div ng-repeat="s in websiteImport.sets">
-                    <champion value="champions[s.champion]"></champion> {{s.title}}
+                <champion value="champions[websiteImport.sets[0].champion]"></champion>
+                <div class="ise-modal-upload-website-sets">
+                    <div ng-repeat="s in websiteImport.sets"><i class="fa fa-dot-circle-o"></i>&nbsp;{{s.title}}</div>
                 </div>
+
+                <div class="alert alert-danger" ng-show="websiteImport.errors.length">
+                    <div ng-repeat="e in websiteImport.errors">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;{{e}}
+                    </div>
+                </div>
+
+                <div class="btn btn-success" ng-click="importWebSets()">Import {{websiteImport.sets.length}} Set{{websiteImport.sets>1?'s':''}}</div>
             </div>
         </div>
     </div>

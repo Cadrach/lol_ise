@@ -587,10 +587,23 @@ set-dropper{
         z-index: -2;
     }
 
+    .alert-danger{
+        font-size: 14px;
+        padding: 5px;
+    }
+
     input{
         font-size: 24px;
         height: 48px;
         margin-bottom: 10px;
+    }
+    .ise-modal-upload-website-sets{
+        padding: 10px;
+        div{
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
 }
 

@@ -44,9 +44,10 @@ $sets = [];
 $errors = [];
 
 if(isset($champion)){
-    foreach($xml->xpath('//div[@class="build-wrap"]') as $build){
+    foreach($xml->xpath('//div[@class="build-wrap"]') as $buildNumber=>$build){
         //Get build title
         $title = (string) $build->xpath('.//div[@class="build-title"]//h2')[0];
+        $blocks = [];
         foreach($build->xpath('.//div[@class="item-wrap self-clear float-left"]') as $sectionBlock){
 
             //Create block
@@ -74,7 +75,7 @@ if(isset($champion)){
         //Add set to our list of sets
         $sets[] = [
             'title' => $title,
-            'filename' => "mobafire_{$champion['id']}_{$buildId}_Build.json",
+            'filename' => "mobafire_{$champion['id']}_{$buildId}_Build_{$buildNumber}.json",
             'champion' => $champion['id'],
             'blocks' => $blocks,
         ];

@@ -20,8 +20,20 @@
 'use strict';
 
 angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
-
-.directive('setDropper', ['$window', '$timeout', '$uibModal', '$q', function($window, $timeout, $uibModal, $q) {
+.directive('selectOnClick', ['$window', function ($window) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('click', function () {
+                if (!$window.getSelection().toString()) {
+                    // Required for mobile Safari
+                    this.setSelectionRange(0, this.value.length)
+                }
+            });
+        }
+    };
+}])
+.directive('setDropper', ['$window', '$timeout', '$uibModal', '$q', '$http', function($window, $timeout, $uibModal, $q, $http) {
 
     return {
         link: function(scope, elmt){
@@ -34,11 +46,16 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             scope.uploaded = {
                 files: []
             };
-            scope.interface = {show: false};
+            scope.interface = {
+                show: false,
+                method: 4,
+                websiteUrl: 'http://www.mobafire.com/league-of-legends/build/hit-hard-and-fast-97950'
+            };
             var sets = [];
             var mustHaveKeys = ['type', 'map', 'mode', 'blocks', 'champion'];
             var modal;
-
+            var championsNames = _.keys(scope.champions);
+            
             //Watch dropping files
             scope.$watch('uploaded.files', function (files) {
                 if(files.length){
@@ -60,11 +77,39 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             scope.openModal = function(){
                 modal = $uibModal.open({
                     scope: scope,
-                    size: 'xl',
+                    size: 'lg',
                     windowClass: 'ise-modal-upload',
                     templateUrl: 'app/template/modal-upload.html?v=' + codeVersion
                 });
             };
+
+            /**
+             * Import found Sets
+             */
+            scope.importWebSets = function(){
+
+                var defaultSet = {
+                    map: 'any',
+                    mode: 'any',
+                    type: 'custom',
+                    priority: false,
+                    sortrank: null
+                };
+
+                scope.websiteImport.sets.forEach(function(s){
+                    //We remove the previous set of the same name, if any
+                    var existing = _.findWhere(scope.sets, {filename: s.filename});
+                    if(existing){
+                        scope.sets.splice(scope.sets.indexOf(existing), 1);
+                    }
+                    var newSet = angular.extend(angular.copy(defaultSet), s);
+                    scope.sets.push(newSet);
+                    scope.$emit('added-set', newSet);
+                });
+
+                //Hide interface
+                $timeout(interfaceHide)
+            }
 
             /**
              * **************************************************************************************
@@ -131,12 +176,12 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
 
                     //Try to findout which champion we are working on, if not provided
                     if( ! s.champion){
-                        for(var i=0; i<scope.champions.length; i++){
+                        for(var i=0; i<championsNames.length; i++){
                             if(
-                                file.name.indexOf(scope.champions[i])>=0
-                                    || file.path && file.path.indexOf(scope.champions[i])>=0
+                                file.name.indexOf(championsNames[i])>=0
+                                    || file.path && file.path.indexOf(championsNames[i])>=0
                                 ){
-                                s.champion = scope.champions[i];
+                                s.champion = championsNames[i];
                                 break;
                             }
                         }
@@ -206,6 +251,39 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     interfaceHide();
                 }
             });
+
+            //Perform search when modifying the URL
+            scope.$watch('interface.websiteUrl', function(buildUrl){
+                var buildId = null;
+                var loadUrl = null;
+                scope.interface.websiteUrlError = false;
+                scope.websiteImport = {};
+
+                if(buildUrl){
+                    //Find out which website
+                    if(buildUrl.indexOf('mobafire')>=0){
+                        buildId = buildUrl.split('-').pop();
+                        loadUrl = 'source/cors_mobafire.php?id=' + buildId;
+                    }
+                    else if(buildUrl.indexOf('lolking')>=0){
+                        buildId = buildUrl.split('/').pop();
+                        loadUrl = 'source/cors_lolking.php?id=' + buildId;
+                    }
+                    else{
+                        scope.interface.websiteUrlError = true;
+                    }
+                }
+
+                //Load URL, if any
+                if(loadUrl){
+                    $http.get(loadUrl).success(function(result){
+                        scope.websiteImport = result;
+                        if( ! result.sets || ! result.sets.length){
+                            scope.interface.websiteUrlError = true;
+                        }
+                    })
+                }
+            })
 
             /**
              * **************************************************************************************

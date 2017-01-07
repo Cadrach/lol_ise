@@ -440,10 +440,19 @@ set-dropper [ngf-drop] {
     opacity: 0.85; }
   .ise-modal-upload .modal-content {
     z-index: -2; }
+  .ise-modal-upload .alert-danger {
+    font-size: 14px;
+    padding: 5px; }
   .ise-modal-upload input {
     font-size: 24px;
     height: 48px;
     margin-bottom: 10px; }
+  .ise-modal-upload .ise-modal-upload-website-sets {
+    padding: 10px; }
+    .ise-modal-upload .ise-modal-upload-website-sets div {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap; }
 
 input.form-control.ise-filter-string {
   background-image: url(image/search.png); }
