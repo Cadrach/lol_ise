@@ -105,6 +105,20 @@ body{
     }
 }
 
+.nav{
+    li a{
+        cursor: pointer;
+        color: $color-text;
+    }
+    li a:hover{
+        background: $color-border-item;
+    }
+    li.active a, li.active a:hover{
+        color: $color-background-start;
+        background: $color-border-input;
+    }
+}
+
 .dropdown-menu{
     background: $color-background-input-start;
     color: $color-title;
@@ -556,6 +570,14 @@ set-dropper{
 }
 
 .ise-modal-upload{
+    a{
+        color: $color-text;
+    }
+    .nav{
+        font-weight: bold;
+        font-size: 24px;
+    }
+    font-size: 18px;
     img{
         max-width: 100%;
         border-radius: 8px;
@@ -564,7 +586,12 @@ set-dropper{
     .modal-content{
         z-index: -2;
     }
-    .row:last-child>div{text-align: center}
+
+    input{
+        font-size: 24px;
+        height: 48px;
+        margin-bottom: 10px;
+    }
 }
 
 input.form-control.ise-filter-string{

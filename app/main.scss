@@ -3,6 +3,9 @@ $tooltip-bg: #0b3240;
 $popover-border-color: #dabf7f;
 $popover-arrow-color: $popover-border-color;
 $dropdown-border: $popover-border-color;
+$list-group-bg: rgba(0,102,138,1);
+$list-group-hover-bg: $popover-border-color;
+$list-group-border: $popover-border-color;
 
 @import "../bower/html5-boilerplate/dist/css/normalize.css";
 @import "../bower/html5-boilerplate/dist/css/main.css";

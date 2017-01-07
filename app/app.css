@@ -70,6 +70,15 @@ body {
     top: 2px;
     right: 4px; }
 
+.nav li a {
+  cursor: pointer;
+  color: #efe5d1; }
+.nav li a:hover {
+  background: #463714; }
+.nav li.active a, .nav li.active a:hover {
+  color: #010a13;
+  background: #af9158; }
+
 .dropdown-menu {
   background: #040b11;
   color: #f0e6c6; }
@@ -418,14 +427,23 @@ set-dropper [ngf-drop] {
   cursor: pointer;
   color: #010a13; }
 
-.ise-modal-upload img {
-  max-width: 100%;
-  border-radius: 8px;
-  opacity: 0.85; }
-.ise-modal-upload .modal-content {
-  z-index: -2; }
-.ise-modal-upload .row:last-child > div {
-  text-align: center; }
+.ise-modal-upload {
+  font-size: 18px; }
+  .ise-modal-upload a {
+    color: #efe5d1; }
+  .ise-modal-upload .nav {
+    font-weight: bold;
+    font-size: 24px; }
+  .ise-modal-upload img {
+    max-width: 100%;
+    border-radius: 8px;
+    opacity: 0.85; }
+  .ise-modal-upload .modal-content {
+    z-index: -2; }
+  .ise-modal-upload input {
+    font-size: 24px;
+    height: 48px;
+    margin-bottom: 10px; }
 
 input.form-control.ise-filter-string {
   background-image: url(image/search.png); }

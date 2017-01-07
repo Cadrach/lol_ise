@@ -4548,8 +4548,8 @@ a.thumbnail.active {
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #fff;
-  border: 1px solid #ddd; }
+  background-color: #00668a;
+  border: 1px solid #dabf7f; }
   .list-group-item:first-child {
     border-top-right-radius: 4px;
     border-top-left-radius: 4px; }
@@ -4569,7 +4569,7 @@ button.list-group-item {
   button.list-group-item:focus {
     text-decoration: none;
     color: #555;
-    background-color: #f5f5f5; }
+    background-color: #dabf7f; }
 
 button.list-group-item {
   width: 100%;
