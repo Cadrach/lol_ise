@@ -155,6 +155,16 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Sets we manage (init to default set) & current set
     if(localStorageService.get('sets')){
         $scope.sets = localStorageService.get('sets');
+
+        //Fix sets ids to string
+        $scope.sets.forEach(function(s){
+            s.blocks.forEach(function(b){
+                b.items.forEach(function(i){
+                    i.id = i.id.toString();
+                    console.log(i);
+                })
+            })
+        })
     }
     else{
         $scope.sets = [];

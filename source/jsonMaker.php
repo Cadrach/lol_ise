@@ -42,6 +42,15 @@ foreach($languages as $language){
             //Only keep relevant item sets
             return in_array($set['mode'], ['CLASSIC', 'ARAM']);
         }));
+
+        //Convert ids to string
+        foreach($champ['recommended'] as &$set){
+            foreach($set['blocks'] as &$block){
+                foreach($block['items'] as &$item){
+                    $item['id'] = (string) $item['id'];
+                }
+            }
+        }
     }
 
     file_put_contents("data_$language.json", json_encode($json));
