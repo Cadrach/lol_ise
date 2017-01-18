@@ -41,6 +41,7 @@ angular.module('appLolIse.champion.champion-directive', [])
             })
         },
         restrict: 'E',
+        transclude: true,
         scope: {
             champion: '=value',
             small: '@'

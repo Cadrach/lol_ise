@@ -66,6 +66,29 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 }])
 .controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', '$window', 'localStorageService', 'ddTranslate', 'ddragon', 'source',
     function($scope, $timeout, $uibModal, $location, $window, localStorageService, ddTranslate, ddragon, source) {
+
+    /**
+     * **************************************************************************************
+     * LOCAL FUNCTIONS
+     */
+    function addMultiSet(theSet){
+        //Generate an ID
+        if( ! theSet.multipleId){
+            var max = _.chain($scope.sets).pluck('multipleId').max().value();
+            theSet.multipleId = max>0 ? Number(max) + 1:1;
+        }
+
+        //Create linking array if necessary
+        if( ! $scope.multiSets[theSet.multipleId]){
+            $scope.multiSets[theSet.multipleId] = [];
+        }
+
+        //Push set in the array (if not in already)
+        if($scope.multiSets[theSet.multipleId].indexOf(theSet)<0){
+            $scope.multiSets[theSet.multipleId].push(theSet);
+        }
+    }
+
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -102,6 +125,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.codeVersion = codeVersion;
     $scope.languages = _.chain(source.config.languages).map(function(lg){return lg.slice(0,2)}).uniq().value();
     $scope.language = ddragon.getLanguage().slice(0,2);
+    $scope.multiSets = {};
 
     //Used items (we clean the unused ones)
     $scope.items = items;
@@ -158,10 +182,13 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
         //Fix sets ids to string
         $scope.sets.forEach(function(s){
+            if(s.multipleId){
+                addMultiSet(s);
+            }
+
             s.blocks.forEach(function(b){
                 b.items.forEach(function(i){
                     i.id = i.id.toString();
-                    console.log(i);
                 })
             })
         })
@@ -169,6 +196,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     else{
         $scope.sets = [];
     }
+
+        console.log($scope.multiSets)
 
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
@@ -397,11 +426,30 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * Remove a set
      * @param champion
      */
-    $scope.removeSet = function(theSet){
-        if(confirm($scope.translate('Are you sure?'))){
+    $scope.removeSet = function(theSet, noMessage){
+        if(noMessage || confirm($scope.translate('Are you sure?'))){
+            var isCurrentSet = $scope.set === theSet;
+            var isMultipleSet = !!theSet.multipleId;
+
+            //Remove the set
             var position = $scope.sets.indexOf(theSet)
             $scope.sets.splice(position, 1);
-            $scope.selectSet($scope.sets[Math.min(position, $scope.sets.length - 1)]);
+
+            //Remove the set from the list of multiples too
+            if(isMultipleSet){
+                $scope.multiSets[theSet.multipleId].splice($scope.multiSets[theSet.multipleId].indexOf(theSet), 1);
+
+                //If it is the before last multiple set, convert to classic set
+                if($scope.multiSets[theSet.multipleId].length === 1){
+                    delete $scope.multiSets[theSet.multipleId][0].multipleId;
+                    delete $scope.multiSets[theSet.multipleId];
+                }
+            }
+
+            if(isCurrentSet){
+                //We removed the current set, we must select a new set
+                $scope.selectSet($scope.sets[Math.min(position, $scope.sets.length - 1)]);
+            }
         }
     }
 
@@ -475,16 +523,47 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
 
     /**
-     *
+     * Duplicate a set (copy) to another champion
      */
     $scope.duplicateSet = function(){
         var currentSet = angular.copy($scope.set);
         delete currentSet.champion;
+        delete currentSet.multipleId;
         var modal = $scope.openModalAddSet({
             title: 'Duplicate set:' + currentSet.title
         });
-        modal.result.then(function(){
+        return modal.result.then(function(){
             angular.extend($scope.set, currentSet);
+        })
+    }
+
+    /**
+     * Multiply Set: it will be shared with other champion(s)
+     */
+    $scope.multiplySet = function(){
+        //Track the current set as multiple, if not already
+        addMultiSet($scope.set);
+
+        var multipliedSet = $scope.set;
+
+        //Then trigger a classic duplication of the set
+        $scope.duplicateSet().then(function(){
+            //Store already exists
+            var alreadyExists = _.findWhere($scope.multiSets[multipliedSet.multipleId], {champion: $scope.set.champion});
+
+            //Set the multipleId (the new set is now the selected set)
+            $scope.set.multipleId = multipliedSet.multipleId;
+
+            //Track the new set as a multiset
+            addMultiSet($scope.set);
+
+            //If this champion is already multiplied for this set, remove the new set
+            if(alreadyExists){
+                $scope.removeSet($scope.set, true);
+            }
+
+            //Re-select our current set
+            $scope.selectSet(multipliedSet);
         })
     }
 
@@ -658,6 +737,16 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
 
     $scope.$watch('set', function(){
         if($scope.set){
+            if($scope.set.multipleId){
+                //Propagate to other multiple sets of same id
+                var copy = angular.copy($scope.set);
+                delete copy.champion;
+                _.each($scope.multiSets[$scope.set.multipleId], function(s){
+                    if($scope.set != s){
+                        angular.extend(s, copy);
+                    }
+                })
+            }
             $scope.saveSetsToLocalStorage();
         }
     }, true);

@@ -109,9 +109,10 @@
                     <i class="fa fa-cogs"></i>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
-                    <li ng-click="duplicateSet()"><a><i class="fa fa-copy"></i>&nbsp;Duplicate for another Champion</a></li>
-                    <li ng-click="downloadJson()"><a><i class="fa fa-download"></i>&nbsp;Download <b>.json</b> file</a></li>
-                    <li ng-click="openModalImportRecommended()"><a><i class="fa fa-map-signs"></i> Import {{translate('RecommendedItems')}}</a></li>
+                    <li ng-click="multiplySet()"><a><i class="fa fa-fw fa-plus-square"></i>&nbsp;Add another Champion</a></li>
+                    <li ng-click="duplicateSet()"><a><i class="fa fa-fw fa-copy"></i>&nbsp;Duplicate for another Champion</a></li>
+                    <li ng-click="downloadJson()"><a><i class="fa fa-fw fa-download"></i>&nbsp;Download <b>.json</b> file</a></li>
+                    <li ng-click="openModalImportRecommended()"><a><i class="fa fa-fw fa-map-signs"></i> Import {{translate('RecommendedItems')}}</a></li>
                     <!--<li class="divider"></li>-->
                 </ul>
             </div>
@@ -130,6 +131,21 @@
                 {{map.name}}
             </ui-select-choices>
         </ui-select>
+
+        <!-- SHARED SETS -->
+        <div class="ise-shared-sets" ng-if="set.multipleId">
+            <div>Shared with:</div>
+            <champion
+                    value="champions[s.champion]"
+                    small="true"
+                    ng-repeat="s in multiSets[set.multipleId]"
+                    ng-if="s!=set">
+                <div class="btn btn-xs btn-danger" ng-click="removeSet(s)">
+                    <i class="fa fa-trash"></i>
+                </div>
+            </champion>
+            <div class="clearfix"></div>
+        </div>
     </div>
 
     <br/>
