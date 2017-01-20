@@ -205,8 +205,18 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
              */
             function applySets(){
                 scope.sets.splice(0, scope.sets.length);
+                scope.multiSets = {};
+
                 sets.forEach(function(s){
                     scope.sets.push(s);
+
+                    //If tagged as multi set, create the multiplicity
+                    if(s.multipleId){
+                        if( ! scope.multiSets[s.multipleId]){
+                            scope.multiSets[s.multipleId] = [];
+                        }
+                        scope.multiSets[s.multipleId].push(s);
+                    }
                 })
 
                 //Hide interface
@@ -295,6 +305,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         restrict: 'E',
         scope: {
             sets: '=',
+            multiSets: '=',
             champions: '='
         },
         templateUrl: 'app/template/directive-set-dropper.html?v=' + codeVersion

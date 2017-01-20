@@ -514,7 +514,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * Direct download one json
      */
     $scope.downloadJson = function(){
-        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(angular.toJson($scope.set));
+        //Prepare Set
+        var theSet = angular.copy($scope.set);
+        delete theSet.multipleId;
+
+        //Download JSON
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(angular.toJson(theSet));
         var dlAnchorElem = angular.element('#jsonDownloader')[0];
         var filename = $scope.set.filename ? $scope.set.filename : $scope.set.champion  + ".json";
         dlAnchorElem.setAttribute("href",     dataStr     );
