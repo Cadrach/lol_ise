@@ -53,11 +53,17 @@
 
     <div scrollable autosize-from-top intro="champions">
         <div class="ise-champions-sets" ng-repeat="champSets in setsArray" ng-if="champions[champSets[0].champion]">
-            <champion value="champions[champSets[0].champion]" small="true" ng-click="selectSet(champSets[0])"></champion>
+
+            <champion value="champions[champSets[0].champion]" small="true" ng-click="selectSet(champSets[0])">
+                <div class="btn btn-xs btn-danger float-right" ng-click="removeSets(champSets[0].champion)">
+                    <i class="fa fa-trash"></i>
+                </div>
+            </champion>
+
             <div class="list-group" ng-if="champion == champSets[0].champion">
                 <div class="list-group-item {{s==set?'active':''}}" ng-repeat="s in champSets" ng-click="selectSet(s)">
                     {{s.title}}
-                    <div class="btn btn-xs btn-danger" ng-click="removeSet(s, $event)">
+                    <div class="btn btn-xs btn-danger" ng-click="removeSet(s)">
                         <i class="fa fa-trash"></i>
                     </div>
                 </div>

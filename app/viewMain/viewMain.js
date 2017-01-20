@@ -197,8 +197,6 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         $scope.sets = [];
     }
 
-        console.log($scope.multiSets)
-
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
     $scope.maps = {
@@ -450,6 +448,18 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
                 //We removed the current set, we must select a new set
                 $scope.selectSet($scope.sets[Math.min(position, $scope.sets.length - 1)]);
             }
+        }
+    }
+
+    /**
+     * Remove all sets from a champion
+     * @param champion
+     */
+    $scope.removeSets = function(champion){
+        if(confirm('Are you sure you? This will delete ' + $scope.setsArray[champion].length + ' sets for '+ $scope.champions[champion].name +'.')){
+            _.each($scope.setsArray[champion], function(s){
+                $scope.removeSet(s, true);
+            })
         }
     }
 
