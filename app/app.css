@@ -139,6 +139,9 @@ code {
     height: calc(100vh - 60px - 100px);
     overflow-y: auto; }
 
+.modal-xs {
+  width: 300px; }
+
 input.form-control {
   position: relative;
   border: 2px solid transparent;
@@ -432,6 +435,18 @@ set-dropper [ngf-drop] {
   height: 25px; }
   .ise-champions-sets champion:hover {
     background: #af9158; }
+
+.ise-modal-confirm .modal-body {
+  text-align: center;
+  font-size: 20px; }
+.ise-modal-confirm .btn {
+  height: 35px;
+  float: left;
+  width: calc(50% - 10px);
+  margin: 5px;
+  border-radius: 5px; }
+.ise-modal-confirm .btn-success {
+  border: 2px solid #08c4bd; }
 
 .ise-modal-add-set champion:hover {
   background-color: #af9158;

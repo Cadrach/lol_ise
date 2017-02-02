@@ -89,6 +89,19 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         }
     }
 
+    function confirmationBox(message){
+        var scope = $scope.$new();
+        scope.content = message;
+        var modal = $uibModal.open({
+            size: 'xs',
+            windowClass: 'ise-modal-confirm',
+            templateUrl: 'app/template/modal-confirm.html?v=' + codeVersion,
+            scope: scope
+        });
+
+        return modal.result;
+    }
+
     /**
      * **************************************************************************************
      * LOCAL VARS
@@ -343,9 +356,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * @param block
      */
     $scope.removeBlock = function(block){
-        if(confirm($scope.translate('Are you sure?'))) {
+        confirmationBox($scope.translate('Are you sure?')).then(function(){
             $scope.set.blocks.splice($scope.set.blocks.indexOf(block), 1);
-        }
+        });
     }
 
     /**
@@ -425,7 +438,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * @param champion
      */
     $scope.removeSet = function(theSet, noMessage){
-        if(noMessage || confirm($scope.translate('Are you sure?'))){
+        function remove(theSet){
             var isCurrentSet = $scope.set === theSet;
             var isMultipleSet = !!theSet.multipleId;
 
@@ -449,6 +462,17 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
                 $scope.selectSet($scope.sets[Math.min(position, $scope.sets.length - 1)]);
             }
         }
+
+        if(noMessage){
+            //If no message, remove immediately
+            remove(theSet);
+        }
+        else{
+            //Otherwise ask before removal
+            confirmationBox($scope.translate('Are you sure?')).then(function(){
+                remove(theSet);
+            });
+        }
     }
 
     /**
@@ -456,11 +480,12 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * @param champion
      */
     $scope.removeSets = function(champion){
-        if(confirm('Are you sure you? This will delete ' + $scope.setsArray[champion].length + ' sets for '+ $scope.champions[champion].name +'.')){
+        var string = 'Are you sure you? This will delete ' + $scope.setsArray[champion].length + ' sets for '+ $scope.champions[champion].name +'.';
+        confirmationBox(string).then(function(){
             _.each($scope.setsArray[champion], function(s){
                 $scope.removeSet(s, true);
             })
-        }
+        });
     }
 
     /**
