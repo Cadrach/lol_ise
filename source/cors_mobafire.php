@@ -17,7 +17,19 @@ $riotData = json_decode(file_get_contents('data_en_US.json'), true);
 //Create inverted dictionnary of item names
 $itemIds = [];
 foreach($riotData['item']['data'] as $itemId => $item){
-    $itemIds[$item['name']] = (string) $itemId;
+    $itemName = $item['name'];
+
+    //Rename Trinkets
+    if(strpos($itemName, '(Trinket)')){
+        $itemName = str_replace(' (Trinket)', '', $itemName);
+    }
+
+    //Rename jungle item final versions
+    if(strpos($itemName, 'Enchantment:') !== false){
+        $itemName = str_replace('Enchantment: ', $riotData['item']['data'][array_pop($item['from'])]['name'] . ' - ', $itemName);
+    }
+
+    $itemIds[$itemName] = (string) $itemId;
 }
 
 //$url = 'http://www.lolking.net/guides/386351';
@@ -42,6 +54,10 @@ foreach($riotData['champion']['data'] as $champ){
 
 $sets = [];
 $errors = [];
+
+//echo '<pre>';
+//print_r($riotData['item']['data']);
+//die();
 
 if(isset($champion)){
     foreach($xml->xpath('//div[@class="build-wrap"]') as $buildNumber=>$build){
