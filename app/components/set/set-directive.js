@@ -353,7 +353,8 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
 
                 //Send the zipped file
                 var filename = "Lol_Item_Set.zip";
-                if(bowser.chrome){
+                console.log(bowser);
+                if(bowser.chrome || bowser.opera){
                     //For Chrome it works nicely
                     zip.generateAsync({type:"blob"}).then(function(blob){saveAs(blob, filename);});
                 }
