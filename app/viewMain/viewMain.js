@@ -428,7 +428,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         var theSet = angular.copy(defaultSet)
 
         theSet.champion = champion.id;
-        theSet.blocks = angular.copy(_.findWhere(champion.recommended, {map: 'SR', mode: 'CLASSIC'})).blocks;
+        if(champion.recommended){
+            theSet.blocks = angular.copy(_.findWhere(champion.recommended, {map: 'SR', mode: 'CLASSIC'})).blocks;
+        }
         $scope.sets.push(theSet);
         $scope.selectSet(theSet);
     }
