@@ -140,16 +140,18 @@
 
         <!-- SHARED SETS -->
         <div class="ise-shared-sets" ng-if="set.multipleId">
-            <div>Shared with:</div>
-            <champion
-                    value="champions[s.champion]"
-                    small="true"
-                    ng-repeat="s in multiSets[set.multipleId]"
-                    ng-if="s!=set">
-                <div class="btn btn-xs btn-danger" ng-click="removeSet(s)">
-                    <i class="fa fa-trash"></i>
-                </div>
-            </champion>
+            <div>Shared with {{multiSets[set.multipleId].length - 1}} champions:</div>
+            <div class="ise-shared-sets-scrollable" scrollable>
+                <champion
+                        value="champions[s.champion]"
+                        small="true"
+                        ng-repeat="s in multiSets[set.multipleId]"
+                        ng-if="s!=set">
+                    <div class="btn btn-xs btn-danger" ng-click="removeSet(s)">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </champion>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>

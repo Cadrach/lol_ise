@@ -569,7 +569,9 @@ input.form-control.ise-filter-string {
 .ise-set champion {
   margin-bottom: 5px; }
 .ise-set .ise-shared-sets {
-  margin: 5px 0; }
+  margin-top: 5px; }
+  .ise-set .ise-shared-sets .ise-shared-sets-scrollable {
+    max-height: 60px; }
   .ise-set .ise-shared-sets champion {
     width: calc(50% - 4px);
     margin: 2px;

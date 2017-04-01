@@ -751,6 +751,10 @@ input.form-control.ise-filter-string{
         margin-bottom: 5px;
     }
     .ise-shared-sets{
+        margin-top: 5px;
+        .ise-shared-sets-scrollable{
+            max-height: 60px;
+        }
         champion{
             width: calc(50% - 4px);
             margin: 2px;
@@ -758,7 +762,6 @@ input.form-control.ise-filter-string{
             opacity: 0.65;
             position:  relative;
         }
-        margin: 5px 0;
     }
 }
 
