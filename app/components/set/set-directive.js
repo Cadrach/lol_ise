@@ -186,9 +186,26 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                             }
                         }
                     }
-                    if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
+
+                    //Item set with an array of ids = for multiple champs
+                    if( ! s.champion && s.associatedChampions && s.associatedChampions.length>0){
+                        s.associatedChampions.forEach(function(championKey){
+                            s.champion = _.findWhere(scope.champions, {key: championKey+''}).id;
+                            integrateFile(JSON.stringify(s), file);
+                        })
+                        return;
+                    }
+
+                    //Now we integrate set, if all required keys are there
+                    if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length) {
                         s.filename = file.name;
                         sets.push(s);
+                    }
+                    else if(s.itemSets && s.itemSets.length){
+                        //Multiple sets in one file, parse each
+                        s.itemSets.forEach(function(subSet){
+                            integrateFile(JSON.stringify(subSet), file)
+                        })
                     }
                     else{
                         //We are missing a required key to use the provided file
@@ -197,6 +214,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 } catch(e){
                     //Probably wrong JSON format, or not a json file
                     console.error("Wrong file: " + file.name);
+                    throw e;
                 }
             }
 
@@ -337,8 +355,9 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     champions[champ] = typeof champions[champ] == 'undefined' ? 0:champions[champ]+1;
 
                     //Define filename
+
                     var filename = s.filename ? s.filename : champ + champions[champ] + '.json';
-                    var path = root + filename;
+                    var path = root + filename.split('/').pop(); //always remove all folder parts from the filename
 
                     //Rename if filename already present
                     if(pathes.indexOf(path)>=0){
