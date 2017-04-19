@@ -279,6 +279,10 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                         buildId = buildUrl.split('/').pop();
                         loadUrl = 'source/cors_lolking.php?id=' + buildId;
                     }
+                    else if(buildUrl.indexOf('lolalytics')>=0){
+                        buildId = buildUrl.split('/').filter(function(a){return !!a;}).pop();
+                        loadUrl = 'source/cors_lolalytics.php?id=' + buildId;
+                    }
                     else{
                         scope.interface.websiteUrlError = true;
                     }

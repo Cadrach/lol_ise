@@ -687,7 +687,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         intro.addSteps([
             {
                 element: get('upload'),
-                intro: 'You can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets in one go!<br/><br/>Alternatively, you can upload your sets as <b>.json</b> files by clicking the "Upload" button.<br/><br/>You can also import builds from website like mobafire or lolking.',
+                intro: 'You can drag & drop your <code>.../League of Legends/Config/</code> folder in this window to load your existing sets in one go!<br/><br/>Alternatively, you can upload your sets as <b>.json</b> files by clicking the "Upload" button.<br/><br/>You can also import builds from website like mobafire, lolalytics or lolking.',
                 position: 'right'
             },
             {
