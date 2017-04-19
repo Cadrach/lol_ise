@@ -19,14 +19,11 @@ $ddragon = "http://ddragon.leagueoflegends.com/cdn/";
 $version = get($url . "versions?api_key=" . RIOT_API_KEY)[0];
 $languages = get($ddragon . 'languages.json');
 
-//Config json
-file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'generatedOn' => date('Y-m-d H:i:s')]));
-
 //Fetch once full data to get recommended item sets (it is long to fetch)
 $recommended = get($url . "champion?champData=recommended&api_key=" . RIOT_API_KEY)['data'];
 
 //Ddragon data, per language
-foreach($languages as $language){
+foreach($languages as $k=>$language){
     set_time_limit(30); //30s max to fetch the data for a language
     $json = [];
     $json['item'] = get($ddragon . $version . "/data/$language/item.json");
@@ -53,7 +50,22 @@ foreach($languages as $language){
         }
     }
 
-    file_put_contents("data_$language.json", json_encode($json));
+    $filename = "data_$language.json";
+
+    if( ! count($json['champion']['data']) || ! count($json['item']['data'])){
+        //If no champion or item data, do not replace the current file
+        if( ! file_exists($filename)){
+            //If the file does not exists prior to this, then we should even remove the language from available ones
+            unset($languages[$k]);
+        }
+        continue;
+    }
+
+    file_put_contents($filename, json_encode($json));
     sleep(1); //ensure no bypass of rate limit
 }
+
+//Config json
+file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'generatedOn' => date('Y-m-d H:i:s')]));
+
 echo $version;
