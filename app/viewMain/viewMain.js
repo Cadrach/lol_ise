@@ -431,28 +431,29 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         scope.stats = {};
 
         block.items.forEach(function(item){
-            _.each($scope.items[item.id].stats, function(value, name){
-                //Create stat block
-                if( ! scope.stats[name]){
-                    //Determine stat type
-                    var type = 'Flat';
-                    if(name.indexOf('Percent') !== -1) type = 'Percent';
-                    else if(name == 'FlatCritChanceMod') type = 'Crit';
-
+            if($scope.items[item.id]){
+                _.each($scope.items[item.id].stats, function(value, name){
                     //Create stat block
-                    scope.stats[name] = {
-                        label: $scope.translate(name),
-                        code: name,
-                        type: type,
-                        value: value
-                    };
-                }
-                //If already existing, simply increase stat value
-                    
-                else{
-                    scope.stats[name].value+= value;
-                }
-            })
+                    if( ! scope.stats[name]){
+                        //Determine stat type
+                        var type = 'Flat';
+                        if(name.indexOf('Percent') !== -1) type = 'Percent';
+                        else if(name == 'FlatCritChanceMod') type = 'Crit';
+
+                        //Create stat block
+                        scope.stats[name] = {
+                            label: $scope.translate(name),
+                            code: name,
+                            type: type,
+                            value: value
+                        };
+                    }
+                    //If already existing, simply increase stat value
+                    else{
+                        scope.stats[name].value+= value;
+                    }
+                })
+            }
         });
 
         //Cast to array for sorting
@@ -658,7 +659,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     $scope.itemsPrice = function(items){
         var price = 0;
         items.forEach(function(item){
-            price+= $scope.items[item.id].gold.total * item.count;
+            if($scope.items[item.id]){
+                price+= $scope.items[item.id].gold.total * item.count;
+            }
         })
         return price;
     }
