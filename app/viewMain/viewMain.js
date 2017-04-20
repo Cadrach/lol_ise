@@ -609,6 +609,14 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         })
     }
 
+    $scope.itemsPrice = function(items){
+        var price = 0;
+        items.forEach(function(item){
+            price+= $scope.items[item.id].gold.total * item.count;
+        })
+        return price;
+    }
+
     /**
      * Open the help/welcome screen
      */

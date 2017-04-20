@@ -554,6 +554,7 @@ input.form-control.ise-filter-string {
     margin: 0; }
 
 .ise-block-items {
+  position: relative;
   min-height: 106px;
   margin-bottom: 20px;
   line-height: 0;
@@ -565,6 +566,18 @@ input.form-control.ise-filter-string {
   .ise-block-items .form-control {
     float: left;
     width: calc(100% - 50px); }
+  .ise-block-items .ise-block-stats {
+    position: absolute;
+    right: 3px;
+    bottom: 1px; }
+    .ise-block-items .ise-block-stats .ise-block-stats-gold {
+      height: 14px;
+      line-height: 13px;
+      font-size: 11px;
+      background: url(image/gold.png) no-repeat;
+      background-size: 22px;
+      padding-left: 16px;
+      color: #9e998a; }
 
 .ise-set champion {
   margin-bottom: 5px; }
