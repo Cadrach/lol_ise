@@ -421,6 +421,52 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     }
 
     /**
+     * Open modal to show detailed information on a block
+     * @param block
+     */
+    $scope.openModalBlockStats = function(block){
+
+        var scope = $scope.$new();
+        scope.block = block;
+        scope.stats = {};
+
+        block.items.forEach(function(item){
+            _.each($scope.items[item.id].stats, function(value, name){
+                //Create stat block
+                if( ! scope.stats[name]){
+                    //Determine stat type
+                    var type = 'Flat';
+                    if(name.indexOf('Percent') !== -1) type = 'Percent';
+                    else if(name == 'FlatCritChanceMod') type = 'Crit';
+
+                    //Create stat block
+                    scope.stats[name] = {
+                        label: $scope.translate(name),
+                        code: name,
+                        type: type,
+                        value: value
+                    };
+                }
+                //If already existing, simply increase stat value
+                    
+                else{
+                    scope.stats[name].value+= value;
+                }
+            })
+        });
+
+        //Cast to array for sorting
+        scope.stats = _.toArray(scope.stats);
+
+        var modal = $uibModal.open({
+            templateUrl: 'app/template/modal-block-stats.html?v=' + codeVersion,
+            scope: scope
+        });
+
+        return modal;
+    }
+
+    /**
      * Add a set for a champion
      * @param champion
      */

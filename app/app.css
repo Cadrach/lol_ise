@@ -565,7 +565,9 @@ input.form-control.ise-filter-string {
     min-height: 48px; }
   .ise-block-items .form-control {
     float: left;
-    width: calc(100% - 50px); }
+    width: calc(100% - 85px); }
+  .ise-block-items > .btn {
+    margin-left: 3px; }
   .ise-block-items .ise-block-stats {
     position: absolute;
     right: 3px;

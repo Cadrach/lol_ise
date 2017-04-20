@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="modal-title">Statistics for "<b>{{block.type}}"</b></h3>
+</div>
+<div class="modal-body">
+    <div class="text-center">
+        <item value="items[item.id]" items="items" count="item.count" ng-repeat="item in block.items" ng-show="items[item.id]"></item>
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-3 text-center">
+
+        <table class="table">
+            <thead><th>Attribute</th><th class="text-right">Value</th></thead>
+            <tr ng-repeat="s in stats|orderBy:'label'">
+                <th>{{s.label}}</th>
+                <td class="text-right">
+                    <span ng-if="s.type=='Percent'">+{{s.value*100|number:0}}%</span>
+                    <span ng-if="s.type=='Flat'">+{{s.value}}</span>
+                    <span ng-if="s.type=='Crit'">{{s.value*100}}%</span>
+                </td>
+            </tr>
+            <tr>
+                <th>Total Price</th>
+                <td class="text-right">
+                    <img src="app/image/gold.png" class="pull-right">
+                    <div class="pull-right">{{itemsPrice(block.items)|number}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="clearfix"></div>
+    <div class="text-small text-center">
+        Please note that these statistics are computed using data provided by the Riot API.
+        <br/>Some attributes are not filled for some items, take this with a grain of salt...
+    </div>
+    <!--<pre>{{stats|json}}</pre>-->
+    <!--<pre>{{block|json}}</pre>-->
+</div>
+<!--<div class="modal-footer">-->
+    <!--<div class="btn btn-success btn-block" ng-click="$close()">Close</div>-->
+<!--</div>-->

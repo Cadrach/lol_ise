@@ -22,6 +22,9 @@ $languages = get($ddragon . 'languages.json');
 //Fetch once full data to get recommended item sets (it is long to fetch)
 $recommended = get($url . "champion?champData=recommended&api_key=" . RIOT_API_KEY)['data'];
 
+//Date
+$today = date('Y-m-d H:i:s');
+
 //Ddragon data, per language
 foreach($languages as $k=>$language){
     set_time_limit(30); //30s max to fetch the data for a language
@@ -61,11 +64,14 @@ foreach($languages as $k=>$language){
         continue;
     }
 
+    //Add generated date
+    $json['generatedOn'] = $today;
+
     file_put_contents($filename, json_encode($json));
     sleep(1); //ensure no bypass of rate limit
 }
 
 //Config json
-file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'generatedOn' => date('Y-m-d H:i:s')]));
+file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'generatedOn' => $today]));
 
 echo $version;

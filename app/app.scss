@@ -743,7 +743,11 @@ input.form-control.ise-filter-string{
 
     .form-control{
         float: left;
-        width: calc(100% - 50px)
+        width: calc(100% - 85px)
+    }
+
+    &>.btn{
+        margin-left: 3px;
     }
 
     .ise-block-stats{
