@@ -63,6 +63,24 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     if(files.length == 1 && files[0].name.slice(-4) == '.zip'){
                         readZip(files[0]);
                     }
+                    else if(files.length > 2000){
+                        var modalScope = scope.$new();
+                        modalScope.content = "You are about to upload " + files.length + " files. Are you sure you want to proceed?";
+                        var modal = $uibModal.open({
+                            size: 'xs',
+                            windowClass: 'ise-modal-confirm',
+                            templateUrl: 'app/template/modal-confirm.html?v=' + codeVersion,
+                            scope: modalScope
+                        });
+
+                        modal.result.then(function(){
+                            //If OK
+                            readFiles(files, 0);
+                        }, function(){
+                            //If not OK
+                            interfaceHide();
+                        });
+                    }
                     else{
                         readFiles(files, 0);
                     }
@@ -175,6 +193,9 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     var s = JSON.parse(jsonString);
 
                     //Try to findout which champion we are working on, if not provided
+                    if( ! s.champion && s.type == 'global'){
+                        s.champion = 'Global';
+                    }
                     if( ! s.champion){
                         for(var i=0; i<championsNames.length; i++){
                             if(
