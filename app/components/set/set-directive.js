@@ -55,6 +55,7 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
             var mustHaveKeys = ['type', 'map', 'mode', 'blocks', 'champion'];
             var modal;
             var championsNames = _.keys(scope.champions);
+            var championsKeys = _.indexBy(scope.champions, 'key');
             
             //Watch dropping files
             scope.$watch('uploaded.files', function (files) {
@@ -196,6 +197,35 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     if( ! s.champion && s.type == 'global'){
                         s.champion = 'Global';
                     }
+
+                    //If legacy client file (not deployed)
+                    if(s.itemSets && s.itemSets.length){
+                        s.itemSets.forEach(function(subSet){
+                            //If we have a legacy client set (not deployed)
+                            if( ! subSet.champion && subSet.associatedChampions && subSet.associatedChampions.length){
+                                var multipleId = null;
+
+                                //Generate multiple id if necessary
+                                if(subSet.associatedChampions.length>1){
+                                    var max = _.chain(sets).pluck('multipleId').max().value();
+                                    multipleId = max>0 ? Number(max) + 1:1;
+                                }
+
+                                //Now we generate the sets
+                                subSet.associatedChampions.forEach(function(champKey, setKey){
+                                    var newSet = angular.copy(subSet);
+                                    newSet.champion = championsKeys[champKey].id;
+                                    if(multipleId){
+                                        newSet.multipleId = multipleId;
+                                    }
+                                    integrateFile(JSON.stringify(newSet), {name: 'legacy_'+setKey+'.json'})
+                                });
+                            }
+                        });
+                        return;
+                    }
+
+                    //We try to match the champion
                     if( ! s.champion){
                         for(var i=0; i<championsNames.length; i++){
                             if(
@@ -207,6 +237,8 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                             }
                         }
                     }
+
+                    //We now check that we have a valid set to be pushed
                     if(_.chain(s).keys().intersection(mustHaveKeys).value().length === mustHaveKeys.length){
                         s.filename = file.name;
                         sets.push(s);
