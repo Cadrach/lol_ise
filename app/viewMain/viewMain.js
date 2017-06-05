@@ -823,7 +823,10 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * WATCHES
      */
     $scope.$watchCollection('sets', function(){
-        $scope.setsArray = _.groupBy($scope.sets, 'champion');
+        //Grouping + ordering sets
+        $scope.setsArray = _.chain($scope.sets).groupBy('champion').sortBy(function(sets){
+            return sets[0].champion == 'Global' ? '0000':$scope.champions[sets[0].champion].name;
+        }).value();
         if( ! $scope.sets.length){
             $scope.selectSet(null);
         }
