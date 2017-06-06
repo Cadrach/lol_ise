@@ -353,6 +353,8 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 }
 
                 //Add each set to the zip
+                var multipleIdsTreated = [];
+                var fullfile = {itemSets: []};
                 var pathes = [];
                 scope.sets.forEach(function(s){
                     var champ = s.champion ? s.champion:'Global';
@@ -362,7 +364,6 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     champions[champ] = typeof champions[champ] == 'undefined' ? 0:champions[champ]+1;
 
                     //Define filename
-
                     var filename = s.filename ? s.filename : champ + champions[champ] + '.json';
                     var path = root + filename.split('/').pop(); //always remove all folder parts from the filename
 
@@ -372,10 +373,26 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                     }
                     zip.file(path, angular.toJson(s));
                     pathes.push(path);
+
+                    /**
+                     * ***********************************
+                     * Now work on the FULL file
+                     */
+                    //Keys
+                    var champKeys = [];
+                    if(scope.champions[champ] && scope.champions[champ].key){
+                        champKeys.push(Number(scope.champions[champ].key));
+                    }
+                    var setForFullFile = angular.extend(angular.copy(s), {
+                        associatedChampions: champKeys
+                    });
+                    fullfile.itemSets.push(setForFullFile);
                 })
 
                 //Add a small readme in the .zip
                 zip.file('readme.txt', 'Downloaded from http://lol.item-set.com\nUse this folder to replace the Config/ folder in your League of Legends installation, usually located at %PROGRAMFILES%/Riot Games/League of Legends/')
+                //Add ItemSets.json file
+                zip.file('ItemSets.json', JSON.stringify(fullfile));
 
                 //Send the zipped file
                 var filename = "Lol_Item_Set.zip";
@@ -415,7 +432,9 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         },
         restrict: 'E',
         scope: {
-            sets: '='
+            sets: '=',
+            multiSets: '=',
+            champions: '='
         },
         template: '<div intro="downloader" class="btn btn-success btn-block" ng-click="download()"><i class="fa fa-download"></i>&nbsp;Download</div>'
     }

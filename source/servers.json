@@ -1,0 +1,14 @@
+{"servers":[
+    {"name":"BR","code":"BR1","url":"br1.api.riotgames.com"},
+    {"name":"EUNE","code":"EUN1","url":"eun1.api.riotgames.com"},
+    {"name":"EUW","code":"EUW1","url":"euw1.api.riotgames.com"},
+    {"name":"JP","code":"JP1","url":"jp1.api.riotgames.com"},
+    {"name":"KR","code":"KR","url":"kr.api.riotgames.com"},
+    {"name":"LAN","code":"LA1","url":"la1.api.riotgames.com"},
+    {"name":"LAS","code":"LA2","url":"la2.api.riotgames.com"},
+    {"name":"NA","code":"NA1","url":"na1.api.riotgames.com"},
+    {"name":"OCE","code":"OC1","url":"oc1.api.riotgames.com"},
+    {"name":"TR","code":"TR1","url":"tr1.api.riotgames.com"},
+    {"name":"RU","code":"RU","url":"ru.api.riotgames.com"},
+    {"name":"PBE","code":"PBE1","url":"pbe1.api.riotgames.com"}
+]}
