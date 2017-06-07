@@ -282,6 +282,22 @@ input.form-control {
   .jOrgChart > table > tbody > tr:first-child .node {
     height: 54px; }
 
+.ise-account {
+  cursor: pointer;
+  padding: 15px;
+  padding-left: calc(10px + 51px);
+  position: relative;
+  min-width: 100px; }
+  .ise-account img {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 51px;
+    height: 49px;
+    border: 1px solid #463714;
+    border-bottom: 0;
+    border-top: 0; }
+
 item {
   position: relative;
   display: inline-block !important;

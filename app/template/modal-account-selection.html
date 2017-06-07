@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3 class="modal-title">Account Selection</h3>
+</div>
+<div class="modal-body">
+    <input class="form-control" ng-model="accountSearch.name" placeholder="Summoner Name"/>
+    <select class="form-control" ng-model="accountSearch.server" ng-options="s.code as s.name for s in servers"/>
+    <br/>
+    <div class="alert alert-danger" ng-if="accountSearch.error">{{accountSearch.error}}</div>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-success" ng-click="findAccount($close)">Search</div>
+    <!--<div class="btn btn-success btn-block" ng-click="$close()">OK</div>-->
+</div>

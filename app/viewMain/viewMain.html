@@ -14,6 +14,14 @@
             <li>
                 <a ng-click="openModalHelp()"><i class="fa fa-question-circle"></i>&nbsp;{{translate('Help')}}</a>
             </li>
+            <li>
+                <div class="ise-account" ng-click="openModalAccountSelection()">
+                    <img class="ise-account-img" ng-show="account.iconUrl" ng-src="{{account.iconUrl}}"/>
+                    <img class="ise-account-img" ng-show="!account.iconUrl" src="http://ddragon.leagueoflegends.com/cdn/7.11.1/img/profileicon/1.png"/>
+                    <span ng-show="account.name">{{account.name}}</span>
+                    <span ng-show="!account.name">Click to select your account</span>
+                </div>
+            </li>
             <li class="dropdown" uib-dropdown>
                 <a class="dropdown-toggle" uib-dropdown-toggle>
                     <img ng-src="app/image/flags/{{language}}.png"/> <span class="caret"></span>

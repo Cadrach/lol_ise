@@ -1,16 +1,23 @@
 <?php
 include 'config.inc.php';
 
-$name = isset($_GET['name']) ? $_GET['name']:'Cadrach';
-$server = isset($_GET['server']) ? $_GET['server']:'euw1';
+//List of servers
+$servers = array_map(function($v){return $v['code'];}, json_decode(file_get_contents('servers.json'), true)['servers']);
+
+$name = isset($_GET['name']) ? $_GET['name']:null;
+$server = isset($_GET['server']) && in_array($_GET['server'], $servers)? strtolower($_GET['server']):null;
+
+if(!$name || !$server){
+    die(json_encode(['error' => 'Missing parameters']));
+}
 
 $url = "https://%s.api.riotgames.com/lol/summoner/v3/summoners/by-name/%s?api_key=" . RIOT_API_KEY;
 $url = sprintf($url, $server, urlencode($name));
 
 $data = @file_get_contents($url);
 if($data){
-    echo $data;
+    die($data);
 }
 else{
-    echo json_encode(['error' => 'Account not found']);
+    die(json_encode(['error' => 'Account not found']));
 }

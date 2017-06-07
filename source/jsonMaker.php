@@ -16,6 +16,7 @@ $url = "https://global.api.pvp.net/api/lol/static-data/euw/v$apiVersion/";
 $ddragon = "http://ddragon.leagueoflegends.com/cdn/";
 
 //Fetch latest version
+$servers = json_decode(file_get_contents('servers.json'), true)['servers'];
 $version = get($url . "versions?api_key=" . RIOT_API_KEY)[0];
 $languages = get($ddragon . 'languages.json');
 
@@ -72,6 +73,6 @@ foreach($languages as $k=>$language){
 }
 
 //Config json
-file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'generatedOn' => $today]));
+file_put_contents("config.json", json_encode(['version' => $version, 'languages' => $languages, 'servers' => $servers, 'generatedOn' => $today]));
 
 echo $version;

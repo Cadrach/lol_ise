@@ -64,8 +64,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         link: link
     }
 }])
-.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', '$window', 'localStorageService', 'ddTranslate', 'ddragon', 'source',
-    function($scope, $timeout, $uibModal, $location, $window, localStorageService, ddTranslate, ddragon, source) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', '$window', '$http', 'localStorageService', 'ddTranslate', 'ddragon', 'source',
+    function($scope, $timeout, $uibModal, $location, $window, $http, localStorageService, ddTranslate, ddragon, source) {
 
     /**
      * **************************************************************************************
@@ -136,6 +136,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     //Version & languages
     $scope.version = source.data.champion.version;
     $scope.codeVersion = codeVersion;
+    $scope.servers = source.config.servers;
     $scope.languages = _.chain(source.config.languages).map(function(lg){return lg.slice(0,2)}).uniq().value();
     $scope.language = ddragon.getLanguage().slice(0,2);
     $scope.multiSets = {};
@@ -209,6 +210,9 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
     else{
         $scope.sets = [];
     }
+
+    //Account
+    $scope.account = localStorageService.get('account');
 
     //Maps
     //Img: http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png
@@ -465,6 +469,43 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
         });
 
         return modal;
+    }
+
+    /**
+     * Open modal to select the user account
+     */
+    $scope.openModalAccountSelection = function(){
+//        var scope = $scope.$new();
+        $scope.accountSearch = {
+            server: 'EUW1'
+        }
+        var modal = $uibModal.open({
+            templateUrl: 'app/template/modal-account-selection.html?v=' + codeVersion,
+            scope: $scope
+        });
+
+        return modal;
+    }
+
+    /**
+     * Search for an account, and if found use it
+     */
+    $scope.findAccount = function(close){
+        delete $scope.accountSearch.result;
+        delete $scope.accountSearch.error;
+        $http.get('source/cors_account_id.php', {params: $scope.accountSearch}).then(function(result){
+            if(result.data.error){
+                $scope.accountSearch.error = result.data.error;
+                return;
+            }
+            //Set & save account
+            $scope.account = result.data;
+            $scope.account.iconUrl = 'http://ddragon.leagueoflegends.com/cdn/'+$scope.version+'/img/profileicon/'+$scope.account.profileIconId+'.png';
+            localStorageService.set('account', $scope.account);
+
+            //Close modal
+            close();
+        })
     }
 
     /**
