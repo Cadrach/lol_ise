@@ -475,9 +475,8 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
      * Open modal to select the user account
      */
     $scope.openModalAccountSelection = function(){
-//        var scope = $scope.$new();
         $scope.accountSearch = {
-            server: 'EUW1'
+            server: $scope.account ? $scope.account.server:'EUW1'
         }
         var modal = $uibModal.open({
             templateUrl: 'app/template/modal-account-selection.html?v=' + codeVersion,
@@ -501,6 +500,7 @@ angular.module('appLolIse.viewMain', ['ngRoute'])
             //Set & save account
             $scope.account = result.data;
             $scope.account.iconUrl = 'http://ddragon.leagueoflegends.com/cdn/'+$scope.version+'/img/profileicon/'+$scope.account.profileIconId+'.png';
+            $scope.account.server = $scope.accountSearch.server;
             localStorageService.set('account', $scope.account);
 
             //Close modal

@@ -347,6 +347,13 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
                 var zip = new JSZip;
                 var champions = {};
 
+                //Request account if none provided
+                if( ! scope.account || ! scope.account.accountId){
+                    scope.onNoAccount();
+                    return;
+                }
+
+                //Must have at least one set to download
                 if( ! scope.sets.length){
                     alert('Nothing to download!');
                     return;
@@ -434,7 +441,9 @@ angular.module('appLolIse.set.set-directive', ['ngFileUpload'])
         scope: {
             sets: '=',
             multiSets: '=',
-            champions: '='
+            champions: '=',
+            account: '=',
+            onNoAccount: '&'
         },
         template: '<div intro="downloader" class="btn btn-success btn-block" ng-click="download()"><i class="fa fa-download"></i>&nbsp;Download</div>'
     }
