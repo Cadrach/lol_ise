@@ -11,8 +11,8 @@ function get($url){
 }
 
 //Initial vars
-$apiVersion = '1.2';
-$url = "https://global.api.pvp.net/api/lol/static-data/euw/v$apiVersion/";
+$apiVersion = '3';
+$url = "https://euw1.api.riotgames.com/lol/static-data/v$apiVersion/";
 $ddragon = "http://ddragon.leagueoflegends.com/cdn/";
 
 //Fetch latest version
@@ -21,7 +21,7 @@ $version = get($url . "versions?api_key=" . RIOT_API_KEY)[0];
 $languages = get($ddragon . 'languages.json');
 
 //Fetch once full data to get recommended item sets (it is long to fetch)
-$recommended = get($url . "champion?champData=recommended&api_key=" . RIOT_API_KEY)['data'];
+$recommended = get($url . "champions?tags=recommended&api_key=" . RIOT_API_KEY)['data'];
 
 //Date
 $today = date('Y-m-d H:i:s');

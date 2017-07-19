@@ -11,7 +11,8 @@ if(!$name || !$server){
     die(json_encode(['error' => 'Missing parameters']));
 }
 
-$url = "https://%s.api.riotgames.com/lol/summoner/v3/summoners/by-name/%s?api_key=" . RIOT_API_KEY;
+$apiVersion = '3';
+$url = "https://%s.api.riotgames.com/lol/summoner/v$apiVersion/summoners/by-name/%s?api_key=" . RIOT_API_KEY;
 $url = sprintf($url, $server, urlencode($name));
 
 $data = @file_get_contents($url);
