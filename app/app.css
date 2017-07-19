@@ -531,6 +531,8 @@ input.form-control.ise-filter-string {
     border-color: #463714; }
   .ise-item-popover .popover-content {
     color: #68bec5; }
+    .ise-item-popover .popover-content font {
+      font-size: 14px; }
   .ise-item-popover stats {
     color: #96fa96; }
   .ise-item-popover unique, .ise-item-popover active {

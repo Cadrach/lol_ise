@@ -699,7 +699,12 @@ input.form-control.ise-filter-string{
         border-color: $color-border-item;
     }
 
-    .popover-content{color: #68bec5}
+    .popover-content{
+        color: #68bec5;
+        font{
+            font-size: 14px;
+        }
+    }
     stats{color: #96fa96;}
     unique, active{color: #fddb22;}
     .ise-item-gold{
